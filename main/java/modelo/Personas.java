@@ -44,7 +44,7 @@ public class Personas implements Serializable{
     
     @Temporal(TemporalType.DATE)
     @Column(name="FechaNacimiento")
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
 
     public int getIdPersona() {
         return idPersona;
@@ -86,11 +86,11 @@ public class Personas implements Serializable{
         this.sexo = sexo;
     }
 
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
     
