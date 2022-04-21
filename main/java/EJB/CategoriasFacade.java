@@ -17,7 +17,7 @@ import modelo.Categorias;
 @Stateless
 public class CategoriasFacade extends AbstractFacade<Categorias> implements CategoriasFacadeLocal {
 
-    @PersistenceContext(unitName = "PublicacionesPU")
+    @PersistenceContext(unitName = "ikeaPU")
     private EntityManager em;
 
     @Override

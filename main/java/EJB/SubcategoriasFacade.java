@@ -8,16 +8,16 @@ package EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import modelo.Personas;
+import modelo.Subcategorias;
 
 /**
  *
  * @author carlos
  */
 @Stateless
-public class PersonasFacade extends AbstractFacade<Personas> implements PersonasFacadeLocal {
+public class SubcategoriasFacade extends AbstractFacade<Subcategorias> implements SubcategoriasFacadeLocal {
 
-    @PersistenceContext(unitName = "PublicacionesPU")
+    @PersistenceContext(unitName = "ikeaPU")
     private EntityManager em;
 
     @Override
@@ -25,8 +25,8 @@ public class PersonasFacade extends AbstractFacade<Personas> implements Personas
         return em;
     }
 
-    public PersonasFacade() {
-        super(Personas.class);
+    public SubcategoriasFacade() {
+        super(Subcategorias.class);
     }
     
 }
