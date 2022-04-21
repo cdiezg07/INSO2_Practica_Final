@@ -1,0 +1,5 @@
+main/java/com/mycompany/practica1/JAXRSConfiguration.java
+main/java/com/mycompany/practica1/resources/JavaEE8Resource.java
+resources/META-INF/persistence.xml
+webapp/WEB-INF/web.xml
+webapp/WEB-INF/beans.xml
