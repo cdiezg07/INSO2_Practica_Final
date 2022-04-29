@@ -37,6 +37,38 @@ public class Envios implements Serializable{
     @Column(name="empresa")
     private String empresa;
 
+    public String getMetodoEnvio() {
+        return metodoEnvio;
+    }
+
+    public void setMetodoEnvio(String metodoEnvio) {
+        this.metodoEnvio = metodoEnvio;
+    }
+
+    public float getGastos() {
+        return gastos;
+    }
+
+    public void setGastos(float gastos) {
+        this.gastos = gastos;
+    }
+
+    public String getFechaDestino() {
+        return fechaDestino;
+    }
+
+    public void setFechaDestino(String fechaDestino) {
+        this.fechaDestino = fechaDestino;
+    }
+
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
+
     
     
 }

@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
  
@@ -29,7 +30,7 @@ public class Subcategorias implements Serializable{
     private String imageUrl;
 
     @JoinColumn(name="nombre")
-    @OneToMany
+    @ManyToOne
     private Categorias categoria;
 
     public String getNombreSubcategoria() {

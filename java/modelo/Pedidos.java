@@ -5,11 +5,14 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -22,7 +25,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table (name="pedidos")
-public class Pedidos {
+public class Pedidos implements Serializable{
     
     @Id
     @Column(name="idPedidos")
@@ -39,15 +42,15 @@ public class Pedidos {
     private String incluyeMontaje;
     
     @JoinColumn(name="metodoEnvio")
-    @OneToMany
+    @ManyToOne
     private Envios envio;
     
     @JoinColumn(name="idDireccion")
-    @OneToMany
+    @ManyToOne
     private Direcciones direccion;
     
     @JoinColumn(name="emailCliente")
-    @OneToMany
+    @ManyToOne
     private Clientes cliente;
 
     public String getUpc() {

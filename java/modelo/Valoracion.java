@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,33 +19,34 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "valoracion")
-public class Valoracion {
+public class Valoracion implements Serializable{
 
     @Id
     @JoinColumn(name="UPC")
     @ManyToOne//Muchas valoraciones pueden ser dejadas de un producto
-    private String UPC;
+    private Products UPC;
+    
     @Id
     @JoinColumn(name="emailCliente")
     @ManyToOne//Muchas valoraciones pueden ser dejadas por un cliente
-    private String emailCliente;
+    private Clientes emailCliente;
     
     @Column(name = "estrellas")
     private int estrellas;
 
-    public String getUPC() {
+    public Products getUPC() {
         return UPC;
     }
 
-    public void setUPC(String UPC) {
+    public void setUPC(Products UPC) {
         this.UPC = UPC;
     }
 
-    public String getEmailCliente() {
+    public Clientes getEmailCliente() {
         return emailCliente;
     }
 
-    public void setEmailCliente(String emailCliente) {
+    public void setEmailCliente(Clientes emailCliente) {
         this.emailCliente = emailCliente;
     }
 

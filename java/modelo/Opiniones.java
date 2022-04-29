@@ -5,11 +5,14 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,16 +20,20 @@ import javax.persistence.TemporalType;
  *
  * @author Mario
  */
-public class Opiniones {
+@Entity
+@Table (name="opiniones")
+public class Opiniones implements Serializable{
 
     @Id
     @JoinColumn(name="UPC")
     @ManyToOne//muchas opciniones pueden ser de un producto
-    private String UPC;
+    private Products UPC;
+    
     @Id
     @JoinColumn(name="emailCliente")
     @ManyToOne//Muchas opiniones pueden ser de un cliente
-    private String emailCliente;
+    private Clientes emailCliente;
+    
     @Id
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha")
@@ -38,19 +45,19 @@ public class Opiniones {
     @Column(name = "comentario")
     private String comentario;
 
-    public String getUPC() {
+    public Products getUPC() {
         return UPC;
     }
 
-    public void setUPC(String UPC) {
+    public void setUPC(Products UPC) {
         this.UPC = UPC;
     }
 
-    public String getEmailCliente() {
+    public Clientes getEmailCliente() {
         return emailCliente;
     }
 
-    public void setEmailCliente(String emailCliente) {
+    public void setEmailCliente(Clientes emailCliente) {
         this.emailCliente = emailCliente;
     }
 
@@ -77,9 +84,4 @@ public class Opiniones {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
-
-   
-    
-    
-
 }

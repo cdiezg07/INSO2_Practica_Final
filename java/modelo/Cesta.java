@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,33 +22,34 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "cesta")
-public class Cesta {
+public class Cesta implements Serializable{
 
     @Id
     @JoinColumn(name="emailCliente")
     @OneToOne //Una cesta solo puede ser tenida por un cliente
-    private String emailUsuario;
+    private Clientes emailUsuario;
+    
     @Id
     @JoinColumn(name="UPC")
     @ManyToMany//Una cesta puede contener varios productos y muchas cestas pueden contener un producto
-    private String UPC;
+    private List<Products> UPC;
 
     @Column(name = "Cantidad")
     private int Cantidad;
 
-    public String getEmailUsuario() {
+    public Clientes getEmailUsuario() {
         return emailUsuario;
     }
 
-    public void setEmailUsuario(String emailUsuario) {
+    public void setEmailUsuario(Clientes emailUsuario) {
         this.emailUsuario = emailUsuario;
     }
 
-    public String getUPC() {
+    public List<Products> getUPC() {
         return UPC;
     }
 
-    public void setUPC(String UPC) {
+    public void setUPC(List<Products> UPC) {
         this.UPC = UPC;
     }
 

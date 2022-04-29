@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,21 +19,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "administradores")
-public class Administradores {
+public class Administradores implements Serializable{
 
     @Id
     @JoinColumn(name="email")
-      @OneToOne
-    private String emailAdministradores;
+    @OneToOne
+    private Usuarios emailAdministradores;
 
     @Column(name = "DNI")
     private String DNI;
 
-    public String getEmailAdministradores() {
+    public Usuarios getEmailAdministradores() {
         return emailAdministradores;
     }
 
-    public void setEmailAdministradores(String emailAdministradores) {
+    public void setEmailAdministradores(Usuarios emailAdministradores) {
         this.emailAdministradores = emailAdministradores;
     }
 

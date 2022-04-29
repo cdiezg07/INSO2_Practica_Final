@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,12 +22,12 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @Table(name = "trabajadores")
-public class Trabajadores {
+public class Trabajadores implements Serializable{
 
-     @Id
+    @Id
     @JoinColumn(name="email")
-       @OneToOne
-    private String emailTrabajador;
+    @OneToOne
+    private Usuarios emailTrabajador;
 
     @Column(name = "dni")
     private String DNI;
@@ -38,11 +39,11 @@ public class Trabajadores {
     @Column(name = "fecha_nacimiento")
     private Date fecha_nacimiento;
 
-    public String getEmailTrabajador() {
+    public Usuarios getEmailTrabajador() {
         return emailTrabajador;
     }
 
-    public void setEmailTrabajador(String emailTrabajador) {
+    public void setEmailTrabajador(Usuarios emailTrabajador) {
         this.emailTrabajador = emailTrabajador;
     }
 

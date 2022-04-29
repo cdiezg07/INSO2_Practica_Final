@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "direcciones")
-public class Direcciones {
+public class Direcciones implements Serializable{
 
     @Id
     @Column(name = "idDirecciones")
@@ -48,7 +49,7 @@ public class Direcciones {
 
     @JoinColumn(name = "emailCliente")
     @ManyToOne //muchas direcciones pueden ser tenidas por un usuario
-    private String emailUsuario;
+    private Clientes emailUsuario;
 
     public String getIdDirecciones() {
         return idDirecciones;
@@ -114,15 +115,13 @@ public class Direcciones {
         this.pais = pais;
     }
 
-    public String getEmailUsuario() {
+    public Clientes getEmailUsuario() {
         return emailUsuario;
     }
 
-    public void setEmailUsuario(String emailUsuario) {
+    public void setEmailUsuario(Clientes emailUsuario) {
         this.emailUsuario = emailUsuario;
-    }
-    
-    
+    } 
     
    
 }
