@@ -14,16 +14,16 @@
                
            <p:panel header="Login" style="width:500px">
         <h:panelGrid columns="2" cellpadding="5">
-          <h:outputLabel for="username" value="Usuario:" />
-          <p:inputText value="" id="username"
+          <h:outputLabel for="username" value="Email: " />
+          <p:inputText value="#{indexController.usuarioABuscar.email}" id="username"
              required="true" label="username" />
           <h:outputLabel for="password" value="Contraseña: " />
-        <p:password value="" id="password" required="true"
+          <p:password value="#{indexController.usuarioABuscar.password}" id="password" required="true"
            label="password" />
         <f:facet name="footer">
-         <!-- <p:commandButton id="loginButton" value="Login"
-             action="" update=":mensajes"
-             oncomplete="manejarLogin(xhr, status, args)" />-->
+         <p:commandButton id="loginButton" value="Login"
+             action="#{indexController.verificarUsuario()}" update=":mensajes"
+             oncomplete="manejarLogin(xhr, status, args)" />
         </f:facet>
       </h:panelGrid>
     </p:panel>
