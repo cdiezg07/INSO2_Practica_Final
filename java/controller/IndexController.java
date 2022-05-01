@@ -9,6 +9,7 @@ import EJB.UsuariosFacadeLocal;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import modelo.Usuarios;
@@ -47,6 +48,11 @@ public class IndexController implements Serializable{
          if(usuEncontrado == null){
            return "publico/permisosinsuficientes.xhtml";
          }
+         //Colocamos asimismo el usuario en el contexto de la apliacion para que el usuario sea accesible globalmente
+         
+         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLoggeado", usuEncontrado);
+         
+         
          return "privado/principal.xhtml";
          
      }
