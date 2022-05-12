@@ -7,8 +7,11 @@ package controller;
 
 import EJB.UsuariosFacadeLocal;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -25,6 +28,10 @@ public class IndexController implements Serializable{
     private UsuariosFacadeLocal usuarioEJB;
     private Usuarios usuarioABuscar;
 
+     
+       
+        
+    
     public Usuarios getUsuarioABuscar() {
         return usuarioABuscar;
     }
@@ -37,6 +44,8 @@ public class IndexController implements Serializable{
     @PostConstruct
     public void init(){
         usuarioABuscar = new Usuarios();
+        
+     
     } 
     
     
@@ -56,6 +65,7 @@ public class IndexController implements Serializable{
          return "privado/principal.xhtml";
          
      }
+     
     
     
     

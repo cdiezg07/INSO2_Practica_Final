@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -17,6 +18,7 @@ import javax.inject.Named;
  *
  * @author Mario
  */
+
 @Named
 @ViewScoped
 public class PlantillaController implements Serializable{
