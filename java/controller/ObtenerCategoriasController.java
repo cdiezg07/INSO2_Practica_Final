@@ -47,7 +47,7 @@ public class ObtenerCategoriasController implements Serializable{
         try{
             listaCat = catEJB.findAll();
             for(Categorias cat: listaCat){
-                System.out.println("Categorias"+cat.getNombre());
+                System.out.println("Categorias"+cat.getNombre()); 
             }
             return listaCat;
         }catch(Exception e){
