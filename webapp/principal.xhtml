@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+<h:head> </h:head> <h:body style="text-align:center">
+    <p:growl id="mensajes" showDetail="true" life="2000" />
+  <div class="card">
+                <h:form id="form">
+                <p:repeat value="#{obtenerCategoriasController.getCategorias()}" var="categoria">
+                    <div class="categoria">
+                        <div class="product-name">#{categoria.nombre}</div>
+                        <p:repeat value="#{obtenerSubCategoriasController.getSubcategorias(categoria.nombre)}" var="subcategoria">
+                            <div class="product-name1">#{subcategoria.nombreSubcategoria}</div>
+                       </p:repeat>
+                        
+                    </div>
+                         
+                </p:repeat>
+              </h:form>
+            </div>
+</h:body>
+
+</html>
