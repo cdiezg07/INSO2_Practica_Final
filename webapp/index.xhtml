@@ -1,12 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>¡Bienvenid@ a IKEA!</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <p:growl id="mensajes" showDetail="true" life="2000" />
+
+        <h:form>
+
+            <p:panel header="Login" style="width:500px">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="username" value="Email: " />
+                    <p:inputText value="#{indexController.usuarioABuscar.email}" id="username"
+                                 required="true" label="username" />
+                    <h:outputLabel for="password" value="Contraseña: " />
+                    <p:password value="#{indexController.usuarioABuscar.password}" id="password" required="true"
+                                label="password" />
+                    <f:facet name="footer">
+                        <p:commandButton id="loginButton" value="Login"
+                                         action="#{indexController.verificarUsuario()}" update=":mensajes"
+                                         oncomplete="manejarLogin(xhr, status, args)" />
+                    </f:facet>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+
+
     </h:body>
 </html>
 
