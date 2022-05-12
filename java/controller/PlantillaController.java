@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import modelo.Usuarios;
 
 /**
  *
@@ -36,6 +37,11 @@ public class PlantillaController implements Serializable{
             } catch (IOException ex) {
                 Logger.getLogger(PlantillaController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }else{
+            Usuarios usu = (Usuarios)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado");
+            
+            System.out.println(usu.getTipo());
+
         }
         //Si existe usuario correctamente no hace nada y lo deja pasar cargándose el formulario
     }

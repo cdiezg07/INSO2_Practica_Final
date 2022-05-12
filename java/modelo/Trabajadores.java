@@ -25,7 +25,7 @@ import javax.persistence.OneToOne;
 public class Trabajadores implements Serializable{
 
     @Id
-    @JoinColumn(name="email")
+    @JoinColumn(name="emailTrabajador")
     @OneToOne
     private Usuarios emailTrabajador;
 

@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class Administradores implements Serializable{
 
     @Id
-    @JoinColumn(name="email")
+    @JoinColumn(name="emailAdministradores")
     @OneToOne
     private Usuarios emailAdministradores;
 
