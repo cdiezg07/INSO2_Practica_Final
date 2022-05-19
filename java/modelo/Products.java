@@ -98,7 +98,7 @@ public class Products implements Serializable{
     @Column(name="tag")
     private String tag;
     
-    @JoinColumn(name="nombreCategoria")
+    @JoinColumn(name="subcategoria")
     @ManyToOne
     private Subcategorias subcategoria;
     

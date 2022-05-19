@@ -29,7 +29,7 @@ public class Subcategorias implements Serializable{
     @Column(name="imageUrl")
     private String imageUrl;
 
-    @JoinColumn(name="nombre")
+    @JoinColumn(name="nombreCategoria")
     @ManyToOne
     private Categorias categoria;
 
