@@ -21,9 +21,8 @@
                     <p:password value="#{indexController.usuarioABuscar.password}" id="password" required="true"
                                 label="password" />
                     <f:facet name="footer">
-                        <p:commandButton id="loginButton" value="Login"
-                                         action="#{indexController.verificarUsuario()}" update=":mensajes"
-                                         oncomplete="manejarLogin(xhr, status, args)" />
+                        <p:commandButton id="loginButton" value="Login" ajax="false"
+                                         action="#{indexController.verificarUsuario()}" update=":mensajes"/>
                     </f:facet>
                 </h:panelGrid>
             </p:panel>

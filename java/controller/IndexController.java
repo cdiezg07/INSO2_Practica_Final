@@ -45,7 +45,6 @@ public class IndexController implements Serializable{
     public void init(){
         usuarioABuscar = new Usuarios();
         
-     
     } 
     
     
