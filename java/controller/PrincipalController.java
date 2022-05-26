@@ -22,7 +22,7 @@ import modelo.Categorias;
  */
 @Named
 @ViewScoped
-public class ObtenerCategoriasController implements Serializable{
+public class PrincipalController implements Serializable{
     
     private Categorias cat;
     private List<Categorias> listaCat;
