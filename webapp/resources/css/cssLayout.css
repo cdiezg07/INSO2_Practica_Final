@@ -1,7 +1,7 @@
 
 #top {
     position: relative;
-    background-color: #036fab;
+    background-color: transparent;
     color: white;
     padding: 5px;
     margin: 0px 0px 10px 0px;
@@ -30,8 +30,9 @@
 
 .center_content {
     position: relative;
-    background-color: #dddddd;
+    background-color: transparent;
     padding: 5px;
+    height: 100%;
 }
 
 .left_content {
@@ -47,7 +48,7 @@
 }
 
 #top a:link, #top a:visited {
-  color: white;
+  color: black;
   font-weight : bold;
   text-decoration: none;
 }
@@ -59,3 +60,21 @@
 }
 
 
+.test{
+    background-color: lightcoral;
+}
+
+.dcha_login{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color:lightskyblue
+}
+
+html{
+    background-image: url(/resources/images/background.png);
+}
+
+.img{
+    border-radius: 10px;
+}
