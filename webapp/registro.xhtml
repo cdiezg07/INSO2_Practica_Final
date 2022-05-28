@@ -25,10 +25,9 @@ and open the template in the editor.
             <f:selectItems value="#{cascadeSelectView.countries}"/>
         </p:cascadeSelect>-->
           
-     
-       
+      
         <f:facet name="footer">
-          <p:commandButton id="loginButton" value="Login"
+          <p:commandButton id="loginButton" value="Login" rendered="#{bean.prueba != false}"
      actionListener="#{registroController.insertarUsuario()}" update=":mensajes"
              oncomplete="manejarLogin(xhr, status, args)" />
         </f:facet>

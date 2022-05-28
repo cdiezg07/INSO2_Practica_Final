@@ -41,7 +41,6 @@ public class IndexController implements Serializable {
     @PostConstruct
     public void init() {
         usuarioABuscar = new Usuarios();
-
     }
 
     public String verificarUsuario() {

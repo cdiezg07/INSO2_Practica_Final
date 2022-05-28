@@ -32,6 +32,8 @@ public class RegistroController implements Serializable {
     private Clientes cliente;
     private Trabajadores trabajador;
     private Administradores admin;
+    private boolean prueba = false;
+
     @EJB
     private UsuariosFacadeLocal userEJB;
     @EJB
@@ -47,6 +49,8 @@ public class RegistroController implements Serializable {
         cliente = new Clientes();
         trabajador = new Trabajadores();
         admin = new Administradores();
+        this.prueba = true;
+
     }
 
     public void insertarUsuario() {
@@ -87,4 +91,11 @@ public class RegistroController implements Serializable {
         this.user = user;
     }
 
+    public boolean isPrueba() {
+        return prueba;
+    }
+
+    public void setPrueba(boolean prueba) {
+        this.prueba = prueba;
+    }
 }
