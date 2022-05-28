@@ -19,18 +19,18 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "valoracion")
-public class Valoracion implements Serializable{
+public class Valoracion implements Serializable {
 
     @Id
-    @JoinColumn(name="UPC")
+    @JoinColumn(name = "UPC")
     @ManyToOne//Muchas valoraciones pueden ser dejadas de un producto
     private Products UPC;
-    
+
     @Id
-    @JoinColumn(name="emailCliente")
+    @JoinColumn(name = "emailCliente")
     @ManyToOne//Muchas valoraciones pueden ser dejadas por un cliente
     private Clientes emailCliente;
-    
+
     @Column(name = "estrellas")
     private int estrellas;
 
@@ -58,6 +58,4 @@ public class Valoracion implements Serializable{
         this.estrellas = estrellas;
     }
 
-    
-    
 }

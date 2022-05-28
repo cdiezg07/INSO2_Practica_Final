@@ -23,10 +23,10 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @Table(name = "trabajadores")
-public class Trabajadores implements Serializable{
+public class Trabajadores implements Serializable {
 
     @Id
-    @JoinColumn(name="emailTrabajador")
+    @JoinColumn(name = "emailTrabajador")
     @OneToOne(cascade = CascadeType.ALL)//con persist funciona solo el create 
     private Usuarios emailTrabajador;
 
@@ -71,6 +71,5 @@ public class Trabajadores implements Serializable{
     public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
-    
-    
+
 }

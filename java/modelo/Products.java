@@ -14,104 +14,105 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 /**
  *
  * @author carlos
  */
 @Entity
-@Table (name="products")
-public class Products implements Serializable{
-    
+@Table(name = "products")
+public class Products implements Serializable {
+
     @Id
-    @Column(name="UPC")
+    @Column(name = "UPC")
     private String upc;
- 
-    @Column(name="ItemNo")
+
+    @Column(name = "ItemNo")
     private int itemNo;
 
-    @Column(name="itemType")
+    @Column(name = "itemType")
     private String itemType;
 
-    @Column(name="priceprefix")
+    @Column(name = "priceprefix")
     private String priceprefix;
 
-    @Column(name="pricewholeNumber")
+    @Column(name = "pricewholeNumber")
     private float pricewholeNumber;
 
-    @Column(name="priceseparator")
+    @Column(name = "priceseparator")
     private String priceseparator;
 
-    @Column(name="pricedecimals")
+    @Column(name = "pricedecimals")
     private int pricedecimals;
 
-    @Column(name="pricesuffix")
+    @Column(name = "pricesuffix")
     private String pricesuffix;
 
-    @Column(name="priceisRegularCurrency")
+    @Column(name = "priceisRegularCurrency")
     private String priceisRegularCurrency;
 
-    @Column(name="contextualImageUrl")
+    @Column(name = "contextualImageUrl")
     private String contextualImageUrl;
 
-    @Column(name="mainImageAlt")
+    @Column(name = "mainImageAlt")
     private String mainImageAlt;
 
-    @Column(name="breathTaking")
+    @Column(name = "breathTaking")
     private String breathTaking;
 
-    @Column(name="discount")
+    @Column(name = "discount")
     private String discount;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="typeName")
+    @Column(name = "typeName")
     private String typeName;
 
-    @Column(name="itemMeasureReferenceText")
+    @Column(name = "itemMeasureReferenceText")
     private String itemMeasureReferenceText;
 
-    @Column(name="mainImageUrl")
+    @Column(name = "mainImageUrl")
     private String mainImageUrl;
 
-    @Column(name="pipUrl")
+    @Column(name = "pipUrl")
     private String pipUrl;
 
-    @Column(name="itemNoGlobal")
+    @Column(name = "itemNoGlobal")
     private int itemNoGlobal;
-    
-    @Column(name="onlineSellable")
+
+    @Column(name = "onlineSellable")
     private String onlineSellable;
-    
-    @Column(name="lastChance")
+
+    @Column(name = "lastChance")
     private String lastChance;
-    
-    @Column(name="colors")
+
+    @Column(name = "colors")
     private String colors;
-    
-    @Column(name="priceNumeral")
+
+    @Column(name = "priceNumeral")
     private float priceNumeral;
-    
-    @Column(name="currencyCode")
+
+    @Column(name = "currencyCode")
     private String currencyCode;
-    
-    @Column(name="tag")
+
+    @Column(name = "tag")
     private String tag;
-    
-    @JoinColumn(name="subcategoria")
+
+    @JoinColumn(name = "subcategoria")
     @ManyToOne
     private Subcategorias subcategoria;
-    
-    @Column(name="variants")
+
+    @Column(name = "variants")
     private String variants;
-    
-    @Column(name="tagText")
+
+    @Column(name = "tagText")
     private String tagText;
-    
-    @Column(name="availabilityDisclaimer")
+
+    @Column(name = "availabilityDisclaimer")
     private String availabilityDisclaimer;
-    
-    @Column(name="priceUnit")
+
+    @Column(name = "priceUnit")
     private String priceUnit;
 
     public String getUpc() {
@@ -352,5 +353,5 @@ public class Products implements Serializable{
 
     public void setPriceUnit(String priceUnit) {
         this.priceUnit = priceUnit;
-    }   
+    }
 }

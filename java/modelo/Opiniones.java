@@ -21,19 +21,19 @@ import javax.persistence.TemporalType;
  * @author Mario
  */
 @Entity
-@Table (name="opiniones")
-public class Opiniones implements Serializable{
+@Table(name = "opiniones")
+public class Opiniones implements Serializable {
 
     @Id
-    @JoinColumn(name="UPC")
+    @JoinColumn(name = "UPC")
     @ManyToOne//muchas opciniones pueden ser de un producto
     private Products UPC;
-    
+
     @Id
-    @JoinColumn(name="emailCliente")
+    @JoinColumn(name = "emailCliente")
     @ManyToOne//Muchas opiniones pueden ser de un cliente
     private Clientes emailCliente;
-    
+
     @Id
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha")

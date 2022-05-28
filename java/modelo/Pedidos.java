@@ -22,34 +22,33 @@ import javax.persistence.TemporalType;
  *
  * @author carlos
  */
-
 @Entity
-@Table (name="pedidos")
-public class Pedidos implements Serializable{
-    
+@Table(name = "pedidos")
+public class Pedidos implements Serializable {
+
     @Id
-    @Column(name="idPedidos")
+    @Column(name = "idPedidos")
     private String upc;
- 
+
     @Temporal(TemporalType.DATE)
-    @Column(name="fecha")
+    @Column(name = "fecha")
     private Date fecha;
 
-    @Column(name="estado")
+    @Column(name = "estado")
     private String estado;
-    
-    @Column(name="incluyeMontaje")
+
+    @Column(name = "incluyeMontaje")
     private String incluyeMontaje;
-    
-    @JoinColumn(name="metodoEnvio")
+
+    @JoinColumn(name = "metodoEnvio")
     @ManyToOne
     private Envios envio;
-    
-    @JoinColumn(name="idDireccion")
+
+    @JoinColumn(name = "idDireccion")
     @ManyToOne
     private Direcciones direccion;
-    
-    @JoinColumn(name="emailCliente")
+
+    @JoinColumn(name = "emailCliente")
     @ManyToOne
     private Clientes cliente;
 
@@ -109,6 +108,4 @@ public class Pedidos implements Serializable{
         this.cliente = cliente;
     }
 
-   
-    
 }

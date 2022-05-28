@@ -25,18 +25,18 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "cesta")
-public class Cesta implements Serializable{
+public class Cesta implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="cestaId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "cestaId")
     private int cestaId;
-    
-    @JoinColumn(name="emailUsuario")
+
+    @JoinColumn(name = "emailUsuario")
     @OneToOne //Una cesta solo puede ser tenida por un cliente
     private Clientes emailUsuario;
-    
-    @JoinColumn(name="UPC")
+
+    @JoinColumn(name = "UPC")
     @ManyToOne//Una cesta puede contener varios productos y muchas cestas pueden contener un producto
     private Products upc;
 
@@ -74,5 +74,5 @@ public class Cesta implements Serializable{
     public void setCestaId(int cestaId) {
         this.cestaId = cestaId;
     }
-    
+
 }

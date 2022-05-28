@@ -24,44 +24,43 @@ import modelo.Subcategorias;
  */
 @Named
 @ViewScoped
-public class ProductosController implements Serializable{
-    
+public class ProductosController implements Serializable {
+
     private Products producto;
     private List<Products> listaProductos;
-    
+
     @EJB
     private ProductsFacadeLocal productsEJB;
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         producto = new Products();
     }
-        
-    public void insertarSubcategoria(){
-        try{
+
+    public void insertarSubcategoria() {
+        try {
             productsEJB.create(producto);
-        }catch(Exception e){
-            System.out.println("Error al insertar el producto "+ e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error al insertar el producto " + e.getMessage());
         }
     }
-    
-    public List<Products> getProducts(String nombreSubCategoria){
-       
 
-        try{
+    public List<Products> getProducts(String nombreSubCategoria) {
+
+        try {
             listaProductos = productsEJB.findAll();
             List<Products> listaFinal = new ArrayList<Products>();
-            System.out.println("fsdfasdfasdf"+nombreSubCategoria);
-            for(Products pro: listaProductos){
+            System.out.println("fsdfasdfasdf" + nombreSubCategoria);
+            for (Products pro : listaProductos) {
                 System.out.println(pro.getSubcategoria().getNombreSubcategoria());
-                if(pro.getSubcategoria().getNombreSubcategoria().equals(nombreSubCategoria)){
+                if (pro.getSubcategoria().getNombreSubcategoria().equals(nombreSubCategoria)) {
                     listaFinal.add(pro);
                 }
             }
             return listaFinal;
-            
-        }catch(Exception e){
-            System.out.println("Error al obtener el producto "+ e.getMessage());
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener el producto " + e.getMessage());
         }
         return null;
     }
@@ -73,5 +72,4 @@ public class ProductosController implements Serializable{
 //    public void setCat(Categorias cat) {
 //        this.cat = cat;
 //    }   
-    
 }

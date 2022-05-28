@@ -42,13 +42,12 @@ public class AdminEditarTrabajadorController implements Serializable {
 
     public String guardarTrabajadorModificado() {
 
-       // this.trabTraido.getEmailTrabajador().setPassword("1000");
-     //   this.trabTraido.getEmailTrabajador().setNombre("1000");
-      //  this.trabTraido.getEmailTrabajador().setApellidos("1000");
-     //   this.trabTraido.setDNI("1000000");
-     //   this.trabTraido.setFecha_nacimiento(new Date(2000, 12, 12));
-     //   this.trabTraido.setNum_telefono("1000000");
-
+        // this.trabTraido.getEmailTrabajador().setPassword("1000");
+        //   this.trabTraido.getEmailTrabajador().setNombre("1000");
+        //  this.trabTraido.getEmailTrabajador().setApellidos("1000");
+        //   this.trabTraido.setDNI("1000000");
+        //   this.trabTraido.setFecha_nacimiento(new Date(2000, 12, 12));
+        //   this.trabTraido.setNum_telefono("1000000");
         try {
 
             this.trabajadorEJB.edit(this.trabTraido);

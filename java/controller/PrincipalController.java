@@ -22,36 +22,36 @@ import modelo.Categorias;
  */
 @Named
 @ViewScoped
-public class PrincipalController implements Serializable{
-    
+public class PrincipalController implements Serializable {
+
     private Categorias cat;
     private List<Categorias> listaCat;
-    
+
     @EJB
     private CategoriasFacadeLocal catEJB;
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         cat = new Categorias();
     }
-        
-    public void insertarCategoria(){
-        try{
+
+    public void insertarCategoria() {
+        try {
             catEJB.create(cat);
-        }catch(Exception e){
-            System.out.println("Error al insertar la categoria "+ e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error al insertar la categoria " + e.getMessage());
         }
     }
-    
-    public List<Categorias> getCategorias(){
-        try{
+
+    public List<Categorias> getCategorias() {
+        try {
             listaCat = catEJB.findAll();
-            for(Categorias cat: listaCat){
-                System.out.println("Categorias"+cat.getNombre()); 
+            for (Categorias cat : listaCat) {
+                System.out.println("Categorias" + cat.getNombre());
             }
             return listaCat;
-        }catch(Exception e){
-            System.out.println("Error al insertar la categoria "+ e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error al insertar la categoria " + e.getMessage());
         }
         return null;
     }
@@ -62,6 +62,6 @@ public class PrincipalController implements Serializable{
 
     public void setCat(Categorias cat) {
         this.cat = cat;
-    }   
-    
+    }
+
 }

@@ -23,10 +23,10 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @Table(name = "clientes")
-public class Clientes implements Serializable{
+public class Clientes implements Serializable {
 
     @Id
-    @JoinColumn(name="emailCliente")
+    @JoinColumn(name = "emailCliente")
     @OneToOne
     private Usuarios emailCliente;
 
@@ -94,5 +94,4 @@ public class Clientes implements Serializable{
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-   
 }

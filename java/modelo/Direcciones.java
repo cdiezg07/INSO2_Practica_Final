@@ -20,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "direcciones")
-public class Direcciones implements Serializable{
+public class Direcciones implements Serializable {
 
     @Id
     @Column(name = "idDirecciones")
@@ -28,22 +28,22 @@ public class Direcciones implements Serializable{
 
     @Column(name = "nombre")
     private String nombre;
-    
+
     @Column(name = "apellidos")
     private String apellidos;
-    
+
     @Column(name = "num_telefono")
     private String num_telefono;//
-    
+
     @Column(name = "direccion")
     private String direccion;
-    
+
     @Column(name = "ciudad")
     private String ciudad;
-    
+
     @Column(name = "CP")
     private String CP;
-    
+
     @Column(name = "pais")
     private String pais;
 
@@ -121,7 +121,6 @@ public class Direcciones implements Serializable{
 
     public void setEmailUsuario(Clientes emailUsuario) {
         this.emailUsuario = emailUsuario;
-    } 
-    
-   
+    }
+
 }

@@ -120,48 +120,30 @@ public class PerfilController implements Serializable {
             System.out.println("ERROR AL CONTACTAR CON LA BBDD");
 
         }
-        
-       // System.out.println(this.usuarioLoggeado.getEmail());
-     //   System.out.println(this.usuarioLoggeado.getNombre());
-      //  System.out.println(this.usuarioLoggeado.getApellidos());
-      //  System.out.println(this.usuarioLoggeado.getPassword());
-      //  System.out.println(this.usuarioLoggeado.getTipo());
-        
-        
-        
-       // System.out.println(this.attrEspAdministrador.getEmailAdministradores());
-       // System.out.println(this.attrEspAdministrador.getDNI());
-            
-        
-        
-       // System.out.println(this.attrEspCliente.getEmailCliente());
-       // System.out.println(this.attrEspCliente.getFecha_nacimiento());
-       // System.out.println(this.attrEspCliente.getNumero_telefono());
-      //  System.out.println(this.attrEspCliente.getDireccion());
-      //  System.out.println(this.attrEspCliente.getProvincia());
-      //  System.out.println(this.attrEspCliente.getMunicipio());
 
-        
-        
-        
-     //  System.out.println(this.attrEspTrabajador.getEmailTrabajador());
-     //   System.out.println(this.attrEspTrabajador.getDNI());
-      // System.out.println(this.attrEspTrabajador.getNum_telefono());
-      //  System.out.println(this.attrEspTrabajador.getFecha_nacimiento());
-
-
-        
-       // this.usuarioLoggeado.setPassword("0000");
-       // this.usuarioLoggeado.setNombre("0000");
-       // this.usuarioLoggeado.setApellidos("0000");
-       // this.attrEspAdministrador.setDNI("0000000");
-        
-        
-       // this.saveModifiedData();
-       
-       
-       // System.out.println(this.deleteUserAccount());
-
+        // System.out.println(this.usuarioLoggeado.getEmail());
+        //   System.out.println(this.usuarioLoggeado.getNombre());
+        //  System.out.println(this.usuarioLoggeado.getApellidos());
+        //  System.out.println(this.usuarioLoggeado.getPassword());
+        //  System.out.println(this.usuarioLoggeado.getTipo());
+        // System.out.println(this.attrEspAdministrador.getEmailAdministradores());
+        // System.out.println(this.attrEspAdministrador.getDNI());
+        // System.out.println(this.attrEspCliente.getEmailCliente());
+        // System.out.println(this.attrEspCliente.getFecha_nacimiento());
+        // System.out.println(this.attrEspCliente.getNumero_telefono());
+        //  System.out.println(this.attrEspCliente.getDireccion());
+        //  System.out.println(this.attrEspCliente.getProvincia());
+        //  System.out.println(this.attrEspCliente.getMunicipio());
+        //  System.out.println(this.attrEspTrabajador.getEmailTrabajador());
+        //   System.out.println(this.attrEspTrabajador.getDNI());
+        // System.out.println(this.attrEspTrabajador.getNum_telefono());
+        //  System.out.println(this.attrEspTrabajador.getFecha_nacimiento());
+        // this.usuarioLoggeado.setPassword("0000");
+        // this.usuarioLoggeado.setNombre("0000");
+        // this.usuarioLoggeado.setApellidos("0000");
+        // this.attrEspAdministrador.setDNI("0000000");
+        // this.saveModifiedData();
+        // System.out.println(this.deleteUserAccount());
     }
 
     //MODIFICAR LOS DATOS DEL USUARIO LOGGEADO

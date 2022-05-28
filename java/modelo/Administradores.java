@@ -19,10 +19,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "administradores")
-public class Administradores implements Serializable{
+public class Administradores implements Serializable {
 
     @Id
-    @JoinColumn(name="emailAdministradores")
+    @JoinColumn(name = "emailAdministradores")
     @OneToOne
     private Usuarios emailAdministradores;
 
@@ -44,6 +44,5 @@ public class Administradores implements Serializable{
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }
-    
 
 }

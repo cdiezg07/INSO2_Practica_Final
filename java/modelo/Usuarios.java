@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuarios implements Serializable{
+public class Usuarios implements Serializable {
 
     @Id
     private String email;
@@ -77,8 +77,5 @@ public class Usuarios implements Serializable{
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
-    
-    
-    
 
 }

@@ -28,12 +28,12 @@ import modelo.Subcategorias;
  */
 @Named
 @ViewScoped
-public class SubcategoriasController implements Serializable{
-    
+public class SubcategoriasController implements Serializable {
+
     private Subcategorias subcat;
     private List<Subcategorias> listaSubcat;
     private Clientes cliente;
-    
+
     @EJB
     private SubcategoriasFacadeLocal subcatEJB;
     @EJB
@@ -42,89 +42,85 @@ public class SubcategoriasController implements Serializable{
     private CestaFacadeLocal cestaEJB;
     @EJB
     private ClientesFacadeLocal clienteEJB;
-    
+
     private Products producto;
     private List<Products> listaProductos;
     private Cesta cesta;
-    
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         subcat = new Subcategorias();
         producto = new Products();
         cesta = new Cesta();
         cliente = new Clientes();
-        
+
     }
-        
-    public void insertarSubcategoria(){
-        try{
+
+    public void insertarSubcategoria() {
+        try {
             subcatEJB.create(subcat);
-        }catch(Exception e){
-            System.out.println("Error al insertar la categoria "+ e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error al insertar la categoria " + e.getMessage());
         }
     }
-    
-    public List<Subcategorias> getSubcategorias(String nombreCat){
-       
 
-        try{
+    public List<Subcategorias> getSubcategorias(String nombreCat) {
+
+        try {
             listaSubcat = subcatEJB.findAll();
             List<Subcategorias> listaFinal = new ArrayList<Subcategorias>();
-            System.out.println("fsdfasdfasdf"+nombreCat);
-            for(Subcategorias sub: listaSubcat){
+            System.out.println("fsdfasdfasdf" + nombreCat);
+            for (Subcategorias sub : listaSubcat) {
                 System.out.println(sub.getCategoria().getNombre());
-                if(sub.getCategoria().getNombre().equals(nombreCat)){
+                if (sub.getCategoria().getNombre().equals(nombreCat)) {
                     listaFinal.add(sub);
                 }
             }
             return listaFinal;
-            
-        }catch(Exception e){
-            System.out.println("Error al obtener la subcategoria "+ e.getMessage());
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener la subcategoria " + e.getMessage());
         }
         return null;
     }
-    
-    public List<Products> getProducts(String nombreSubCategoria){
-       
 
-        try{
+    public List<Products> getProducts(String nombreSubCategoria) {
+
+        try {
             listaProductos = productsEJB.findAll();
             List<Products> listaFinal = new ArrayList<Products>();
-            System.out.println("fsdfasdfasdf"+nombreSubCategoria);
-            for(Products pro: listaProductos){
+            System.out.println("fsdfasdfasdf" + nombreSubCategoria);
+            for (Products pro : listaProductos) {
                 System.out.println(pro.getSubcategoria().getNombreSubcategoria());
-                if(pro.getSubcategoria().getNombreSubcategoria().equals(nombreSubCategoria)){
+                if (pro.getSubcategoria().getNombreSubcategoria().equals(nombreSubCategoria)) {
                     listaFinal.add(pro);
                 }
             }
             return listaFinal;
-            
-        }catch(Exception e){
-            System.out.println("Error al obtener los productos "+ e.getMessage());
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener los productos " + e.getMessage());
         }
         return null;
     }
-    
-    public Products getProduct(String UPC){
-      
-        try{
+
+    public Products getProduct(String UPC) {
+
+        try {
             producto = productsEJB.find(UPC);
-            
-        }catch(Exception e){
-            System.out.println("Error al obtener el producto "+ e.getMessage());
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener el producto " + e.getMessage());
         }
         return producto;
     }
- 
-    public void insertarProductsCesta(String UPC, String emailCliente){
-        try{
+
+    public void insertarProductsCesta(String UPC, String emailCliente) {
+        try {
             cliente = clienteEJB.find(emailCliente);
             producto = getProduct(UPC);
-            
-            
-            if(!cestaEJB.yaExisteProducto(producto, cliente)){
+
+            if (!cestaEJB.yaExisteProducto(producto, cliente)) {
                 cesta.setUPC(producto);
                 cesta.setEmailUsuario(cliente);
                 System.out.println("La cesta es");
@@ -132,14 +128,12 @@ public class SubcategoriasController implements Serializable{
                 System.out.println(cesta.getEmailUsuario());
                 cesta.setCantidad(3);
                 cestaEJB.create(cesta);
-            }else{
+            } else {
                 System.out.println("Ya esta en la cesta");
             }
-                
-            
-                
-        }catch(Exception e){
-            System.out.println("Error al insertar los productos en la cesta "+ e.getMessage());
+
+        } catch (Exception e) {
+            System.out.println("Error al insertar los productos en la cesta " + e.getMessage());
         }
     }
 
@@ -150,5 +144,4 @@ public class SubcategoriasController implements Serializable{
 //    public void setCat(Categorias cat) {
 //        this.cat = cat;
 //    }   
-    
 }

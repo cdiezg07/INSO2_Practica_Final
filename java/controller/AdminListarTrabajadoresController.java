@@ -66,7 +66,7 @@ public class AdminListarTrabajadoresController implements Serializable {
     }
 
     public String establecerTrabajadorSeleccionado(Trabajadores trabPinchadoVista) {
-       // Trabajadores trabPinchadoVista = this.listaDeTrabajadores.get(0);
+        // Trabajadores trabPinchadoVista = this.listaDeTrabajadores.get(0);
         this.trabSeleccionado = trabPinchadoVista;
         return "AdminEditarTrabajador.xhtml";
     }
@@ -83,17 +83,15 @@ public class AdminListarTrabajadoresController implements Serializable {
 
     public void guardarTrabajadorCreado() {
 
-       // this.nuevoTrabajadorGen.setEmail("correoElectronico");
-       // this.nuevoTrabajadorGen.setNombre("nombre");
-       // this.nuevoTrabajadorGen.setApellidos("Apellidos");
-       // this.nuevoTrabajadorGen.setPassword("Contraseña");
+        // this.nuevoTrabajadorGen.setEmail("correoElectronico");
+        // this.nuevoTrabajadorGen.setNombre("nombre");
+        // this.nuevoTrabajadorGen.setApellidos("Apellidos");
+        // this.nuevoTrabajadorGen.setPassword("Contraseña");
         //this.nuevoTrabajadorGen.setTipo("trabajador");
-
         //this.nuevoTrabajadorEsp.setEmailTrabajador(this.nuevoTrabajadorGen);
         //this.nuevoTrabajadorEsp.setDNI("00004455P");
         //this.nuevoTrabajadorEsp.setFecha_nacimiento(new Date(1990, 12, 12));
         //this.nuevoTrabajadorEsp.setNum_telefono("666666666");
-
         try {
             this.trabajadorEJB.create(this.nuevoTrabajadorEsp);
         } catch (Exception e) {
