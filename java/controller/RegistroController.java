@@ -49,6 +49,8 @@ public class RegistroController implements Serializable {
         cliente = new Clientes();
         trabajador = new Trabajadores();
         admin = new Administradores();
+        
+        //A la carga de la pagina se haria la comprobacion de si es utrabajador el usuario guardado en la sesion. Si lo es con un if se cambia la variable booleana a true y entonces el binding en la vista renderiza las partes visibles a mayores solo para el
         this.prueba = true;
 
     }
