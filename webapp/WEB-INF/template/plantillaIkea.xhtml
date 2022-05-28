@@ -3,28 +3,83 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="default.css"/>
         <h:outputStylesheet library="css" name="cssLayout.css"/>
-        <title>Facelets Template</title>
-        <f:event type="preRenderView" listener="#{plantillaController.verificarYMostrar()}"></f:event>
+        <h:outputStylesheet library="webjars" name="primeflex/2.0.0/primeflex.min.css" />
+        <title>IKEA 2</title>
     </h:head>
 
     <h:body>
 
-        <div id="top">
-            <ui:insert name="top">Top</ui:insert>
+        <div id="top" class="top">
+            <ui:insert name="top">
+
+                <div class="p-d-flex p-jc-between">
+
+                    <div >
+                        <p:sidebar widgetVar="sidebarLeft">
+                            <h3>Left Sidebar</h3>
+                        </p:sidebar>
+                        <p:commandButton icon="pi pi-bars" type="button" onclick="PF('sidebarLeft').show()" styleClass="p-mr-2" />
+                        <p:button value="IKEA 2" styleClass="ui-button-outlined" outcome="/publico/Principal.xhtml"/>
+
+                    </div>
+
+                    <div >
+                        <p:commandButton type="button" value="Productos" styleClass="p-mx-1"/>
+                        <p:commandButton type="button" value="Perfil" styleClass="p-mx-1"/>
+                        <p:commandButton type="button" value="Cesta" styleClass="p-mx-1"/>
+                    </div>
+
+                    <div >
+                        <p:sidebar widgetVar="sidebarRight" position="right" style="width:30rem">
+                            <h3>Bienvenido a IKEA 2</h3>
+                            <p:divider></p:divider>
+
+                            <div class="p-d-flex p-flex-column">
+
+                                <div class="p-d-flex">
+
+                                    <div>
+                                        <h3>Regístrate</h3>
+                                        <p>Disfruta de un montón de ventajas y ofertas exclusivas.</p>
+                                        <p:button value="Registro" styleClass="ui-button-outlined" outcome="/publico/Registro.xhtml"  />
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <p:divider align="center" >
+                                        <b>ó</b>
+                                    </p:divider>
+                                </div>
+                                <div class="p-d-flex">
+                                    <div>
+                                        <h3>Inicia sesión</h3>
+                                        <p>Accede con tu cuenta para ver tu cesta y tus compras.</p>
+                                        <p:button value="Iniciar sesión" styleClass="ui-button-outlined" outcome="/publico/LogIn.xhtml"  />
+                                    </div>              
+                                </div>
+                                <p:divider></p:divider>
+                            </div>
+
+
+                        </p:sidebar>
+                        <p:commandButton icon="pi pi-users" type="button" value="Regístrate o inicia sesión" onclick="PF('sidebarRight').show()" /> 
+                    </div>
+                </div>
+
+
+                <!---->
+            </ui:insert>
         </div>
+        
 
         <div id="content" class="center_content">
             <ui:insert name="content">Content</ui:insert>
-        </div>
-
-        <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
         </div>
 
     </h:body>
