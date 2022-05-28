@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ public class Trabajadores implements Serializable{
 
     @Id
     @JoinColumn(name="emailTrabajador")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)//con persist funciona solo el create 
     private Usuarios emailTrabajador;
 
     @Column(name = "dni")
