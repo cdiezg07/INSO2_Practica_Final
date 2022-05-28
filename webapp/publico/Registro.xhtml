@@ -9,35 +9,163 @@
 
         <ui:composition template="./../WEB-INF/template/plantillaIkea.xhtml">
 
+
+            <ui:define name="top">
+                <p:button value="Volver" styleClass="ui-button-flat" icon="pi pi-arrow-left" outcome="/publico/Principal.xhtml"/>
+            </ui:define>
+
             <ui:define name="content">
-                content
-                <h:form>
-            <p:outputLabel value="Email: " for="txtEmail"/>
-            <p:inputText value="#{usuariosController.usuario.email}" required="true" requiredMessage="Email es un campo obligatorio" id="txtEmail"></p:inputText>
-            <p:message for="txtEmail"/>
-            
-            <p:outputLabel value="Password: " for="txtPassword"/>
-            <p:inputText value="#{usuariosController.usuario.password}" required="true" requiredMessage="Password es un campo obligatorio" id="txtPassword"></p:inputText>
-            <p:message for="txtPassword"/>
 
-            
-            <p:outputLabel value="Nombre: " for="txtNombre"/>
-            <p:inputText value="#{usuariosController.usuario.nombre}" required="true" requiredMessage="Nombre es un campo obligatorio" id="txtNombre"></p:inputText>
-            <p:message for="txtNombre"/>
 
-            
-            <p:outputLabel value="Tipo: " for="txtTipo"/>
-            <p:inputText value="#{usuariosController.usuario.tipo}" required="true" requiredMessage="Tipo es un campo obligatorio" id="txtTipo"></p:inputText>
-            <p:message for="txtTipo"/>
 
-            
-            <p:outputLabel value="Apellidos: " for="txtApellidos"/>
-            <p:inputText value="#{usuariosController.usuario.apellidos}" required="true" requiredMessage="Apellidos es un campo obligatorio" id="txtApellidos"></p:inputText>
-            <p:message for="txtApellidos" showDetail="true" />
 
-           <p:commandButton value="registrar" actionListener="#{usuariosController.Guardar()}"></p:commandButton>
 
-        </h:form>
+
+
+
+
+                <div class="p-grid p-jc-start p-ai-center" style="height: 95vh;">
+                    <div class="p-col-5 p-d-flex" style="background-color:lightskyblue;height: 100%;">
+                        <div class="p-mx-6 p-as-center">
+                            <h2>
+                                Bienvenido! 
+                            </h2>
+                            <h3>
+                                Crea una cuenta en IKEA 2 para añadir productos a tu cesta de compra y realizar pedidos.
+                            </h3>
+                            <br></br>
+
+                            <h4>
+                                ¿Ya tienes una cuenta? <br></br> Acceder: 
+                            </h4>
+                            <p:button value="Log In" styleClass="ui-button-outlined" outcome="/publico/LogIn.xhtml"  />
+
+                        </div>
+
+                    </div>
+                    <div class="p-col-6 p-d-flex">
+
+
+                        <p:card class="p-mx-6 p-as-center" style="width: 30rem">
+                            <h2 class="p-mt-0">
+                                Registro
+                            </h2>
+
+                            <h:form>
+
+
+                                <div class="p-grid p-flex-column">
+                                    <div class="p-col">
+                                        <div class="p-grid p-ai-center vertical-container">
+                                            <div class="p-col-fixed" style="width: 80px">
+                                                <div class="box">
+                                                    <p:outputLabel value="Email" for="txtEmail"/></div>
+                                            </div>
+                                            <div class="p-col">
+                                                <div class="box">
+                                                    <p:inputText class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="Email es un campo obligatorio" id="txtEmail"></p:inputText>
+                                                    <p:message for="txtEmail"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="p-col">
+
+                                        <div class="p-grid p-ai-center vertical-container">
+                                            <div class="p-col-fixed" style="width: 80px">
+                                                <div class="box">
+                                                    <p:outputLabel class="p-text-nowrap" value="Contraseña " for="txtPassword"/></div>
+                                            </div>
+                                            <div class="p-col">
+                                                <div class="box">
+                                                    <p:password class="p-ml-5" value="#{usuariosController.usuario.password}" id="txtPassword" required="true" label="password" toggleMask="true" redisplay="true" requiredMessage="Contraseña es un campo obligatorio" feedback="true" promptLabel="Ingresa tu contraseña" weakLabel="Débil" goodLabel="Buena" strongLabel="Fuerte" />
+                                                    <p:message for="txtPassword"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="p-col">
+
+                                        <div class="p-grid p-ai-center vertical-container">
+                                            <div class="p-col-fixed" style="width: 80px">
+                                                <div class="box">
+                                                    <p:outputLabel class="p-text-nowrap" value="Nombre " for="txtNombre"/></div>
+                                            </div>
+                                            <div class="p-col">
+                                                <div class="box">
+                                                    <p:inputText class="p-ml-5" value="#{usuariosController.usuario.nombre}" required="true" requiredMessage="Nombre es un campo obligatorio" id="txtNombre"></p:inputText>
+                                                    <p:message for="txtNombre"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="p-col">
+
+                                        <div class="p-grid p-ai-center vertical-container">
+                                            <div class="p-col-fixed" style="width: 80px">
+                                                <div class="box">
+                                                    <p:outputLabel class="p-text-nowrap" value="Apellidos " for="txtApellidos"/></div>
+                                            </div>
+                                            <div class="p-col">
+                                                <div class="box">
+                                                    <p:inputText class="p-ml-5" value="#{usuariosController.usuario.apellidos}" required="true" requiredMessage="Apellidos es un campo obligatorio" id="txtApellidos"></p:inputText>
+                                                    <p:message for="txtApellidos" showDetail="true" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="p-col">
+
+                                        <div class="p-grid p-ai-center vertical-container">
+                                            <div class="p-col-fixed" style="width: 80px">
+                                                <div class="box">
+                                                    <p:outputLabel value="Tipo " for="txtTipo"/></div>
+                                            </div>
+                                            <div class="p-col">
+                                                <div class="box">
+                                                    <p:inputText class="p-ml-5" value="#{usuariosController.usuario.tipo}" required="true" requiredMessage="Tipo es un campo obligatorio" id="txtTipo"></p:inputText>
+                                                    <p:message for="txtTipo"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+
+                                    <div class="p-col">
+                                        <div class="box">
+                                            <p:commandButton id="registrarButton" value="Registrar" ajax="false"
+                                                             actionListener="#{usuariosController.Guardar()}" style="width: 100%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </p:card>
+
+
+                    </div>
+                </div>
+
             </ui:define>
 
         </ui:composition>
