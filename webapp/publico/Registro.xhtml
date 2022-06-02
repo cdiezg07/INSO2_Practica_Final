@@ -128,36 +128,14 @@
 
                                     </div>
 
-                                    <div class="p-col">
-
-                                        <div class="p-grid p-ai-center vertical-container">
-                                            <div class="p-col-fixed" style="width: 80px">
-                                                <div class="box">
-                                                    <p:outputLabel value="Tipo " for="txtTipo"/></div>
-                                            </div>
-                                            <div class="p-col">
-                                                <div class="box">
-                                                    <p:inputText class="p-ml-5" value="#{usuariosController.usuario.tipo}" required="true" requiredMessage="Tipo es un campo obligatorio" id="txtTipo"></p:inputText>
-                                                    <p:message for="txtTipo"/>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-
-                                    </div>
-
-
-
-
-
-
+                                     
                                     <div class="p-col">
                                         <div class="box">
                                             <p:commandButton id="registrarButton" value="Registrar" ajax="false"
                                                              actionListener="#{usuariosController.Guardar()}" style="width: 100%"/>
                                         </div>
                                     </div>
+
                                 </div>
                             </h:form>
                         </p:card>

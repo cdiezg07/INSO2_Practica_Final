@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/template/plantillaIkea.xhtml">
+
+            <ui:define name="content">
+                <div class="p-grid p-jc-center">
+                    <div class="p-col-4" style="">
+                        <div class="">
+                            <img src="https://www.ikea.com/es/es/images/products/vimle-sofa-4-plazas-chaiselongue-grann-bomstad-negro__0817643_pe774069_s5.jpg" height="100%" width="100%" class="img">
+                            
+                            </img>
+                        </div>
+                    </div>
+                    <div class="p-col-4" style="">
+                        <div class="">
+                            <div class="">
+                            <p:card class="" style="width: 75%">
+                                
+                                <f:facet name="title">
+                                    Nombre Producto
+                                </f:facet>
+                                <f:facet name="subtitle">
+                                    <span>
+                                        #typeName
+                                    </span>
+                                    <br></br>
+                                    <span>
+                                        Color: #color
+                                    </span>
+                                </f:facet>
+                                
+                                <h3 class="p-mt-0">
+                                    3000€
+                                </h3>
+                                <p:rating value="4" rendered="true" class="p-mb-2"/>
+                                <p:rating value="4" rendered="true" readonly="true" class="p-mb-2"/>
+                                <p:commandButton  value="Añadir al carrito" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" rendered="true"/>
+                                <p:commandButton  value="En el carrito" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" disabled="true"  rendered="true"/>
+                                
+                            </p:card>
+                        </div>
+                        </div>
+                    </div>
+                    
+                </div>            
+                <div class="p-grid p-jc-center p-mt-6">
+                    <div class="p-col-8" style="">
+                        <h2 class="p-my-3">
+                            Reseñas
+                        </h2>
+                        <div class="">
+                            <p:separator></p:separator>
+                            <h3>
+                                Usuario
+                            </h3>
+                            <h4>
+                                fecha
+                            </h4>
+                            <p:rating value="4" readonly="true" class="p-mb-2"/>
+                            <span>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </p>
+                                
+                            </span>
+                            
+                        </div>
+                        <div class="">
+                            <p:separator></p:separator>
+                            <h3>
+                                Usuario
+                            </h3>
+                            <h4>
+                                fecha
+                            </h4>
+                            <p:rating value="3" readonly="true" class="p-mb-2"/>
+                            <span>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </p>
+                                
+                            </span>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                </div>            
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

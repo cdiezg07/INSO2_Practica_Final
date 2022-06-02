@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/template/plantillaIkea.xhtml">
+
+            <ui:define name="content">
+                <div class="p-ml-6" style="width: 90vw">
+                    <div class="p-ml-6">
+                        <h2 class="p-ml-6" style="font-size: 2.1rem">
+                            #nombre_categoría
+                        </h2>
+                    </div>
+                    <div class="p-grid p-ml-6">
+                        <div class="p-col-2 ">
+                            <p:card class="">
+                                <f:facet name="header">
+                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
+                                </f:facet>
+                                <f:facet name="title">
+                                    Nombre subcategoría
+                                </f:facet>
+                                <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
+                            </p:card>
+                        </div>
+                        <div class="p-col-2 ">
+                            <p:card class="">
+                                <f:facet name="header">
+                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
+                                </f:facet>
+                                <f:facet name="title">
+                                    Nombre subcategoría
+                                </f:facet>
+                                <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
+                            </p:card>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="p-ml-6" style="width: 90vw">
+                    <div class="p-ml-6 p-my-6">
+                        <p:divider></p:divider>
+                    </div>
+                    <div class="p-grid p-ml-6">
+                        <div class="p-col-2 ">
+                            <p:card class="card_productos">
+                                <f:facet name="header">
+                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
+                                </f:facet>
+                                <f:facet name="title">
+                                    Nombre Producto
+                                </f:facet>
+                                <f:facet name="subtitle">
+                                    descripcion
+                                </f:facet>
+                                <h3 class="p-mt-0">
+                                    3000€
+                                </h3>
+                                <p:rating value="4" readonly="true" class="p-mb-2"/>
+                                <p:commandButton  value="Ver producto" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
+                            </p:card>
+                        </div>
+                        <div class="p-col-2 ">
+                            <p:card class="card_productos">
+                                <f:facet name="header">
+                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
+                                </f:facet>
+                                <f:facet name="title">
+                                    Nombre Producto
+                                </f:facet>
+                                <f:facet name="subtitle">
+                                    descripcion
+                                </f:facet>
+                                <h3 class="p-mt-0">
+                                    3000€
+                                </h3>
+                                <p:rating value="4" readonly="true" class="p-mb-2"/>
+                                <p:commandButton  value="Ver producto" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
+                            </p:card>
+                        </div>
+                        <div class="p-col-2 ">
+                            <p:card class="card_productos">
+                                <f:facet name="header">
+                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
+                                </f:facet>
+                                <f:facet name="title">
+                                    Nombre Producto
+                                </f:facet>
+                                <f:facet name="subtitle">
+                                    descripcion
+                                </f:facet>
+                                <h3 class="p-mt-0">
+                                    3000€
+                                </h3>
+                                <p:rating value="4" readonly="true" class="p-mb-2"/>
+                                <p:commandButton  value="Ver producto" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
+                            </p:card>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
