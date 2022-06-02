@@ -33,4 +33,6 @@ public interface CestaFacadeLocal {
     int count();
     
     boolean yaExisteProducto(Products UPC, Clientes emailCliente);
+    
+    List<Cesta> getProductos(Clientes emailCliente);
 }

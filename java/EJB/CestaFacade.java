@@ -50,6 +50,21 @@ public class CestaFacade extends AbstractFacade<Cesta> implements CestaFacadeLoc
         }    
     }
     
-    
+    @Override
+    public List<Cesta> getProductos(Clientes emailCliente){
+        String consulta = "FROM Cesta c WHERE c.emailUsuario=:param1";
+        
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", emailCliente);
+        
+        List<Cesta> cesta = query.getResultList(); //retorna una lista con todos los coincidentes de la base de datos
+        
+        if(cesta.size() == 0){
+            return null;
+        }else{
+            return cesta;
+        }     
+        
+    }
     
 }
