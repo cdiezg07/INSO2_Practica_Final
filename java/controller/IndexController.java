@@ -56,13 +56,13 @@ public class IndexController implements Serializable {
         }
 
         if (usuEncontrado == null) {
-            return "publico/permisosinsuficientes.xhtml";
+            return "permisosinsuficientes.xhtml";
         }
         //Colocamos asimismo el usuario en el contexto de la apliacion para que el usuario sea accesible globalmente
 
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLoggeado", usuEncontrado);
 
-        return "privado/principal.xhtml";
+        return "Principal.xhtml";
 
     }
 
