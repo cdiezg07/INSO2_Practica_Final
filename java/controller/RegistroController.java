@@ -30,25 +30,16 @@ public class RegistroController implements Serializable {
 
     private Usuarios user;
     private Clientes cliente;
-    private Trabajadores trabajador;
-    private Administradores admin;
     private boolean prueba = false;
 
     @EJB
-    private UsuariosFacadeLocal userEJB;
-    @EJB
     private ClientesFacadeLocal clienteEJB;
-    @EJB
-    private TrabajadoresFacadeLocal trabajadorEJB;
-    @EJB
-    private AdministradoresFacadeLocal administradorEJB;
+
 
     @PostConstruct
     public void init() {
         user = new Usuarios();
         cliente = new Clientes();
-        trabajador = new Trabajadores();
-        admin = new Administradores();
         
         //A la carga de la pagina se haria la comprobacion de si es utrabajador el usuario guardado en la sesion. Si lo es con un if se cambia la variable booleana a true y entonces el binding en la vista renderiza las partes visibles a mayores solo para el
         this.prueba = true;
@@ -57,27 +48,10 @@ public class RegistroController implements Serializable {
 
     public void insertarUsuario() {
         try {
-            user.setTipo("admin");
-            userEJB.create(user);
-            if (user.getTipo() == "cliente") {
-                cliente.setDireccion("Calle las vergas 23");
-                //No nulos
-                cliente.setFecha_nacimiento(new Date(1, 2, 2090));
-                cliente.setEmailCliente(user);
-                cliente.setNumero_telefono("64541654");
-                clienteEJB.create(cliente);
-            } else if (user.getTipo() == "trabajador") {
-                //No nulos
-                trabajador.setDNI("27347823Y");
-                trabajador.setFecha_nacimiento(new Date(1, 3, 1000));
-                trabajador.setNum_telefono("2983924");
-                trabajador.setEmailTrabajador(user);
-                trabajadorEJB.create(trabajador);
-            } else {
-                admin.setDNI("123423y");
-                admin.setEmailAdministradores(user);
-                administradorEJB.create(admin);
-            }
+            user.setTipo("cliente");
+            cliente.setEmailCliente(user);             
+            clienteEJB.create(cliente);
+           
         } catch (Exception e) {
             System.out.println("Error al insertar el usuario " + e.getMessage());
         }
@@ -98,4 +72,15 @@ public class RegistroController implements Serializable {
     public void setPrueba(boolean prueba) {
         this.prueba = prueba;
     }
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
+    }
+
+    
+    
 }

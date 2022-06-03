@@ -8,6 +8,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Clientes implements Serializable {
 
     @Id
     @JoinColumn(name = "emailCliente")
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL)
     private Usuarios emailCliente;
 
     @Column(name = "numero_telefono")

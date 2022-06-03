@@ -17,13 +17,6 @@
             <ui:define name="content">
 
 
-
-
-
-
-
-
-
                 <div class="p-grid p-jc-start p-ai-center" style="height: 95vh;">
                     <div class="p-col-5 p-d-flex" style="background-color:lightskyblue;height: 100%;">
                         <div class="p-mx-6 p-as-center">
@@ -63,7 +56,7 @@
                                             </div>
                                             <div class="p-col">
                                                 <div class="box">
-                                                    <p:inputText class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="Email es un campo obligatorio" id="txtEmail"></p:inputText>
+                                                    <p:inputText class="p-ml-5" value="#{registroController.user.email}" required="true" requiredMessage="Email es un campo obligatorio" id="txtEmail"></p:inputText>
                                                     <p:message for="txtEmail"/>
                                                 </div>
                                             </div>
@@ -81,7 +74,7 @@
                                             </div>
                                             <div class="p-col">
                                                 <div class="box">
-                                                    <p:password class="p-ml-5" value="#{usuariosController.usuario.password}" id="txtPassword" required="true" label="password" toggleMask="true" redisplay="true" requiredMessage="Contraseña es un campo obligatorio" feedback="true" promptLabel="Ingresa tu contraseña" weakLabel="Débil" goodLabel="Buena" strongLabel="Fuerte" />
+                                                    <p:password class="p-ml-5" value="#{registroController.user.password}" id="txtPassword" required="true" label="password" toggleMask="true" redisplay="true" requiredMessage="Contraseña es un campo obligatorio" feedback="true" promptLabel="Ingresa tu contraseña" weakLabel="Débil" goodLabel="Buena" strongLabel="Fuerte" />
                                                     <p:message for="txtPassword"/>
                                                 </div>
                                             </div>
@@ -101,7 +94,7 @@
                                             </div>
                                             <div class="p-col">
                                                 <div class="box">
-                                                    <p:inputText class="p-ml-5" value="#{usuariosController.usuario.nombre}" required="true" requiredMessage="Nombre es un campo obligatorio" id="txtNombre"></p:inputText>
+                                                    <p:inputText class="p-ml-5" value="#{registroController.user.nombre}" required="true" requiredMessage="Nombre es un campo obligatorio" id="txtNombre"></p:inputText>
                                                     <p:message for="txtNombre"/>
                                                 </div>
                                             </div>
@@ -119,7 +112,7 @@
                                             </div>
                                             <div class="p-col">
                                                 <div class="box">
-                                                    <p:inputText class="p-ml-5" value="#{usuariosController.usuario.apellidos}" required="true" requiredMessage="Apellidos es un campo obligatorio" id="txtApellidos"></p:inputText>
+                                                    <p:inputText class="p-ml-5" value="#{registroController.user.apellidos}" required="true" requiredMessage="Apellidos es un campo obligatorio" id="txtApellidos"></p:inputText>
                                                     <p:message for="txtApellidos" showDetail="true" />
                                                 </div>
                                             </div>
@@ -137,7 +130,7 @@
                                             </div>
                                             <div class="p-col">
                                                 <div class="box">
-                                                    <p:datePicker class="p-ml-5" id="fechaNacimiento"   />
+                                                    <p:datePicker class="p-ml-5" required="true" value="#{registroController.cliente.fecha_nacimiento}" requiredMessage="Fecha nacimiento es un campo obligatorio" id="fechaNacimiento"   />
                                                     <p:message for="fechaNacimiento" showDetail="true" />
                                                 </div>
                                             </div>
@@ -156,7 +149,7 @@
                                             </div>
                                             <div class="p-col">
                                                 <div class="box">
-                                                    <p:inputMask class="p-ml-5" id="telefono"  mask="999999999"/>
+                                                    <p:inputMask class="p-ml-5" required="true" value="#{registroController.cliente.numero_telefono}" requiredMessage="Número de teléfono es un campo obligatorio" id="telefono"  mask="999999999"/>
                                                     <p:message for="telefono" showDetail="true" />
                                                 </div>
                                             </div>
@@ -175,7 +168,7 @@
                                             </div>
                                             <div class="p-col">
                                                 <div class="box">
-                                                    <p:inputText class="p-ml-5" value="#{usuariosController.usuario.nombre}" required="true" requiredMessage="Dirección es un campo obligatorio" id="direccion"></p:inputText>
+                                                    <p:inputText class="p-ml-5" value="#{registroController.cliente.direccion}" required="true" requiredMessage="Dirección es un campo obligatorio" id="direccion"></p:inputText>
                                                     <p:message for="direccion"/>
                                                 </div>
                                             </div>
@@ -195,7 +188,7 @@
                                             </div>
                                             <div class="p-col">
                                                 <div class="box">
-                                                    <p:inputText class="p-ml-5" value="#{usuariosController.usuario.nombre}" required="true" requiredMessage="Provincia es un campo obligatorio" id="provincia"></p:inputText>
+                                                    <p:inputText class="p-ml-5" value="#{registroController.cliente.provincia}" required="true" requiredMessage="Provincia es un campo obligatorio" id="provincia"></p:inputText>
                                                     <p:message for="provincia"/>
                                                 </div>
                                             </div>
@@ -215,7 +208,7 @@
                                             </div>
                                             <div class="p-col">
                                                 <div class="box">
-                                                    <p:inputText class="p-ml-5" value="#{usuariosController.usuario.nombre}" required="true" requiredMessage="Municipio es un campo obligatorio" id="municipio"></p:inputText>
+                                                    <p:inputText class="p-ml-5" value="#{registroController.cliente.municipio}" required="true" requiredMessage="Municipio es un campo obligatorio" id="municipio"></p:inputText>
                                                     <p:message for="municipio"/>
                                                 </div>
                                             </div>
@@ -229,7 +222,7 @@
                                     <div class="p-col">
                                         <div class="box">
                                             <p:commandButton id="registrarButton" value="Registrar" ajax="false"
-                                                             actionListener="#{usuariosController.Guardar()}" style="width: 100%"/>
+                                                             actionListener="#{registroController.insertarUsuario()}" style="width: 100%"/>
                                         </div>
                                     </div>
 
