@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"> 
     <body>
 
         <ui:composition template="./../WEB-INF/template/plantillaIkea.xhtml">
@@ -45,88 +46,28 @@
                             Muebles
                         </h2>
                     </div>
+                    <h:form id="form">
                     <div class="p-grid p-ml-6">
-                        <div class="p-col-2 ">
-                            <p:card class="">
-                                <f:facet name="header">
-                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
-                                </f:facet>
-                                <f:facet name="title">
-                                    Nombre categoria
-                                </f:facet>
-                                <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" action="/publico/Categoria.xhtml" /> 
-                            </p:card>
-                        </div>
-                        <div class="p-col-2 ">
-                            <p:card class="">
-                                <f:facet name="header">
-                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
-                                </f:facet>
-                                <f:facet name="title">
-                                    Nombre categoria
-                                </f:facet>
-                                <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
-                            </p:card>
-                        </div>
-                        <div class="p-col-2 ">
-                            <p:card class="">
-                                <f:facet name="header">
-                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
-                                </f:facet>
-                                <f:facet name="title">
-                                    Nombre categoria
-                                </f:facet>
-                                <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
-                            </p:card>
-                        </div>
-                        <div class="p-col-2 ">
-                            <p:card class="">
-                                <f:facet name="header">
-                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
-                                </f:facet>
-                                <f:facet name="title">
-                                    Nombre categoria
-                                </f:facet>
-                                <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
-                            </p:card>
-                        </div>
-                        <div class="p-col-2 ">
-                            <p:card class="">
-                                <f:facet name="header">
-                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
-                                </f:facet>
-                                <f:facet name="title">
-                                    Nombre categoria
-                                </f:facet>
-                                <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
-                            </p:card>
-                        </div>
-                        <div class="p-col-2 ">
-                            <p:card class="">
-                                <f:facet name="header">
-                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
-                                </f:facet>
-                                <f:facet name="title">
-                                    Nombre categoria
-                                </f:facet>
-                                <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
-                            </p:card>
-                        </div>
-                        <div class="p-col-2 ">
-                            <p:card class="">
-                                <f:facet name="header">
-                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300"/>
-                                </f:facet>
-                                <f:facet name="title">
-                                    Nombre categoria
-                                </f:facet>
-                                <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
-                            </p:card>
-                        </div>
                         
-
+                            <p:repeat value="#{principalController.getCategorias()}" var="categoria">
+                        <div class="p-col-2">
+                            <p:card class="p-text-nowrap">
+                                <f:facet name="header">
+                                    <img alt="imagen" src="#{categoria.imageUrl}"/>
+                                </f:facet>
+                                <f:facet name="title">
+                                    #{categoria.nombre}
+                                </f:facet>
+                                <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" action="#{principalController.seleccionCategoria(categoria)}">
+                                  
+                                   </p:commandButton> 
+                            </p:card>
+                        </div>
+                           </p:repeat>
+                            
 
                     </div>
+                        </h:form>
 
 
                 </div>

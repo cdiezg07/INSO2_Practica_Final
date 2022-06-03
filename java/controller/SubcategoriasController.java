@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import modelo.Categorias;
 import modelo.Cesta;
@@ -33,6 +35,9 @@ public class SubcategoriasController implements Serializable {
     private Subcategorias subcat;
     private List<Subcategorias> listaSubcat;
     private Clientes cliente;
+    
+    @Inject
+    private PrincipalController vistaAnteriorCongelada;
 
     @EJB
     private SubcategoriasFacadeLocal subcatEJB;
@@ -43,6 +48,7 @@ public class SubcategoriasController implements Serializable {
     @EJB
     private ClientesFacadeLocal clienteEJB;
 
+    private Categorias categoriaAnterior;
     private Products producto;
     private List<Products> listaProductos;
     private Cesta cesta;
@@ -53,6 +59,9 @@ public class SubcategoriasController implements Serializable {
         producto = new Products();
         cesta = new Cesta();
         cliente = new Clientes();
+        categoriaAnterior = vistaAnteriorCongelada.getActualCategoria();
+        System.out.println("lfsjd"+this.vistaAnteriorCongelada);
+        System.out.println("categoriaAnterior"+this.categoriaAnterior.getNombre());
 
     }
 
@@ -144,4 +153,24 @@ public class SubcategoriasController implements Serializable {
 //    public void setCat(Categorias cat) {
 //        this.cat = cat;
 //    }   
+
+    public PrincipalController getVistaAnteriorCongelada() {
+        return vistaAnteriorCongelada;
+    }
+
+    public void setVistaAnteriorCongelada(PrincipalController vistaAnteriorCongelada) {
+        this.vistaAnteriorCongelada = vistaAnteriorCongelada;
+    }
+
+    public Categorias getCategoriaAnterior() {
+        return categoriaAnterior;
+    }
+
+    public void setCategoriaAnterior(Categorias categoriaAnterior) {
+        this.categoriaAnterior = categoriaAnterior;
+    }
+
+   
+    
+    
 }
