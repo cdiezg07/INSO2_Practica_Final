@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -59,7 +58,7 @@ public class SubcategoriasController implements Serializable {
         producto = new Products();
         cesta = new Cesta();
         cliente = new Clientes();
-        categoriaAnterior = vistaAnteriorCongelada.getActualCategoria();
+        categoriaAnterior = this.vistaAnteriorCongelada.getActualCategoria();
         System.out.println("lfsjd"+this.vistaAnteriorCongelada);
         System.out.println("categoriaAnterior"+this.categoriaAnterior.getNombre());
 
