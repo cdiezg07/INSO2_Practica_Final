@@ -72,7 +72,7 @@
 }
 
 html,body{
-    background-image: url("/src/main/webapp/resources/images/background.png")
+    background: url("#{resource['images/background.png']}");  
 }
 
 .img{
