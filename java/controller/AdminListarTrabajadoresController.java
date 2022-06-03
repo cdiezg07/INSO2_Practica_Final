@@ -13,6 +13,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import modelo.Trabajadores;
 import modelo.Usuarios;
@@ -53,13 +54,30 @@ public class AdminListarTrabajadoresController implements Serializable {
         this.listaDeTrabajadores = listaDeTrabajadores;
     }
 
+    public Trabajadores getNuevoTrabajadorEsp() {
+        return nuevoTrabajadorEsp;
+    }
+
+    public void setNuevoTrabajadorEsp(Trabajadores nuevoTrabajadorEsp) {
+        this.nuevoTrabajadorEsp = nuevoTrabajadorEsp;
+    }
+
+    public Usuarios getNuevoTrabajadorGen() {
+        return nuevoTrabajadorGen;
+    }
+
+    public void setNuevoTrabajadorGen(Usuarios nuevoTrabajadorGen) {
+        this.nuevoTrabajadorGen = nuevoTrabajadorGen;
+    }
+    
+    
+
     @PostConstruct
     public void init() {
         this.trabSeleccionado = new Trabajadores();
         this.listaDeTrabajadores = new ArrayList<Trabajadores>();
         this.nuevoTrabajadorEsp = new Trabajadores();
         this.nuevoTrabajadorGen = new Usuarios();
-
         //solicita el listado de todos los trabajadores 
         this.listaDeTrabajadores = trabajadorEJB.findAll();
 
@@ -72,32 +90,26 @@ public class AdminListarTrabajadoresController implements Serializable {
     }
 
     public void eliminarTrabajadorSeleccionado(Trabajadores trabPinchadoVista) {
-        //Trabajadores trabPinchadoVista = this.listaDeTrabajadores.get(0);
 
         try {
             this.trabajadorEJB.remove(trabPinchadoVista);
+
         } catch (Exception e) {
             System.out.println("SE HA PRODUCIDO UN ERROR A LA HORA DE ELIMINAR EL TABAJADOR");
         }
+        this.init();
     }
 
     public void guardarTrabajadorCreado() {
 
-        // this.nuevoTrabajadorGen.setEmail("correoElectronico");
-        // this.nuevoTrabajadorGen.setNombre("nombre");
-        // this.nuevoTrabajadorGen.setApellidos("Apellidos");
-        // this.nuevoTrabajadorGen.setPassword("Contraseña");
-        //this.nuevoTrabajadorGen.setTipo("trabajador");
-        //this.nuevoTrabajadorEsp.setEmailTrabajador(this.nuevoTrabajadorGen);
-        //this.nuevoTrabajadorEsp.setDNI("00004455P");
-        //this.nuevoTrabajadorEsp.setFecha_nacimiento(new Date(1990, 12, 12));
-        //this.nuevoTrabajadorEsp.setNum_telefono("666666666");
         try {
+            this.nuevoTrabajadorGen.setTipo("trabajador");
+            this.nuevoTrabajadorEsp.setEmailTrabajador(this.nuevoTrabajadorGen);
             this.trabajadorEJB.create(this.nuevoTrabajadorEsp);
         } catch (Exception e) {
             System.out.println("SE HA PRODUCIDO UN ERROR A LA HORA DE GUARDAR EL TABAJADOR");
         }
-
+        this.init();
     }
 
 }

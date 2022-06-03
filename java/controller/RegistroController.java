@@ -57,8 +57,6 @@ public class RegistroController implements Serializable {
 
     public void insertarUsuario() {
         try {
-
-            System.out.println(user.getNombre() + user.getTipo());
             user.setTipo("admin");
             userEJB.create(user);
             if (user.getTipo() == "cliente") {
