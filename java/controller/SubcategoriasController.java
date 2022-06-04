@@ -60,8 +60,8 @@ public class SubcategoriasController implements Serializable {
         cesta = new Cesta();
         cliente = new Clientes();
         categoriaAnterior = this.vistaAnteriorCongelada.getActualCategoria();
-        System.out.println("lfsjd"+this.vistaAnteriorCongelada);
-        System.out.println("categoriaAnterior"+this.categoriaAnterior.getNombre());
+        System.out.println("vista anterior congelada: "+this.vistaAnteriorCongelada);
+        System.out.println("categoriaAnterior: "+this.categoriaAnterior.getNombre());
         List<String> listaCategoria = getSubcategorias(this.categoriaAnterior.getNombre());
         listaProductosSubcategoria = getAllProductsFromSubcat(listaCategoria);
     }
@@ -127,7 +127,7 @@ public class SubcategoriasController implements Serializable {
                 }
             }
             this.listaProductosSubcategoria = listaFinal;
-            this.init();
+            //this.init();
             return listaFinal;
             
         } catch (Exception e) {
@@ -141,7 +141,7 @@ public class SubcategoriasController implements Serializable {
         try {
             listaProductos = productsEJB.findAll();
             List<Products> listaFinal = new ArrayList<Products>();
-            System.out.println("fsdfasdfasdf" + subcat.size());
+            System.out.println("subcat size" + subcat.size());
             for (Products pro : listaProductos) {
                 if (subcat.contains(pro.getSubcategoria().getNombreSubcategoria())) {
                     listaFinal.add(pro);
