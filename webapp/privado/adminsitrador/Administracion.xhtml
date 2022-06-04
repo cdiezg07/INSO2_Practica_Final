@@ -11,31 +11,7 @@
 
             <ui:define name="content">
 
-                <p:sidebar widgetVar="sidebarRightAdmin" position="right" style="width:30rem">
-                    <div class="p-grid p-jc-center p-mt-6">
-                        <div class="p-col-10" style="">
-                            <h3>
-                                Editar trabajador
-                            </h3>
-                            <div class="p-ml-6">
-                                <h:form>
-
-                                    <p:outputLabel for="email" styleClass="p-d-block">Email</p:outputLabel>
-                                    <p:inputText id="email" styleClass="p-d-block" value="hola" class="p-mb-2"/>
-                                    <p:outputLabel for="dni" styleClass="p-d-block">DNI</p:outputLabel>
-                                    <p:inputText id="dni" styleClass="p-d-block" value="hola" class="p-mb-2"/>
-                                    <p:outputLabel for="telefono" styleClass="p-d-block">Teléfono</p:outputLabel>
-                                    <p:inputText id="telefono" styleClass="p-d-block" value="hola"  class="p-mb-2"/>
-                                    <p:outputLabel for="fechaNacimiento" styleClass="p-d-block">Fecha de nacimiento</p:outputLabel>
-                                    <p:inputText id="fechaNacimiento" styleClass="p-d-block" value="hola" class="p-mb-2"/>
-                                    <p:commandButton id="registrarButton" value="Registrar" ajax="false" action="#{usuariosController.Guardar()}" style="width: 70%"/>
-                                </h:form>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </p:sidebar>
+                
 
                 <div class="p-grid p-jc-center p-mt-6">
                     <div class="p-col-10" style="">
@@ -109,7 +85,7 @@
                                                 <p:inputText id="fechaNacimiento" styleClass="p-d-block" value="#{trabajador.emailTrabajador.email}" disabled="true"/>
                                             </div>
                                             <div class="p-field p-ml-6 p-mt-4">
-                                                <p:commandButton icon="pi pi-pencil" id="editar" type="button" onclick="PF('sidebarRightAdmin').show()" styleClass="p-mr-2 ui-button-outlined" />
+                                                <p:commandButton icon="pi pi-pencil" id="editar" type="button" styleClass="p-mr-2 ui-button-outlined" />
                                                 <p:commandButton id="sinMas" icon="pi pi-trash" ajax="false"  action="#{adminListarTrabajadoresController.eliminarTrabajadorSeleccionado(trabajador)}" styleClass="p-mr-2 ui-button-outlined ui-button-danger"/>
 
                                             </div>
