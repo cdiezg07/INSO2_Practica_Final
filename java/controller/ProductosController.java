@@ -18,6 +18,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import modelo.Categorias;
 import modelo.Cesta;
@@ -39,25 +40,31 @@ public class ProductosController implements Serializable{
     private Products producto;
     private List<Products> listaProductos;
     
+    @Inject
+    private SubcategoriasController vistaAnterior;
+    
     @EJB
     private ProductsFacadeLocal productsEJB;
-    @EJB
-    private ClientesFacadeLocal clientesEJB;
+    
     @EJB
     private OpinionesFacadeLocal opinionesEJB;
     @EJB
-    private Clientes clienteEJB;
+    private ClientesFacadeLocal clienteEJB;
     @EJB
     private ValoracionFacadeLocal valoracionEJB;
     private Valoracion valoracion;
     private Opiniones opinion;
     private Clientes cliente;
     private Usuarios usu;
+    private Products productoSeleccionado;
     
     @PostConstruct
     public void init(){
         producto = new Products();
         usu = (Usuarios)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado");
+        this.productoSeleccionado = vistaAnterior.getActualProductos();
+        System.out.println("vista anterior congelada: "+this.vistaAnterior);
+        System.out.println("categoriaAnterior: "+this.productoSeleccionado.getName());
     }
         
     public void insertarSubcategoria(){
@@ -129,6 +136,19 @@ public class ProductosController implements Serializable{
         
     }
     
+    public void addCarrito(Products producto){
+        if(usu == null){
+            System.out.println("No tienes iniciada sesion");
+        }else{
+            System.out.println("Usuario: "+usu);
+        }
+              
+    }
+    
+    public List<Opiniones> getOpiniones(Products producto){
+        List<Opiniones> opinion = productsEJB.getOpiniones(producto);
+        return opinion;
+    }
 
 //    public Categorias getCat() {
 //        return cat;
@@ -137,5 +157,13 @@ public class ProductosController implements Serializable{
 //    public void setCat(Categorias cat) {
 //        this.cat = cat;
 //    }   
+
+    public Products getProductoSeleccionado() {
+        return productoSeleccionado;
+    }
+
+    public void setProductoSeleccionado(Products productoSeleccionado) {
+        this.productoSeleccionado = productoSeleccionado;
+    }
     
 }

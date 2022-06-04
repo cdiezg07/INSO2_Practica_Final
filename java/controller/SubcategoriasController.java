@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,7 +30,7 @@ import modelo.Subcategorias;
  * @author carlos
  */
 @Named
-@ViewScoped
+@SessionScoped
 public class SubcategoriasController implements Serializable {
 
     private Subcategorias subcat;
@@ -52,6 +54,7 @@ public class SubcategoriasController implements Serializable {
     private Products producto;
     private List<Products> listaProductos;
     private Cesta cesta;
+    private Products actualProductos;
     
     @PostConstruct
     public void init() {
@@ -59,6 +62,7 @@ public class SubcategoriasController implements Serializable {
         producto = new Products();
         cesta = new Cesta();
         cliente = new Clientes();
+        actualProductos = new Products();
         categoriaAnterior = this.vistaAnteriorCongelada.getActualCategoria();
         System.out.println("vista anterior congelada: "+this.vistaAnteriorCongelada);
         System.out.println("categoriaAnterior: "+this.categoriaAnterior.getNombre());
@@ -187,7 +191,17 @@ public class SubcategoriasController implements Serializable {
             System.out.println("Error al insertar los productos en la cesta " + e.getMessage());
         }
     }
+    
+    public void getOpiniones(){
+        
+    }
 
+    public String seleccionProducto(Products producto){
+        this.actualProductos = producto;
+        System.out.println(actualProductos.getName());
+        return "/publico/Producto.xhtml?faces-redirect=true";
+    }
+    
 //    public Categorias getCat() {
 //        return cat;
 //    }
@@ -227,6 +241,13 @@ public class SubcategoriasController implements Serializable {
     public void setListaProductosSubcategoria(List<Products> listaProductosSubcategoria) {
         this.listaProductosSubcategoria = listaProductosSubcategoria;
     }
-    
+
+    public Products getActualProductos() {
+        return actualProductos;
+    }
+
+    public void setActualProductos(Products actualProductos) {
+        this.actualProductos = actualProductos;
+    }
     
 }

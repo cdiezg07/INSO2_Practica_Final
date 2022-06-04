@@ -5,9 +5,13 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import modelo.Cesta;
+import modelo.Opiniones;
 import modelo.Products;
 
 /**
@@ -27,6 +31,22 @@ public class ProductsFacade extends AbstractFacade<Products> implements Products
 
     public ProductsFacade() {
         super(Products.class);
+    }
+
+    @Override
+    public List<Opiniones> getOpiniones(Products producto) {
+        String consulta = "FROM opiniones o WHERE o.UPC=:param1";
+        
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", producto);
+        
+        List<Opiniones> opiniones = query.getResultList(); //retorna una lista con todos los coincidentes de la base de datos
+        
+        if(opiniones.size() == 0){
+            return null;
+        }else{
+            return opiniones;
+        } 
     }
     
 }

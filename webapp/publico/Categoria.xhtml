@@ -61,7 +61,7 @@
                                                 #{producto.priceNumeral} #{producto.pricesuffix}
                                             </h3>
                                             <p:rating value="4" readonly="true" class="p-mb-2"/>
-                                            <p:commandButton  value="Ver producto" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
+                                            <p:commandButton  value="Ver producto" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" action="#{subcategoriasController.seleccionProducto(producto)}"/>
                                         </p:card>
                                     </div>
                                 </p:repeat>

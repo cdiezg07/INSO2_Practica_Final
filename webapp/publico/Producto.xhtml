@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3c.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
 
     <body>
 
@@ -24,24 +25,24 @@
                             <p:card class="" style="width: 75%">
                                 
                                 <f:facet name="title">
-                                    Nombre Producto
+                                    #{productosController.productoSeleccionado.name}
                                 </f:facet>
                                 <f:facet name="subtitle">
                                     <span>
-                                        #typeName
+                                        #{productosController.productoSeleccionado.typeName}
                                     </span>
                                     <br></br>
                                     <span>
-                                        Color: #color
+                                        Color: #{productosController.productoSeleccionado.colors}
                                     </span>
                                 </f:facet>
                                 
                                 <h3 class="p-mt-0">
-                                    3000€
+                                    #{productosController.productoSeleccionado.priceNumeral}
                                 </h3>
                                 <p:rating value="4" rendered="true" class="p-mb-2"/>
                                 <p:rating value="4" rendered="true" readonly="true" class="p-mb-2"/>
-                                <p:commandButton  value="Añadir al carrito" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" rendered="true"/>
+                                <p:commandButton  value="Añadir al carrito" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" rendered="true" action="#{productosController.addCarrito(productosController.productoSeleccionado)}"/>
                                 <p:commandButton  value="En el carrito" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" disabled="true"  rendered="true"/>
                                 
                             </p:card>
@@ -55,40 +56,25 @@
                         <h2 class="p-my-3">
                             Reseñas
                         </h2>
-                        <div class="">
-                            <p:separator></p:separator>
-                            <h3>
-                                Usuario
-                            </h3>
-                            <h4>
-                                fecha
-                            </h4>
-                            <p:rating value="4" readonly="true" class="p-mb-2"/>
-                            <span>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>
-                                
-                            </span>
-                            
-                        </div>
-                        <div class="">
-                            <p:separator></p:separator>
-                            <h3>
-                                Usuario
-                            </h3>
-                            <h4>
-                                fecha
-                            </h4>
-                            <p:rating value="3" readonly="true" class="p-mb-2"/>
-                            <span>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>
-                                
-                            </span>
-                            
-                        </div>
+                        <p:repeat value="#{productosController.getOpiniones(productosController.productoSeleccionado)}" var="opinion">
+                            <div class="">
+                                <p:separator></p:separator>
+                                <h3>
+                                    #{opinion.emailCliente}
+                                </h3>
+                                <h4>
+                                    #{opinion.fecha}
+                                </h4>
+                                <p:rating value="#{opinion.puntuacion}" readonly="true" class="p-mb-2"/>
+                                <span>
+                                    <p>
+                                        #{opinion.comentario}
+                                    </p>
+
+                                </span>
+
+                            </div>
+                        </p:repeat>
                     </div>
                     
                     

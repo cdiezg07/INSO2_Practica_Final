@@ -7,6 +7,7 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
+import modelo.Opiniones;
 import modelo.Products;
 
 /**
@@ -29,5 +30,7 @@ public interface ProductsFacadeLocal {
     List<Products> findRange(int[] range);
 
     int count();
+    
+    List<Opiniones> getOpiniones(Products producto);
     
 }
