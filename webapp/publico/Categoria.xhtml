@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3c.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:f="http://java.sun.com/jsf/core"
-        xmlns:p="http://primefaces.org/ui"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"> 
 
     <body>
 
@@ -12,63 +12,63 @@
 
             <ui:define name="content">
                 <h:form id="form">
-                <div class="p-ml-6" style="width: 90vw">
-                    <div class="p-ml-6">
-                        <h2 class="p-ml-6" style="font-size: 2.1rem">
-                            #{subcategoriasController.categoriaAnterior.nombre}
-                        </h2>
-                    </div>
-                    
-                    <div class="p-grid p-ml-6">
-                        <p:repeat value="#{subcategoriasController.getSubcategorias1(subcategoriasController.categoriaAnterior.nombre)}" var="subcategoria">
-                            <div class="p-col-2 ">
-                                <p:card class="">
-                                    <f:facet name="header">
-                                        <img alt="imagen" src="#{subcategoria.imageUrl}"/>
-                                    </f:facet>
-                                    <f:facet name="title">
-                                        #{subcategoria.nombreSubcategoria}
-                                    </f:facet>
-                                    <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" ajax="false" update=":form:text" style="width: 100%" action="#{subcategoriasController.getProducts(subcategoria.nombreSubcategoria)}"/>
-                                </p:card>
-                            </div>
-                        </p:repeat>  
-                    </div>
-                  
-
-                </div>
-                <div class="p-ml-6" style="width: 90vw">
-                    <div class="p-ml-6 p-my-6">
-                        <p:divider></p:divider>
-                    </div>
-                    <h:panelGroup id="text">
-                    <div class="p-grid p-ml-6">
-                        
-                        <p:repeat id="h" value="#{subcategoriasController.listaProductosSubcategoria}" var="producto">
-                        <div class="p-col-2 ">
-                            <p:card class="card_productos">
-                                <f:facet name="header">
-                                    <img alt="imagen" src="#{producto.mainImageUrl}"/>
-                                </f:facet>
-                                <f:facet name="title">
-                                    #{producto.name}
-                                </f:facet>
-                                <f:facet name="subtitle">
-                                    descripcion
-                                </f:facet>
-                                <h3 class="p-mt-0">
-                                    #{producto.priceNumeral}
-                                </h3>
-                                <p:rating value="4" readonly="true" class="p-mb-2"/>
-                                <p:commandButton  value="Ver producto" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
-                            </p:card>
+                    <div class="p-ml-6" style="width: 90vw">
+                        <div class="p-ml-6">
+                            <h2 class="p-ml-6" style="font-size: 2.1rem">
+                                #{subcategoriasController.categoriaAnterior.nombre}
+                            </h2>
                         </div>
-                      </p:repeat>
-                            
-                    </div>                   
-</h:panelGroup>
-                </div>
-</h:form>
+
+                        <div class="p-grid p-ml-6">
+                            <p:repeat value="#{subcategoriasController.getSubcategorias1(subcategoriasController.categoriaAnterior.nombre)}" var="subcategoria">
+                                <div class="p-col-2 ">
+                                    <p:card class="">
+                                        <f:facet name="header">
+                                            <img alt="imagen" src="#{subcategoria.imageUrl}"/>
+                                        </f:facet>
+                                        <f:facet name="title">
+                                            #{subcategoria.nombreSubcategoria}
+                                        </f:facet>
+                                        <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" ajax="false" update="@none" process="@this" style="width: 100%" action="#{subcategoriasController.getProducts(subcategoria.nombreSubcategoria)}"/>
+                                    </p:card>
+                                </div>
+                            </p:repeat>  
+                        </div>
+
+
+                    </div>
+                    <div class="p-ml-6" style="width: 90vw">
+                        <div class="p-ml-6 p-my-6">
+                            <p:divider></p:divider>
+                        </div>
+                        <p:outputPanel id="text">
+                            <p:autoUpdate></p:autoUpdate>
+                            <div class="p-grid p-ml-6">
+
+                                <p:repeat id="h" value="#{subcategoriasController.listaProductosSubcategoria}" var="producto">
+                                    <div class="p-col-2 ">
+                                        <p:card class="card_productos">
+                                            <f:facet name="header">
+                                                <img alt="imagen" src="#{producto.mainImageUrl}"/>
+                                            </f:facet>
+                                            <f:facet name="title">
+                                                #{producto.name}
+                                            </f:facet>
+                                            <f:facet name="subtitle">
+                                                #{producto.typeName}
+                                            </f:facet>
+                                            <h3 class="p-mt-0">
+                                                #{producto.priceNumeral} #{producto.pricesuffix}
+                                            </h3>
+                                            <p:rating value="4" readonly="true" class="p-mb-2"/>
+                                            <p:commandButton  value="Ver producto" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
+                                        </p:card>
+                                    </div>
+                                </p:repeat>
+                            </div>                   
+                        </p:outputPanel>
+                    </div>
+                </h:form>
 
             </ui:define>
 
