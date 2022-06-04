@@ -29,7 +29,7 @@
                                         <f:facet name="title">
                                             #{subcategoria.nombreSubcategoria}
                                         </f:facet>
-                                        <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" ajax="false" update="@none" process="@this" style="width: 100%" action="#{subcategoriasController.getProducts(subcategoria.nombreSubcategoria)}"/>
+                                        <p:commandButton  value="Ver categoría" styleClass="ui-button-outlined ui-button-primary" update="@none" process="@this" style="width: 100%" action="#{subcategoriasController.getProducts(subcategoria.nombreSubcategoria)}"/>
                                     </p:card>
                                 </div>
                             </p:repeat>  
