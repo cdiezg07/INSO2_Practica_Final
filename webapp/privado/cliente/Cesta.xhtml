@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
         <ui:composition template="../../WEB-INF/template/plantillaIkea.xhtml">
@@ -96,9 +97,39 @@
                             </div>
                             <div class="p-col-6" style="">
                                 <div  style="">
+                                    <p:card class="p-mx-1 p-as-center p-my-2" style="width: 30rem">
+                                        <h2 class="p-mt-0 p-mb-0">
+                                            <span>Subtotal</span> <span style="float:right;">100.2€</span>
+                                        </h2>
+                                    </p:card>
+
+
+                                    <p:fieldset legend="Direcciones" toggleable="true" toggleSpeed="500" style="width: 30rem"  class="p-mx-1 p-as-center p-my-2">
+                                        <div class="p-grid p-ml-6">
+                                            Direcciones existentes para poder seleccionar una
+                                            poner una lista o similar
+
+
+                                            ----Crear Nueva direccion----
+                                            Nombre Destinatario
+                                            Apellidos Destinatario
+                                            Num Telefono Destinatario
+                                            Email Destinatario
+                                            Calle,número,piso,puerta (una linea)
+                                            ciudad
+                                            CP
+                                            pais                                        
+
+                                        </div>
+                                    </p:fieldset>
+
+
+
+
+
                                     <p:card class="p-mx-1 p-as-center p-mt-0" style="width: 30rem">
                                         <h2 class="p-mt-0">
-                                            Dirección
+                                            Configure Su Envío
                                         </h2>
 
                                         <h:form>
@@ -109,7 +140,7 @@
                                                     <div class="p-grid p-ai-center vertical-container">
                                                         <div class="p-col-fixed" style="width: 80px">
                                                             <div class="box">
-                                                                <p:outputLabel value="Provincia" for="txtProvincia"/></div>
+                                                                <p:outputLabel value="¿Desea Montaje? Poner un sadio boton" for="txtProvincia"/></div>
                                                         </div>
                                                         <div class="p-col">
                                                             <div class="box">
@@ -125,7 +156,7 @@
                                                     <div class="p-grid p-ai-center vertical-container">
                                                         <div class="p-col-fixed" style="width: 80px">
                                                             <div class="box">
-                                                                <p:outputLabel value="Municipio" for="txtMunicipio"/></div>
+                                                                <p:outputLabel value="Seleccione el método de envío" for="txtMunicipio"/></div>
                                                         </div>
                                                         <div class="p-col">
                                                             <div class="box">
@@ -137,21 +168,6 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="p-col">
-                                                    <div class="p-grid p-ai-center vertical-container">
-                                                        <div class="p-col-fixed" style="width: 80px">
-                                                            <div class="box">
-                                                                <p:outputLabel value="Dirección" for="txtDireccion"/></div>
-                                                        </div>
-                                                        <div class="p-col">
-                                                            <div class="box">
-                                                                <p:inputText class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="Direccion es un campo obligatorio" id="txtDireccion"></p:inputText>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
                                                 <p:divider></p:divider>
                                                 <h2>
                                                     Método de pago
@@ -160,7 +176,7 @@
                                                     <div class="p-grid p-ai-center vertical-container">
                                                         <div class="p-col-fixed" style="width: 80px">
                                                             <div class="box">
-                                                                <p:outputLabel value="Tarjeta" for="txtTarjeta"/></div>
+                                                                <p:outputLabel value="Número de Tarjeta" for="txtTarjeta"/></div>
                                                         </div>
                                                         <div class="p-col">
                                                             <div class="box">
@@ -176,11 +192,42 @@
                                                     <div class="p-grid p-ai-center vertical-container">
                                                         <div class="p-col-fixed" style="width: 80px">
                                                             <div class="box">
-                                                                <p:outputLabel value="CCV" for="txtCCV"/></div>
+                                                                <p:outputLabel value="CVV" for="txtCCV"/></div>
                                                         </div>
                                                         <div class="p-col">
                                                             <div class="box">
                                                                 <p:inputText class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="CCV es un campo obligatorio" id="txtCCV"></p:inputText>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="p-col">
+                                                    <div class="p-grid p-ai-center vertical-container">
+                                                        <div class="p-col-fixed" style="width: 80px">
+                                                            <div class="box">
+                                                                <p:outputLabel value="Titular" for="txtCCV"/></div>
+                                                        </div>
+                                                        <div class="p-col">
+                                                            <div class="box">
+                                                                <p:inputText class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="CCV es un campo obligatorio" id="txtTitular"></p:inputText>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="p-col">
+                                                    <div class="p-grid p-ai-center vertical-container">
+                                                        <div class="p-col-fixed" style="width: 80px">
+                                                            <div class="box">
+                                                                <p:outputLabel value="Caducidad" for="txtCCV"/></div>
+                                                        </div>
+                                                        <div class="p-col">
+                                                            <div class="box">
+                                                                <p:inputMask class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="CCV es un campo obligatorio" id="txtCaducidad" mask="MM/YY"></p:inputMask>
 
                                                             </div>
                                                         </div>

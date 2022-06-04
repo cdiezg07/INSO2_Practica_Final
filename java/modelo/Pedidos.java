@@ -31,7 +31,7 @@ public class Pedidos implements Serializable {
     private String upc;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "fecha")
+    @Column(name = "fecha") //del día que se hizo el pedido
     private Date fecha;
 
     @Column(name = "estado")
@@ -39,6 +39,18 @@ public class Pedidos implements Serializable {
 
     @Column(name = "incluyeMontaje")
     private String incluyeMontaje;
+
+    @Column(name = "subtotal")
+    private float subtotal;
+
+    @Column(name = "numeroTarjeta")
+    private String numeroTarjeta;
+    @Column(name = "titularTarjeta")
+    private String titularTarjeta;
+    @Column(name = "CVV")
+    private String CVV;
+    @Column(name = "caducidad")
+    private String caducidad;
 
     @JoinColumn(name = "metodoEnvio")
     @ManyToOne
@@ -108,4 +120,45 @@ public class Pedidos implements Serializable {
         this.cliente = cliente;
     }
 
+    public float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(float subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public String getNumeroTarjeta() {
+        return numeroTarjeta;
+    }
+
+    public void setNumeroTarjeta(String numeroTarjeta) {
+        this.numeroTarjeta = numeroTarjeta;
+    }
+
+    public String getTitularTarjeta() {
+        return titularTarjeta;
+    }
+
+    public void setTitularTarjeta(String titularTarjeta) {
+        this.titularTarjeta = titularTarjeta;
+    }
+
+    public String getCVV() {
+        return CVV;
+    }
+
+    public void setCVV(String CVV) {
+        this.CVV = CVV;
+    }
+
+    public String getCaducidad() {
+        return caducidad;
+    }
+
+    public void setCaducidad(String caducidad) {
+        this.caducidad = caducidad;
+    }
+
+    
 }
