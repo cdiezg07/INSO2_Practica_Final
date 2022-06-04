@@ -50,4 +50,17 @@ public class PlantillaController implements Serializable {
                
         return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado") != null && usu.getTipo().compareTo("admin") == 0;
     }
+    public boolean hayUsuarioLogueado() {
+        
+         
+        Usuarios usu = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado");
+               
+        return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado") != null;
+    }
+    
+    public String desloguear() {
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().clear();
+        return "/publico/Principal.xhtml?faces-redirect=true";
+    }
 }
