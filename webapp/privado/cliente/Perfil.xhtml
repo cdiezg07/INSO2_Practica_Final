@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="../../WEB-INF/template/plantillaIkea.xhtml">
+
+            <ui:define name="content">
+                <div class="p-grid p-jc-center p-mt-6">
+                    <div class="p-col-10" style="">
+                        <h:form>
+
+                            <p:fieldset legend="Usuario" toggleable="true" toggleSpeed="500">
+                                <div class="p-grid p-ml-6">
+
+                                    <!--CAMPOS COMUNES-->
+
+                                    <div class="p-col-3">
+                                        <h2>
+                                            Email
+                                        </h2>
+                                        <p:inplace editor="true">
+                                            <p:inputText rendered="#{(perfilController.esAdmin == true) or perfilController.esCliente == true}" value="#{perfilController.usuarioLoggeado.email}" required="true" label="text"/>
+                                            <p:inputText rendered="#{perfilController.esTrabajador == true}" value="#{perfilController.usuarioLoggeado.email}" required="true" label="text" disabled="true"/>
+                                        </p:inplace>
+                                    </div>
+
+                                    <div class="p-col-3">
+                                        <h2>
+                                            Contraseña
+                                        </h2>
+                                        <p:inplace editor="true">
+                                            <p:inputText rendered="#{(perfilController.esAdmin == true) or perfilController.esCliente == true}" value="#{perfilController.usuarioLoggeado.password}" required="true" label="text"/>
+                                            <p:inputText rendered="#{perfilController.esTrabajador == true}" value="#{perfilController.usuarioLoggeado.password}" required="true" label="text" disabled="true"/>
+
+                                        </p:inplace>
+                                    </div>
+                                    <div class="p-col-3">
+                                        <h2>
+                                            Nombre
+                                        </h2>
+                                        <p:inplace editor="true">
+                                            <p:inputText rendered="#{(perfilController.esAdmin == true) or perfilController.esCliente == true}" value="#{perfilController.usuarioLoggeado.nombre}" required="true" label="text"/>
+                                            <p:inputText rendered="#{perfilController.esTrabajador == true}" value="#{perfilController.usuarioLoggeado.nombre}" required="true" label="text" disabled="true"/>
+
+                                        </p:inplace>
+                                    </div>
+                                    <div class="p-col-3">
+                                        <h2>
+                                            Apellidos
+                                        </h2>
+                                        <p:inplace editor="true">
+                                            <p:inputText rendered="#{(perfilController.esAdmin == true) or perfilController.esCliente == true}" value="#{perfilController.usuarioLoggeado.apellidos}" required="true" label="text"/>
+                                            <p:inputText rendered="#{perfilController.esTrabajador == true}" value="#{perfilController.usuarioLoggeado.apellidos}" required="true" label="text" disabled="true"/>
+
+                                        </p:inplace>
+                                    </div>
+
+                                    <!--CAMPOS CLIENTE-->  
+
+                                    <h:panelGroup layout="block" rendered="#{perfilController.esCliente == true}">
+                                        <div class="p-col-3">
+                                            <h2>
+                                                Fecha de nacimiento
+                                            </h2>
+                                            <p:inplace editor="true">
+                                                <p:calendar id="fechaNacimiento" value="#{perfilController.attrEspCliente.fecha_nacimiento}" showOn="button"/>
+                                            </p:inplace>
+
+
+                                        </div>
+                                        <div class="p-col-3">
+                                            <h2>
+                                                Número de teléfono
+                                            </h2>
+                                            <p:inplace editor="true">
+                                                <p:inputText value="#{perfilController.attrEspCliente.numero_telefono}" required="true" label="text"/>
+                                            </p:inplace>
+                                        </div>
+                                        <div class="p-col-3">
+                                            <h2>
+                                                Dirección
+                                            </h2>
+                                            <p:inplace editor="true">
+                                                <p:inputText value="#{perfilController.attrEspCliente.direccion}" required="true" label="text"/>
+                                            </p:inplace>
+                                        </div>
+                                        <div class="p-col-3">
+                                            <h2>
+                                                Provincia
+                                            </h2>
+                                            <p:inplace editor="true">
+                                                <p:inputText value="#{perfilController.attrEspCliente.provincia}" required="true" label="text"/>
+                                            </p:inplace>
+                                        </div>
+                                        <div class="p-col-3">
+                                            <h2>
+                                                Municipio
+                                            </h2>
+                                            <p:inplace editor="true">
+                                                <p:inputText value="#{perfilController.attrEspCliente.municipio}" required="true" label="text"/>
+
+                                            </p:inplace>
+                                        </div>
+                                    </h:panelGroup>
+                                    <!--CAMPOS TRABAJADOR-->  
+
+                                    <h:panelGroup layout="block" rendered="#{perfilController.esTrabajador == true}">
+
+                                        <div class="p-col-3">
+                                            <h2>
+                                                Fecha de nacimiento
+                                            </h2>
+                                            <p:inplace editor="true">
+                                                <p:calendar id="fechaNacimientoT" disabled="true" value="#{perfilController.attrEspTrabajador.fecha_nacimiento}" showOn="button"/>
+                                            </p:inplace>
+
+
+                                        </div>
+                                        <div class="p-col-3">
+                                            <h2>
+                                                Número de teléfono
+                                            </h2>
+                                            <p:inplace editor="true">
+                                                <p:inputText value="#{perfilController.attrEspTrabajador.num_telefono}" disabled="true" required="true" label="text"/>
+                                            </p:inplace>
+                                        </div>
+
+                                        <div class="p-col-3">
+                                            <h2>
+                                                DNI
+                                            </h2>
+                                            <p:inplace editor="true">
+                                                <p:inputText value="#{perfilController.attrEspTrabajador.DNI}" disabled="true" required="true" label="text"/>
+                                            </p:inplace>
+                                        </div> 
+
+                                    </h:panelGroup>
+
+                                    <!--CAMPOS ADMIN-->  
+
+                                    <h:panelGroup layout="block" rendered="#{perfilController.esAdmin == true}">
+                                        <div class="p-col-3">
+                                            <h2>
+                                                DNI
+                                            </h2>
+                                            <p:inplace editor="true">
+                                                <p:inputText value="#{perfilController.attrEspAdministrador.DNI}" required="true" label="text"/>
+                                            </p:inplace>
+                                        </div> 
+                                    </h:panelGroup>
+
+
+                                </div>
+                                <h:panelGroup layout="block" rendered="#{(perfilController.esAdmin == true) or perfilController.esCliente == true}" class="p-field p-ml-6 p-mt-4">
+
+                                    <p:growl id="message" showDetail="true"/>
+
+                                    <p:commandButton icon="pi pi-save" id="editar"  value="Guardar" action="#{perfilController.saveModifiedData()}" update="message" styleClass="p-mr-2 ui-button-outlined" >
+                                        <p:confirm header="Confirmation" message="¿Está seguro de que desea hacer los cambios efectivos?" icon="pi pi-exclamation-triangle"/>
+
+                                    </p:commandButton>
+                                    <p:commandButton id="sinMas" icon="pi pi-trash"  value="Eliminar" action="#{perfilController.deleteUserAccount()}" update="message" styleClass="p-mr-2 ui-button-outlined ui-button-danger">
+                                        <p:confirm header="Confirmation" message="¿Está seguro de que desea eliminar su cuenta? Éste proceso no es reversible, si procede, perderá su información y deberá darse de alta nuevamente" icon="pi pi-exclamation-triangle"/>
+
+                                    </p:commandButton>
+
+
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="500">
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes"/>
+                                    </p:confirmDialog>
+
+                                </h:panelGroup>
+                            </p:fieldset>
+
+                        </h:form>
+                    </div>
+
+
+                </div>
+
+                <ui:fragment rendered="#{perfilController.esCliente == true}">
+
+                    <div class="p-grid p-jc-center p-mt-6">
+                        <div class="p-col-10" style="">
+                            <h:form>
+
+                                <p:fieldset legend="Pedidos" toggleable="true" toggleSpeed="500">
+                                    <div class="p-grid p-ml-6">
+                                        <div class="p-col-6">
+                                            <div class="p-grid" style="background-color: lightblue">
+                                                <div class="p-col-3" style="background-color: lightcoral">
+                                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300" width="100%" />
+                                                </div>
+                                                <div class="p-col-5" style="background-color: lightcyan">
+                                                    <h2 class="p-my-0">
+                                                        Nombre Producto
+                                                    </h2>
+                                                    <h3 class="p-my-0">
+                                                        descripcion
+                                                    </h3>
+                                                    <h3 class="p-my-0">
+                                                        3000€
+                                                    </h3>
+                                                    <p:rating value="4" readonly="true" class="p-mb-2"/>
+                                                    <p:commandButton  value="Ver producto" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
+                                                </div>
+
+                                                <div class="p-col-3">
+                                                    <div class="">
+                                                        <h3>
+                                                            Estado
+                                                        </h3>
+                                                        <p:chronoline value="#{chronolineView.events}" var="event">
+                                                            #{event.status}
+                                                        </p:chronoline>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </p:fieldset>
+                            </h:form>
+                        </div>
+                    </div> 
+                </ui:fragment>
+
+
+            </ui:define> 
+
+        </ui:composition>
+
+    </body>
+</html>
+

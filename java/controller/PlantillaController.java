@@ -42,4 +42,12 @@ public class PlantillaController implements Serializable {
         }
         //Si existe usuario correctamente no hace nada y lo deja pasar cargándose el formulario
     }
+
+    public boolean esAdminLogueado() {
+        
+         
+        Usuarios usu = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado");
+               
+        return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado") != null && usu.getTipo().compareTo("admin") == 0;
+    }
 }

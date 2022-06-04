@@ -9,10 +9,14 @@ import EJB.AdministradoresFacadeLocal;
 import EJB.ClientesFacadeLocal;
 import EJB.TrabajadoresFacadeLocal;
 import EJB.UsuariosFacadeLocal;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import modelo.Administradores;
@@ -35,12 +39,11 @@ public class RegistroController implements Serializable {
     @EJB
     private ClientesFacadeLocal clienteEJB;
 
-
     @PostConstruct
     public void init() {
         user = new Usuarios();
         cliente = new Clientes();
-        
+
         //A la carga de la pagina se haria la comprobacion de si es utrabajador el usuario guardado en la sesion. Si lo es con un if se cambia la variable booleana a true y entonces el binding en la vista renderiza las partes visibles a mayores solo para el
         this.prueba = true;
 
@@ -49,12 +52,18 @@ public class RegistroController implements Serializable {
     public void insertarUsuario() {
         try {
             user.setTipo("cliente");
-            cliente.setEmailCliente(user);             
+            cliente.setEmailCliente(user);
             clienteEJB.create(cliente);
-           
+            FacesContext.getCurrentInstance().getExternalContext().redirect("LogIn.xhtml");
         } catch (Exception e) {
             System.out.println("Error al insertar el usuario " + e.getMessage());
         }
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Registro.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public Usuarios getUser() {
@@ -81,6 +90,4 @@ public class RegistroController implements Serializable {
         this.cliente = cliente;
     }
 
-    
-    
 }

@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Administradores implements Serializable {
 
     @Id
     @JoinColumn(name = "emailAdministradores")
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL)
     private Usuarios emailAdministradores;
 
     @Column(name = "DNI")
