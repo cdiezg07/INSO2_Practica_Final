@@ -104,6 +104,40 @@
                                     </p:card>
 
 
+                                    <p:sidebar widgetVar="sidebarRightDirecciones" position="right" style="width:30rem">
+                                        <div class="p-grid p-jc-center p-mt-6">
+                                            <div class="p-col-10" style="">
+                                                <h3 class="p-mt-0">
+                                                    Crear una nueva dirección
+                                                </h3>
+                                                <div class="p-ml-6">
+                                                    <h:form>
+
+                                                        <p:outputLabel for="email" styleClass="p-d-block">Email</p:outputLabel>
+                                                        <p:inputText id="email" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:outputLabel for="nombre" styleClass="p-d-block">Nombre</p:outputLabel>
+                                                        <p:inputText id="nombre" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:outputLabel for="apellidos" styleClass="p-d-block">Apellidos</p:outputLabel>
+                                                        <p:inputText id="apellidos" styleClass="p-d-block" value=""  class="p-mb-2"/>
+                                                        <p:outputLabel for="telefono" styleClass="p-d-block">Teléfono</p:outputLabel>
+                                                        <p:inputText id="telefono" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:outputLabel for="pais" styleClass="p-d-block">Pais</p:outputLabel>
+                                                        <p:inputText id="pais" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:outputLabel for="ciudad" styleClass="p-d-block">Ciudad</p:outputLabel>
+                                                        <p:inputText id="ciudad" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:outputLabel for="cp" styleClass="p-d-block">Código postal</p:outputLabel>
+                                                        <p:inputText id="cp" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:outputLabel for="direccion" styleClass="p-d-block">Dirección</p:outputLabel>
+                                                        <p:inputText id="direccion" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:commandButton id="crearNuevaDireccion" value="Agregar dirección" ajax="false" action="#{usuariosController.Guardar()}" style="width: 70%"/>
+                                                    </h:form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </p:sidebar>
+
                                     <p:fieldset legend="Direcciones" toggleable="true" toggleSpeed="500" style="width: 30rem"  class="p-mx-1 p-as-center p-my-2">
                                         <div class="p-grid p-ml-6">
                                             Direcciones existentes para poder seleccionar una
@@ -118,7 +152,30 @@
                                             Calle,número,piso,puerta (una linea)
                                             ciudad
                                             CP
-                                            pais                                        
+                                            pais   
+
+                                            <div class="p-my-2" style="width: 100%; border: 1px solid lightgray; border-radius: 5px">
+                                                <div class="p-grid " style=" ">
+                                                    <div class="p-col-4 p-my-0" style=" ">
+                                                        <h4 class="p-my-1 p-ml-1">
+                                                            ciudad
+                                                        </h4>
+                                                    </div>
+                                                    <div class="p-col-6 p-my-0" style=" ">
+                                                        <h4 class="p-my-1">
+                                                            direccion completa
+                                                        </h4>
+
+                                                    </div>
+                                                    <div class="p-col-2" style=" ">
+                                                        <p:commandButton class="p-ml-3 p-my-1"  icon="pi pi-check" styleClass="rounded-button ui-button-primary ui-button-outlined" />
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <br></br>
+                                            <p:commandButton value="Crear nueva dirección" id="agregarDireccion" type="button" onclick="PF('sidebarRightDirecciones').show()" styleClass="p-mr-2 ui-button-outlined" />
 
                                         </div>
                                     </p:fieldset>
@@ -136,15 +193,19 @@
 
 
                                             <div class="p-grid p-flex-column">
-                                                <div class="p-col">
+                                                <div class="p-col" style="height: 4rem">
                                                     <div class="p-grid p-ai-center vertical-container">
-                                                        <div class="p-col-fixed" style="width: 80px">
+                                                        <div class="p-col" style="width: 80px">
                                                             <div class="box">
-                                                                <p:outputLabel value="¿Desea Montaje? Poner un sadio boton" for="txtProvincia"/></div>
+                                                                <p:outputLabel value="¿Desea Montaje?" for="montaje"/></div>
                                                         </div>
                                                         <div class="p-col">
                                                             <div class="box">
-                                                                <p:inputText class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="Provincia es un campo obligatorio" id="txtProvincia"></p:inputText>
+                                                                <p:selectOneButton id="montaje"  class="p-ml-1" required="true" requiredMessage="Decisión de montaje es un campo obligatorio" >
+                                                                    <f:selectItem itemLabel="Sí" itemValue="Sí"></f:selectItem>
+                                                                    <f:selectItem itemLabel="No" itemValue="No"></f:selectItem>
+
+                                                                </p:selectOneButton>
 
                                                             </div>
                                                         </div>
@@ -152,15 +213,20 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="p-col">
+                                                <div class="p-col"  style="height: 4rem">
                                                     <div class="p-grid p-ai-center vertical-container">
-                                                        <div class="p-col-fixed" style="width: 80px">
+                                                        <div class="p-col" style="width: 80px">
                                                             <div class="box">
-                                                                <p:outputLabel value="Seleccione el método de envío" for="txtMunicipio"/></div>
+                                                                <p:outputLabel value="Método de envío" for="metodoEnvio"/></div>
                                                         </div>
                                                         <div class="p-col">
                                                             <div class="box">
-                                                                <p:inputText class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="Municipio es un campo obligatorio" id="txtMunicipio"></p:inputText>
+                                                                <p:selectOneMenu class="p-ml-1" required="true" requiredMessage="Método de envío es un campo obligatorio" id="metodoEnvio">
+                                           <f:selectItem itemLabel="Standard" itemValue="Standard"></f:selectItem>
+                                            <f:selectItem itemLabel="Express" itemValue="Express"></f:selectItem>
+                                            <f:selectItem itemLabel="Premium" itemValue="Premium"></f:selectItem>
+                                                                    
+                                                                </p:selectOneMenu>
 
                                                             </div>
                                                         </div>
@@ -174,7 +240,7 @@
                                                 </h2>
                                                 <div class="p-col">
                                                     <div class="p-grid p-ai-center vertical-container">
-                                                        <div class="p-col-fixed" style="width: 80px">
+                                                        <div class="p-col-5" style="width: 80px">
                                                             <div class="box">
                                                                 <p:outputLabel value="Número de Tarjeta" for="txtTarjeta"/></div>
                                                         </div>
