@@ -10,11 +10,12 @@
         <ui:composition template="../../WEB-INF/template/plantillaIkea.xhtml">
 
             <ui:define name="content">
+
                 <div class="p-grid p-jc-center p-mt-2">
                     <div class="p-col-10" style="">
                         <div class="p-d-flex p-jc-center">
 
-                            <div class="p-col-6 p-my-0">
+                            <div class="p-col-6 p-my-0" >
                                 <h2 class="p-mt-0">
                                     Cesta
                                 </h2>
@@ -68,14 +69,18 @@
                             </div>
 
 
+
+
+
+
                             <div class="p-col-6" style="">
                                 <div  style="">
 
                                     <p:card class="p-mx-1 p-as-center p-my-2" style="width: 30rem;">
-                                           <p:outputPanel>  <p:autoUpdate/>
-                                               <h2><span>Subtotal</span>  <span style="float: right">                                       
-                                                #{cestaController.subtotal}
-                                            </span> </h2></p:outputPanel>
+                                        <p:outputPanel>  <p:autoUpdate/>
+                                            <h2><span>Subtotal</span>  <span style="float: right">                                       
+                                                    #{cestaController.subtotal} €
+                                                </span> </h2></p:outputPanel>
                                     </p:card>
 
                                     <p:sidebar widgetVar="sidebarRightDirecciones" position="right" style="width:30rem">
@@ -87,23 +92,29 @@
                                                 <div class="p-ml-6">
                                                     <h:form>
 
-                                                        <p:outputLabel for="email" styleClass="p-d-block">Email</p:outputLabel>
-                                                        <p:inputText id="email" styleClass="p-d-block" value="" class="p-mb-2"/>
+
                                                         <p:outputLabel for="nombre" styleClass="p-d-block">Nombre</p:outputLabel>
-                                                        <p:inputText id="nombre" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:inputText id="nombre" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.nombre}" class="p-mb-2"/>
+
                                                         <p:outputLabel for="apellidos" styleClass="p-d-block">Apellidos</p:outputLabel>
-                                                        <p:inputText id="apellidos" styleClass="p-d-block" value=""  class="p-mb-2"/>
+                                                        <p:inputText id="apellidos" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.apellidos}"  class="p-mb-2"/>
+
                                                         <p:outputLabel for="telefono" styleClass="p-d-block">Teléfono</p:outputLabel>
-                                                        <p:inputText id="telefono" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:inputText id="telefono" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.num_telefono}" class="p-mb-2"/>
+
                                                         <p:outputLabel for="pais" styleClass="p-d-block">Pais</p:outputLabel>
-                                                        <p:inputText id="pais" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:inputText id="pais" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.pais}" class="p-mb-2"/>
+
                                                         <p:outputLabel for="ciudad" styleClass="p-d-block">Ciudad</p:outputLabel>
-                                                        <p:inputText id="ciudad" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:inputText id="ciudad" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.ciudad}" class="p-mb-2"/>
+
                                                         <p:outputLabel for="cp" styleClass="p-d-block">Código postal</p:outputLabel>
-                                                        <p:inputText id="cp" styleClass="p-d-block" value="" class="p-mb-2"/>
+                                                        <p:inputText id="cp" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.CP}" class="p-mb-2"/>
+
                                                         <p:outputLabel for="direccion" styleClass="p-d-block">Dirección</p:outputLabel>
-                                                        <p:inputText id="direccion" styleClass="p-d-block" value="" class="p-mb-2"/>
-                                                        <p:commandButton id="crearNuevaDireccion" value="Agregar dirección" ajax="false" action="#{usuariosController.Guardar()}" style="width: 70%"/>
+                                                        <p:inputText id="direccion" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.direccion}" class="p-mb-2"/>
+
+                                                        <p:commandButton id="crearNuevaDireccion" value="Agregar dirección" ajax="false" action="#{cestaController.guardarDireccion()}" style="width: 70%"/>
                                                     </h:form>
                                                 </div>
                                             </div>
@@ -114,40 +125,36 @@
 
                                     <p:fieldset legend="Direcciones" toggleable="true" toggleSpeed="500" style="width: 30rem"  class="p-mx-1 p-as-center p-my-2">
                                         <div class="p-grid p-ml-6">
-                                            Direcciones existentes para poder seleccionar una
-                                            poner una lista o similar
+                                            <p:outputPanel id="teext" >
+                                                <p:autoUpdate></p:autoUpdate>
+
+                                                <p:repeat id="hd" value="#{cestaController.direccionesUsuario}" var="direccion">
 
 
-                                            ----Crear Nueva direccion----
-                                            Nombre Destinatario
-                                            Apellidos Destinatario
-                                            Num Telefono Destinatario
-                                            Email Destinatario
-                                            Calle,número,piso,puerta (una linea)
-                                            ciudad
-                                            CP
-                                            pais   
+                                                    <div class="p-my-2" style="width: 100%; border: 1px solid lightgray; border-radius: 5px">
+                                                        <div class="p-grid " style=" ">
+                                                            <div class="p-col-5 p-my-0" style=" ">
+                                                                <h4 class="p-my-1 p-ml-1">
+                                                                    #{direccion.direccion} 
+                                                                </h4>
+                                                            </div>
+                                                            <div class="p-col-5 p-my-0" style=" ">
+                                                                <h4 class="p-my-1">
+                                                                    #{direccion.CP}, #{direccion.ciudad}, #{direccion.pais}
+                                                                </h4>
 
-                                            <div class="p-my-2" style="width: 100%; border: 1px solid lightgray; border-radius: 5px">
-                                                <div class="p-grid " style=" ">
-                                                    <div class="p-col-4 p-my-0" style=" ">
-                                                        <h4 class="p-my-1 p-ml-1">
-                                                            ciudad
-                                                        </h4>
+                                                            </div>
+                                                            <div class="p-col-2" style=" ">
+                                                                <p:commandButton class="p-ml-3 p-my-1"  icon="pi pi-check" action="#{cestaController.seleccionDireccion(direccion)}" styleClass="rounded-button ui-button-primary ui-button-outlined" />
+
+                                                                <p:commandButton class="p-ml-3 p-my-1"  icon="pi pi-times" action="#{cestaController.eliminarDireccion(direccion)}" styleClass="rounded-button ui-button-outlined ui-button-danger" />
+                                                            </div>
+
+                                                        </div>
                                                     </div>
-                                                    <div class="p-col-6 p-my-0" style=" ">
-                                                        <h4 class="p-my-1">
-                                                            direccion completa
-                                                        </h4>
+                                                </p:repeat>
+                                            </p:outputPanel>
 
-                                                    </div>
-                                                    <div class="p-col-2" style=" ">
-                                                        <p:commandButton class="p-ml-3 p-my-1"  icon="pi pi-check" styleClass="rounded-button ui-button-primary ui-button-outlined" />
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
                                             <br></br>
                                             <p:commandButton value="Crear nueva dirección" id="agregarDireccion" type="button" onclick="PF('sidebarRightDirecciones').show()" styleClass="p-mr-2 ui-button-outlined" />
 
@@ -158,12 +165,18 @@
 
 
 
-                                    <p:card class="p-mx-1 p-as-center p-mt-0" style="width: 30rem">
-                                        <h2 class="p-mt-0">
-                                            Configure Su Envío
-                                        </h2>
 
-                                        <h:form>
+
+
+
+                                    <h:form>
+
+                                        <p:card class="p-mx-1 p-as-center p-mt-0" style="width: 30rem">
+                                            <h2 class="p-mt-0">
+                                                Configure Su Envío
+                                            </h2>
+
+
 
 
                                             <div class="p-grid p-flex-column">
@@ -175,8 +188,9 @@
                                                         </div>
                                                         <div class="p-col">
                                                             <div class="box">
-                                                                <p:selectOneButton id="montaje"  class="p-ml-1" required="true" requiredMessage="Decisión de montaje es un campo obligatorio" >
-                                                                    <f:selectItem itemLabel="Sí" itemValue="Sí"></f:selectItem>
+
+                                                                <p:selectOneButton id="montaje"  class="p-ml-1"  value="#{cestaController.montaje}">
+                                                                    <f:selectItem itemLabel="Sí" itemValue="Si"></f:selectItem>
                                                                     <f:selectItem itemLabel="No" itemValue="No"></f:selectItem>
 
                                                                 </p:selectOneButton>
@@ -187,26 +201,42 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="p-col"  style="height: 4rem">
-                                                    <div class="p-grid p-ai-center vertical-container">
-                                                        <div class="p-col" style="width: 80px">
-                                                            <div class="box">
-                                                                <p:outputLabel value="Método de envío" for="metodoEnvio"/></div>
-                                                        </div>
-                                                        <div class="p-col">
-                                                            <div class="box">
-                                                                <p:selectOneMenu class="p-ml-1" required="true" requiredMessage="Método de envío es un campo obligatorio" id="metodoEnvio">
-                                                                    <f:selectItem itemLabel="Standard" itemValue="Standard"></f:selectItem>
-                                                                    <f:selectItem itemLabel="Express" itemValue="Express"></f:selectItem>
-                                                                    <f:selectItem itemLabel="Premium" itemValue="Premium"></f:selectItem>
 
-                                                                </p:selectOneMenu>
 
-                                                            </div>
-                                                        </div>
+                                                <div class="card">
 
-                                                    </div>
+                                                    <p:dataTable var="envio" value="#{cestaController.enviosDisponibles}">
+                                                        <p:column headerText="Metodo Envío" width="150">
+                                                            <h:outputText value="#{envio.metodoEnvio}" />
+                                                        </p:column>
+
+                                                        <p:column headerText="Entrega">
+                                                            <h:outputText value="#{envio.fechaDestino}" />
+                                                        </p:column>
+
+                                                        <p:column headerText="Coste">
+                                                            <h:outputText value="#{envio.gastos}" />
+                                                        </p:column>
+
+                                                        <p:column headerText="Empresa">
+                                                            <h:outputText value="#{envio.empresa}" /> 
+                                                        </p:column>
+                                                    </p:dataTable> <br></br>
                                                 </div>
+
+                                                <div class="p-field p-col-12 p-md-4">
+                                                    <p:outputLabel for="@next" value="Método de envío"/>
+                                                    <p:selectOneMenu id="option" value="#{cestaController.envioSeleccionado}">
+                                                        <f:selectItem itemLabel="ikeaBasicDelivery" itemValue="ikeaBasicDelivery"/>
+                                                        <f:selectItem itemLabel="ikeaPayAndCollect" itemValue="ikeaPayAndCollect"/>
+                                                        <f:selectItem itemLabel="ikeaPremiumDelivery" itemValue="ikeaPremiumDelivery"/>
+                                                        <f:selectItem itemLabel="ikeaStandardDelivery" itemValue="ikeaStandardDelivery"/>
+
+                                                    </p:selectOneMenu>
+                                                </div>
+
+
+
 
                                                 <p:divider></p:divider>
                                                 <h2>
@@ -220,7 +250,7 @@
                                                         </div>
                                                         <div class="p-col">
                                                             <div class="box">
-                                                                <p:inputText class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="Tarjeta es un campo obligatorio" id="txtTarjeta"></p:inputText>
+                                                                <p:inputText class="p-ml-5" value="#{cestaController.pedido.numeroTarjeta}" required="true" requiredMessage="Tarjeta es un campo obligatorio" id="txtTarjeta"></p:inputText>
 
                                                             </div>
                                                         </div>
@@ -236,7 +266,7 @@
                                                         </div>
                                                         <div class="p-col">
                                                             <div class="box">
-                                                                <p:inputText class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="CCV es un campo obligatorio" id="txtCCV"></p:inputText>
+                                                                <p:inputText class="p-ml-5" value="#{cestaController.pedido.CVV}" required="true" requiredMessage="CCV es un campo obligatorio" id="txtCCV"></p:inputText>
 
                                                             </div>
                                                         </div>
@@ -252,7 +282,7 @@
                                                         </div>
                                                         <div class="p-col">
                                                             <div class="box">
-                                                                <p:inputText class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="CCV es un campo obligatorio" id="txtTitular"></p:inputText>
+                                                                <p:inputText class="p-ml-5" value="#{cestaController.pedido.titularTarjeta}" required="true" requiredMessage="Titular es un campo obligatorio" id="txtTitular"></p:inputText>
 
                                                             </div>
                                                         </div>
@@ -267,18 +297,21 @@
                                                         </div>
                                                         <div class="p-col">
                                                             <div class="box">
-                                                                <p:inputMask class="p-ml-5" value="#{usuariosController.usuario.email}" required="true" requiredMessage="CCV es un campo obligatorio" id="txtCaducidad" mask="MM/YY"></p:inputMask>
+                                                                <p:inputMask class="p-ml-5" value="#{cestaController.pedido.caducidad}" required="true" requiredMessage="Caducidad es un campo obligatorio" id="txtCaducidad" ></p:inputMask>
 
                                                             </div>
                                                         </div>
 
                                                     </div>
                                                 </div>
-                                                <p:commandButton id="comprarButton" value="Comprar" ajax="false" style="width: 100%"/>
+
+                                                <p:commandButton id="registrarButton" value="Tramitar Pedido" ajax="false"
+                                                                 action="#{cestaController.tramitarPedido()}"  styleClass="p-mr-2 ui-button-outlined"/>
 
                                             </div>
-                                        </h:form>
-                                    </p:card>
+
+                                        </p:card>
+                                    </h:form>
                                 </div>
                             </div>
 

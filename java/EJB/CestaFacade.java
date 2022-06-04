@@ -67,4 +67,16 @@ public class CestaFacade extends AbstractFacade<Cesta> implements CestaFacadeLoc
         
     }
     
+        @Override
+        public void eliminarCesta(Clientes emailCliente){
+            String consulta = "DELETE FROM Cesta c WHERE c.emailUsuario=:param1";
+        
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", emailCliente);
+        
+        query.executeUpdate();
+         
+        }
+
+    
 }

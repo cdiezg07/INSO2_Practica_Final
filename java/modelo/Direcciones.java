@@ -25,9 +25,9 @@ import javax.persistence.Table;
 public class Direcciones implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idDirecciones")
-    private String idDirecciones;
+    private int idDirecciones;
 
     @Column(name = "nombre")
     private String nombre;
@@ -50,17 +50,18 @@ public class Direcciones implements Serializable {
     @Column(name = "pais")
     private String pais;
 
-    @JoinColumn(name = "emailCliente")
+    @JoinColumn(name = "emailUsuario")
     @ManyToOne //muchas direcciones pueden ser tenidas por un usuario
     private Clientes emailUsuario;
 
-    public String getIdDirecciones() {
+    public int getIdDirecciones() {
         return idDirecciones;
     }
 
-    public void setIdDirecciones(String idDirecciones) {
+    public void setIdDirecciones(int idDirecciones) {
         this.idDirecciones = idDirecciones;
     }
+
 
     public String getNombre() {
         return nombre;

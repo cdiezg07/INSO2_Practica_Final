@@ -7,7 +7,9 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
+import modelo.Clientes;
 import modelo.Direcciones;
+import modelo.Usuarios;
 
 /**
  *
@@ -29,5 +31,7 @@ public interface DireccionesFacadeLocal {
     List<Direcciones> findRange(int[] range);
 
     int count();
+
+    public List<Direcciones> traerTodas(Clientes usuarioActivo);
     
 }

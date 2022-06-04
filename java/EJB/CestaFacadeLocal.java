@@ -35,4 +35,6 @@ public interface CestaFacadeLocal {
     boolean yaExisteProducto(Products UPC, Clientes emailCliente);
     
     List<Cesta> getProductos(Clientes emailCliente);
+
+    public void eliminarCesta(Clientes infoEspCliente);
 }
