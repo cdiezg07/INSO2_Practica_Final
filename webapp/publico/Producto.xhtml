@@ -11,7 +11,7 @@
         <ui:composition template="./../WEB-INF/template/plantillaIkea.xhtml">
 
             <ui:define name="content">
-                                                        <p:growl id="mensajes" showDetail="true"/>
+                <p:growl id="mensajes" showDetail="true"/>
 
                 <h:form>
                     <div class="p-grid p-jc-center">
@@ -43,8 +43,7 @@
                                         <h3 class="p-mt-0">
                                             #{productosController.productoSeleccionado.priceNumeral} #{productosController.productoSeleccionado.pricesuffix}
                                         </h3>
-                                        <p:rating value="4" rendered="true" class="p-mb-2"/>
-                                        <p:rating value="4" rendered="true" readonly="true" class="p-mb-2"/>
+                                        <p:rating value="#{productosController.rating}" rendered="true" class="p-mb-2"/>
 
 
                                         <p:commandButton rendered="#{productosController.enElCarrito == false}"  value="Añadir al carrito" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" action="#{productosController.addCarrito(productosController.productoSeleccionado)}" update=":mensajes"/>
@@ -62,20 +61,22 @@
                                 Reseñas
                             </h2>
                             <p:fieldset legend="Nueva reseña" toggleable="true" toggleSpeed="500" class="p-mx-1 p-as-center p-my-2" collapsed="true">
-                                <p:inputTextarea rows="5" cols="30" counter="count" maxlength="800" counterTemplate="{0} Caracteres restantes." autoResize="false" style="width: 100%">
+                                  <p:inputTextarea rows="5" cols="30" counter="count" value="#{productosController.nuevaResenya}" maxlength="800" counterTemplate="{0} Caracteres restantes." autoResize="false" style="width: 100%">
 
                                 </p:inputTextarea>
+                                
                                 <h:outputText id="count" class="p-d-block"></h:outputText>
-                                <p:commandButton class="p-d-block" value="Agregar reseña" styleClass="ui-button-outlined ui-button-primary" update="@none" process="@this" action="#{subcategoriasController.getProducts(subcategoria.nombreSubcategoria)}"/>
+                                <p:commandButton class="p-d-block" value="Agregar reseña" styleClass="ui-button-outlined ui-button-primary" update=":mensajes"  action="#{productosController.nuevaResenya()}"/>
                             </p:fieldset>
                             <p:repeat value="#{productosController.getOpiniones(productosController.productoSeleccionado)}" var="opinion">
-                                <p:card>
+                                <p:card class="p-my-2 p-mr-2">
                                     <h3 class="p-my-0">
-                                        #{opinion.emailCliente}
+                                        #{opinion.emailCliente.emailCliente.nombre}
                                     </h3>
-                                    <h4 class="p-my-0">
-                                        #{opinion.fecha}
-                                    </h4>
+                                    <h:outputText value="#{opinion.fecha}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+                                    </h:outputText>
+
                                     <p:rating value="#{opinion.puntuacion}" readonly="true" class="p-mt-1"/>
                                     <span class="p-my-0">
                                         <p class="p-my-0">
