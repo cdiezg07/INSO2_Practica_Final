@@ -34,15 +34,50 @@ public class PlantillaController implements Serializable {
             } catch (IOException ex) {
                 Logger.getLogger(PlantillaController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            Usuarios usu = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado");
-
-            System.out.println(usu.getTipo());
-
-        }
+        } 
         //Si existe usuario correctamente no hace nada y lo deja pasar cargándose el formulario
     }
 
+    public void verificarYMostrarAdmin() {
+        
+         Usuarios usu = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado");
+
+        if (usu == null || usu.getTipo().compareTo("admin") != 0) {
+            try {
+                //No existe usuario correctamente loggeado en la aplicacion y por tanto no se debe mostrar el formulario (e.g. si ponemos /faces/privado/principal.xhtml sin estar loggeados)
+                //Redireccionamos según la direccion de contexto relativa a una página de error
+                System.out.println(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath());
+                FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/publico/permisosinsuficientes.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(PlantillaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
+        //Si existe usuario correctamente no hace nada y lo deja pasar cargándose el formulario
+        
+        
+    }
+    
+      public void verificarYMostrarTrabajador() {
+        
+         Usuarios usu = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado");
+
+        if (usu == null || usu.getTipo().compareTo("trabajador") != 0) {
+            try {
+                //No existe usuario correctamente loggeado en la aplicacion y por tanto no se debe mostrar el formulario (e.g. si ponemos /faces/privado/principal.xhtml sin estar loggeados)
+                //Redireccionamos según la direccion de contexto relativa a una página de error
+                System.out.println(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath());
+                FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/publico/permisosinsuficientes.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(PlantillaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
+        //Si existe usuario correctamente no hace nada y lo deja pasar cargándose el formulario
+        
+     
+        
+    }
+    
+    
     public boolean esAdminLogueado() {
         
          
