@@ -7,12 +7,14 @@ package controller;
 
 import EJB.AdministradoresFacadeLocal;
 import EJB.ClientesFacadeLocal;
+import EJB.PedidosFacadeLocal;
 import EJB.TrabajadoresFacadeLocal;
 import EJB.UsuariosFacadeLocal;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -23,6 +25,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import modelo.Administradores;
 import modelo.Clientes;
+import modelo.Pedidos;
 import modelo.Trabajadores;
 import modelo.Usuarios;
 
@@ -42,6 +45,9 @@ public class PerfilController implements Serializable {
 
     private Administradores attrEspAdministrador; //vacios si no es administrador
 
+    private List<Pedidos> pedidosUsuario;
+    
+    
     boolean esCliente = false;
     boolean esTrabajador = false;
     boolean esAdmin = false;
@@ -55,6 +61,8 @@ public class PerfilController implements Serializable {
     private AdministradoresFacadeLocal administradorEJB;
     @EJB
     private UsuariosFacadeLocal usuarioEJB;
+    @EJB
+    private PedidosFacadeLocal pedidosEJB;
 
     //atributos getter y setter
     public Usuarios getUsuarioLoggeado() {
@@ -113,6 +121,16 @@ public class PerfilController implements Serializable {
         this.esAdmin = esAdmin;
     }
 
+    public List<Pedidos> getPedidosUsuario() {
+        return pedidosUsuario;
+    }
+
+    public void setPedidosUsuario(List<Pedidos> pedidosUsuario) {
+        this.pedidosUsuario = pedidosUsuario;
+    }
+
+    
+    
     //Una vez el usuario pique en la vista de su perfil se ejecutará la vista y este controlador.
     //PEDIR LOS DATOS DE USUARIO LOGGEADO A LA BASE DE DATOS
     @PostConstruct
@@ -136,6 +154,9 @@ public class PerfilController implements Serializable {
                 //llamo a un metodo de la fachada de usuario que le paso el tipo para saber la segunda tabla a consultar y el email
                 attrEspCliente = clienteEJB.find(this.usuarioLoggeado.getEmail());
                 this.esCliente = true;
+                
+                //traigo sus pedidos tambien
+                this.pedidosUsuario = this.pedidosEJB.findAll();
                 
             } else if (this.usuarioLoggeado.getTipo().compareTo("trabajador") == 0) {
                 

@@ -192,39 +192,123 @@
                             <h:form>
 
                                 <p:fieldset legend="Pedidos" toggleable="true" toggleSpeed="500">
-                                    <div class="p-grid p-ml-6">
-                                        <div class="p-col-6">
-                                            <div class="p-grid" style="background-color: lightblue">
-                                                <div class="p-col-3" style="background-color: lightcoral">
-                                                    <img alt="imagen" src="https://www.ikea.com/global/assets/navigation/images/fabric-sofas-10661.jpeg?imwidth=300" width="100%" />
-                                                </div>
-                                                <div class="p-col-5" style="background-color: lightcyan">
-                                                    <h2 class="p-my-0">
-                                                        Nombre Producto
-                                                    </h2>
-                                                    <h3 class="p-my-0">
-                                                        descripcion
-                                                    </h3>
-                                                    <h3 class="p-my-0">
-                                                        3000€
-                                                    </h3>
-                                                    <p:rating value="4" readonly="true" class="p-mb-2"/>
-                                                    <p:commandButton  value="Ver producto" styleClass="ui-button-outlined ui-button-primary" style="width: 100%"/>
-                                                </div>
 
-                                                <div class="p-col-3">
-                                                    <div class="">
-                                                        <h3>
-                                                            Estado
-                                                        </h3>
-                                                        <p:chronoline value="#{chronolineView.events}" var="event">
-                                                            #{event.status}
-                                                        </p:chronoline>
+                                    <p:repeat id="for" value="#{perfilController.pedidosUsuario}" var="pedido">
+                                        <p:card>
+                                            <div class="p-grid p-ml-6">
+
+                                                <div class="p-col-6">
+                                                    <div class="p-grid" style="background-color: lightblue">
+                                                        <div class="p-col-3" style="background-color: lightcoral">
+                                                            <img alt="imagen" src="https://www.ikea.com/es/en/images/products/frakta-carrier-bag-large-blue__0711231_pe728076_s5.jpg?f=s" width="100%" />
+                                                        </div>
+                                                        <div class="p-col-5" style="background-color: lightcyan">
+                                                            <h2 class="p-my-0">
+                                                                Orden nº: #{pedido.upc}
+                                                            </h2><br></br>
+                                                            <h4 class="p-my-0">
+                                                                #{pedido.fecha}
+                                                            </h4><br></br>
+                                                            <h4 class="p-my-0">
+                                                                #{pedido.subtotal} €
+                                                            </h4>
+                                                        </div>
+
+                                                        <div class="p-col-3">
+                                                            <div class="">
+                                                                <h3>
+                                                                    Estado
+                                                                </h3>
+                                                                <p:button icon="pi pi-car" value="#{pedido.estado}"  styleClass="rounded-button ui-button-success" />
+
+
+
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+
+
                                             </div>
-                                        </div>
-                                    </div>
+
+                                            <div class="card">
+                                                <p:panelGrid columns="4" layout="flex">
+                                                    <p:panel id="blind" header="Número de Pedido">
+                                                        <h:outputText value="#{pedido.upc}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="clip" header="Fecha">
+                                                        <h:outputText value="#{pedido.fecha}">
+                                                            <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+                                                        </h:outputText>
+                                                    </p:panel>
+
+                                                    <p:panel id="drop" header="Estado">
+                                                        <h:outputText value="#{pedido.estado}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="explode" header="Montaje Incluido">
+                                                        <h:outputText value="#{pedido.incluyeMontaje}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="fold" header="Método de Envío">
+                                                        <h:outputText value="#{pedido.envio.metodoEnvio}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="puff" header="Coste">
+                                                        <h:outputText value="#{pedido.envio.gastos} €"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="slide" header="Entrega Estimada">
+                                                        <h:outputText value="#{pedido.envio.fechaDestino}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="scale" header="Empresa">
+                                                        <h:outputText value="#{pedido.envio.empresa}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="bounce" header="Dirección Entrega">
+                                                        <h:outputText value="#{pedido.direccion.direccion}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="pulsate" header="Ciudad">
+                                                        <h:outputText value="#{pedido.direccion.ciudad}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="shake" header="Código Postal">
+                                                        <h:outputText value="#{pedido.direccion.CP}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="size" header="País">
+                                                        <h:outputText value="#{pedido.direccion.pais}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="bogunce" header="Cuantía">
+                                                        <h:outputText value="#{pedido.subtotal} €"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="pulsgate" header="Tarjeta">
+                                                        <h:outputText value="#{pedido.numeroTarjeta}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="shagke" header="Titular Tarjeta">
+                                                        <h:outputText value="#{pedido.titularTarjeta}"/>
+                                                    </p:panel>
+
+                                                    <p:panel id="sigze" header="Caducidad y CVV">
+                                                        <h:outputText value="#{pedido.caducidad} - #{pedido.CVV}"/>
+                                                    </p:panel>
+                                                </p:panelGrid>
+                                            </div>
+
+
+                                        </p:card>
+
+
+
+                                    </p:repeat>
+
+
                                 </p:fieldset>
                             </h:form>
                         </div>
