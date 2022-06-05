@@ -6,10 +6,13 @@
 package controller;
 
 import EJB.TrabajadoresFacadeLocal;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -84,9 +87,13 @@ public class AdminListarTrabajadoresController implements Serializable {
     }
 
     public String establecerTrabajadorSeleccionado(Trabajadores trabPinchadoVista) {
-        // Trabajadores trabPinchadoVista = this.listaDeTrabajadores.get(0);
-        this.trabSeleccionado = trabPinchadoVista;
-        return "AdminEditarTrabajador.xhtml";
+        
+            // Trabajadores trabPinchadoVista = this.listaDeTrabajadores.get(0);
+            this.trabSeleccionado = trabPinchadoVista;
+            return "./EditarTrabajador.xhtml";
+        
+
+
     }
 
     public void eliminarTrabajadorSeleccionado(Trabajadores trabPinchadoVista) {

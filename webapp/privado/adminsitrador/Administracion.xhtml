@@ -85,7 +85,7 @@
                                                 <p:inputText id="fechaNacimiento" styleClass="p-d-block" value="#{trabajador.emailTrabajador.email}" disabled="true"/>
                                             </div>
                                             <div class="p-field p-ml-6 p-mt-4">
-                                                <p:commandButton icon="pi pi-pencil" id="editar" type="button" styleClass="p-mr-2 ui-button-outlined" />
+                                                <p:commandButton icon="pi pi-pencil" id="editar"  action="#{adminListarTrabajadoresController.establecerTrabajadorSeleccionado(trabajador)}" styleClass="p-mr-2 ui-button-outlined" />
                                                 <p:commandButton id="sinMas" icon="pi pi-trash" ajax="false"  action="#{adminListarTrabajadoresController.eliminarTrabajadorSeleccionado(trabajador)}" styleClass="p-mr-2 ui-button-outlined ui-button-danger"/>
 
                                             </div>

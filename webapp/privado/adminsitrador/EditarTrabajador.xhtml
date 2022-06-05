@@ -20,34 +20,34 @@
                                     <div class="ui-fluid p-formgrid p-grid">
                                         <div class="p-field p-mr-2">
                                             <p:outputLabel for="email" styleClass="p-d-block">Email</p:outputLabel>
-                                            <p:inputText id="email" value="#{adminListarTrabajadoresController.nuevoTrabajadorGen.email}" styleClass="p-d-block"/>
+                                            <p:inputText id="email" value="#{adminEditarTrabajadorController.trabTraido.emailTrabajador.email}" styleClass="p-d-block"/>
                                         </div>
                                         <div class="p-field p-mr-2">
                                             <p:outputLabel for="nombre" styleClass="p-d-block">Nombre</p:outputLabel>
-                                            <p:inputText id="nombre" value="#{adminListarTrabajadoresController.nuevoTrabajadorGen.nombre}" styleClass="p-d-block"/>
+                                            <p:inputText id="nombre" value="#{adminEditarTrabajadorController.trabTraido.emailTrabajador.nombre}" styleClass="p-d-block"/>
                                         </div>
                                         <div class="p-field p-mr-2">
                                             <p:outputLabel for="apellido" styleClass="p-d-block">Apellidos</p:outputLabel>
-                                            <p:inputText id="apellido" value="#{adminListarTrabajadoresController.nuevoTrabajadorGen.apellidos}" styleClass="p-d-block"/>
+                                            <p:inputText id="apellido" value="#{adminEditarTrabajadorController.trabTraido.emailTrabajador.apellidos}" styleClass="p-d-block"/>
                                         </div>
                                         <div class="p-field p-mr-2">
                                             <p:outputLabel for="contrasenya" styleClass="p-d-block">Contraseña</p:outputLabel>
-                                            <p:password value="#{adminListarTrabajadoresController.nuevoTrabajadorGen.password}" id="contrasenya" required="true" label="password" toggleMask="true" redisplay="true" requiredMessage="Contraseña es un campo obligatorio" feedback="true" promptLabel="Ingresa tu contraseña" weakLabel="Débil" goodLabel="Buena" strongLabel="Fuerte" />
+                                            <p:password value="#{adminEditarTrabajadorController.trabTraido.emailTrabajador.password}" id="contrasenya" required="true" label="password" toggleMask="true" redisplay="true" requiredMessage="Contraseña es un campo obligatorio" feedback="true" promptLabel="Ingresa tu contraseña" weakLabel="Débil" goodLabel="Buena" strongLabel="Fuerte" />
                                         </div>
                                         <div class="p-field p-mr-2">
                                             <p:outputLabel for="dni" styleClass="p-d-block">DNI</p:outputLabel>
-                                            <p:inputText id="dni" value="#{adminListarTrabajadoresController.nuevoTrabajadorEsp.DNI}" styleClass="p-d-block"/>
+                                            <p:inputText id="dni" value="#{adminEditarTrabajadorController.trabTraido.DNI}" styleClass="p-d-block"/>
                                         </div>
                                         <div class="p-field p-mr-2">
                                             <p:outputLabel for="telefono" value="Teléfono"/>
-                                            <p:inputMask id="telefono" value="#{adminListarTrabajadoresController.nuevoTrabajadorEsp.num_telefono}" mask="999999999"/>
+                                            <p:inputMask id="telefono" value="#{adminEditarTrabajadorController.trabTraido.num_telefono}" mask="999999999"/>
                                         </div>
                                         <div class="p-field p-mr-2">
                                             <p:outputLabel for="fechaNacimiento" value="Fecha de nacimiento"/>
-                                            <p:calendar id="fechaNacimiento" value="#{adminListarTrabajadoresController.nuevoTrabajadorEsp.fecha_nacimiento}" showOn="button"/>
+                                            <p:calendar id="fechaNacimiento" value="#{adminEditarTrabajadorController.trabTraido.fecha_nacimiento}" showOn="button"/>
                                         </div>
                                         <div class="p-field p-ml-6 p-mt-4">
-                                            <p:commandButton id="registrarButton" value="Guardar cambios" ajax="false" action="#{adminListarTrabajadoresController.guardarTrabajadorCreado()}" style="width: 100%"/>
+                                            <p:commandButton id="registrarButton" value="Guardar cambios" ajax="false" action="#{adminEditarTrabajadorController.guardarTrabajadorModificado()}" style="width: 100%"/>
                                         </div>                                       
                                     </div>
                                 </h:form>

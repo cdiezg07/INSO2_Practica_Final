@@ -34,6 +34,15 @@ public class AdminEditarTrabajadorController implements Serializable {
     @EJB
     private TrabajadoresFacadeLocal trabajadorEJB;
 
+    public Trabajadores getTrabTraido() {
+        return trabTraido;
+    }
+
+    public void setTrabTraido(Trabajadores trabTraido) {
+        this.trabTraido = trabTraido;
+    }
+
+    
     @PostConstruct
     public void init() {
         //se tiene que llenar el atributo antes de renderizar la vista para que aparezcan sus datos y los podamos modificar
@@ -42,12 +51,6 @@ public class AdminEditarTrabajadorController implements Serializable {
 
     public String guardarTrabajadorModificado() {
 
-        // this.trabTraido.getEmailTrabajador().setPassword("1000");
-        //   this.trabTraido.getEmailTrabajador().setNombre("1000");
-        //  this.trabTraido.getEmailTrabajador().setApellidos("1000");
-        //   this.trabTraido.setDNI("1000000");
-        //   this.trabTraido.setFecha_nacimiento(new Date(2000, 12, 12));
-        //   this.trabTraido.setNum_telefono("1000000");
         try {
 
             this.trabajadorEJB.edit(this.trabTraido);
@@ -57,7 +60,7 @@ public class AdminEditarTrabajadorController implements Serializable {
             System.out.println("SE HA PRODUCIDO UN ERROR AL INTENTAR GUARDAR EL TRABAJADOR MODIFICADO");
 
         }
-        return "AdminListarTrabajadores.xhtml";
+        return "Administracion.xhtml?faces-redirect=true";
 
     }
 
