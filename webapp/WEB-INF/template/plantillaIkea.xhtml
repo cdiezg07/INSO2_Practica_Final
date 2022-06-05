@@ -79,7 +79,7 @@
                         <p:tooltip for="perfil" value="Perfil" position="bottom"/>
                         <p:button id="carro" icon="pi pi-shopping-cart" styleClass="p-mx-1 ui-button-flat" outcome="/privado/cliente/Cesta.xhtml" rendered="#{plantillaController.hayUsuarioLogueado()}"/>
                         <p:tooltip for="carro" value="Cesta" position="bottom"/>
-                        <p:commandButton class="p-ml-3" icon="pi pi-sign-out" rendered="#{plantillaController.hayUsuarioLogueado()}" ajax="false" type="button" value="Cerrar sesión" action="#{plantillaController.desloguear()}"/> 
+                        <p:commandButton class="p-ml-3" icon="pi pi-sign-out" rendered="#{plantillaController.hayUsuarioLogueado()}"  value="Cerrar sesión" action="#{plantillaController.desloguear()}"/> 
                         <p:commandButton class="p-ml-3" icon="pi pi-users" rendered="#{!plantillaController.hayUsuarioLogueado()}" type="button" value="Regístrate o inicia sesión" onclick="PF('sidebarRight').show()" /> 
                     </div>
                 </div>

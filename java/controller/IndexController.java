@@ -6,11 +6,15 @@
 package controller;
 
 import EJB.UsuariosFacadeLocal;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -43,7 +47,7 @@ public class IndexController implements Serializable {
         usuarioABuscar = new Usuarios();
     }
 
-    public String verificarUsuario() {
+    public void verificarUsuario() {
 
         Usuarios usuEncontrado = null;
 
@@ -51,19 +55,36 @@ public class IndexController implements Serializable {
             usuEncontrado = usuarioEJB.verificarUsuario(usuarioABuscar);
 
         } catch (Exception e) {
-            System.out.println("SE HA PRODUCIDO UN ERROR AL TRATAR DE VALIDAR EL LOGIN");
-            return "index.xhtml";
+            try {
+                System.out.println("SE HA PRODUCIDO UN ERROR AL TRATAR DE VALIDAR EL LOGIN");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+         
         }
 
         if (usuEncontrado == null) {
-            return "permisosinsuficientes.xhtml";
+                   
+            addMessageError("Error", "El email y contraseña introducidos no son correctos");            
+            return;
         }
         //Colocamos asimismo el usuario en el contexto de la apliacion para que el usuario sea accesible globalmente
 
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuarioLoggeado", usuEncontrado);
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("Principal.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        return "Principal.xhtml";
-
+    }
+    
+    
+     public void addMessageError(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
 }

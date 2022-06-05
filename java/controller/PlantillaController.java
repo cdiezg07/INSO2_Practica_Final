@@ -60,7 +60,8 @@ public class PlantillaController implements Serializable {
     
     public String desloguear() {
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().clear();
+        //FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().clear();
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("usuarioLoggeado");
         return "/publico/Principal.xhtml?faces-redirect=true";
     }
 }
