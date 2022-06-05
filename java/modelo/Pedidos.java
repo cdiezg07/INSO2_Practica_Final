@@ -8,6 +8,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,34 +23,45 @@ import javax.persistence.TemporalType;
  *
  * @author carlos
  */
-
 @Entity
-@Table (name="pedidos")
-public class Pedidos implements Serializable{
-    
+@Table(name = "pedidos")
+public class Pedidos implements Serializable {
+
     @Id
-    @Column(name="idPedidos")
+    @Column(name = "idPedidos")
     private String upc;
- 
+
     @Temporal(TemporalType.DATE)
-    @Column(name="fecha")
+    @Column(name = "fecha") //del día que se hizo el pedido
     private Date fecha;
 
-    @Column(name="estado")
+    @Column(name = "estado")
     private String estado;
-    
-    @Column(name="incluyeMontaje")
+
+    @Column(name = "incluyeMontaje")
     private String incluyeMontaje;
-    
-    @JoinColumn(name="metodoEnvio")
-    @ManyToOne
+
+    @Column(name = "subtotal")
+    private float subtotal;
+
+    @Column(name = "numeroTarjeta")
+    private String numeroTarjeta;
+    @Column(name = "titularTarjeta")
+    private String titularTarjeta;
+    @Column(name = "CVV")
+    private String CVV;
+    @Column(name = "caducidad")
+    private String caducidad;
+
+    @JoinColumn(name = "metodoEnvio")
+    @ManyToOne 
     private Envios envio;
-    
-    @JoinColumn(name="idDireccion")
-    @ManyToOne
+
+    @JoinColumn(name = "idDireccion")
+    @ManyToOne 
     private Direcciones direccion;
-    
-    @JoinColumn(name="emailCliente")
+
+    @JoinColumn(name = "emailCliente")
     @ManyToOne
     private Clientes cliente;
 
@@ -109,6 +121,45 @@ public class Pedidos implements Serializable{
         this.cliente = cliente;
     }
 
-   
+    public float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(float subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public String getNumeroTarjeta() {
+        return numeroTarjeta;
+    }
+
+    public void setNumeroTarjeta(String numeroTarjeta) {
+        this.numeroTarjeta = numeroTarjeta;
+    }
+
+    public String getTitularTarjeta() {
+        return titularTarjeta;
+    }
+
+    public void setTitularTarjeta(String titularTarjeta) {
+        this.titularTarjeta = titularTarjeta;
+    }
+
+    public String getCVV() {
+        return CVV;
+    }
+
+    public void setCVV(String CVV) {
+        this.CVV = CVV;
+    }
+
+    public String getCaducidad() {
+        return caducidad;
+    }
+
+    public void setCaducidad(String caducidad) {
+        this.caducidad = caducidad;
+    }
+
     
 }

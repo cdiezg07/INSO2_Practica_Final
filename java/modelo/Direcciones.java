@@ -8,6 +8,8 @@ package modelo;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,44 +22,46 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "direcciones")
-public class Direcciones implements Serializable{
+public class Direcciones implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idDirecciones")
-    private String idDirecciones;
+    private int idDirecciones;
 
     @Column(name = "nombre")
     private String nombre;
-    
+
     @Column(name = "apellidos")
     private String apellidos;
-    
+
     @Column(name = "num_telefono")
     private String num_telefono;//
-    
+
     @Column(name = "direccion")
     private String direccion;
-    
+
     @Column(name = "ciudad")
     private String ciudad;
-    
+
     @Column(name = "CP")
     private String CP;
-    
+
     @Column(name = "pais")
     private String pais;
 
-    @JoinColumn(name = "emailCliente")
+    @JoinColumn(name = "emailUsuario")
     @ManyToOne //muchas direcciones pueden ser tenidas por un usuario
     private Clientes emailUsuario;
 
-    public String getIdDirecciones() {
+    public int getIdDirecciones() {
         return idDirecciones;
     }
 
-    public void setIdDirecciones(String idDirecciones) {
+    public void setIdDirecciones(int idDirecciones) {
         this.idDirecciones = idDirecciones;
     }
+
 
     public String getNombre() {
         return nombre;
@@ -121,7 +125,6 @@ public class Direcciones implements Serializable{
 
     public void setEmailUsuario(Clientes emailUsuario) {
         this.emailUsuario = emailUsuario;
-    } 
-    
-   
+    }
+
 }

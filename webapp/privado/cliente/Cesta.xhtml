@@ -1,0 +1,327 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="../../WEB-INF/template/plantillaIkea.xhtml">
+
+            <ui:define name="content">
+
+                <div class="p-grid p-jc-center p-mt-2">
+                    <div class="p-col-10" style="">
+                        <div class="p-d-flex p-jc-center">
+
+                            <div class="p-col-6 p-my-0" >
+                                <h2 class="p-mt-0">
+                                    Cesta
+                                </h2>
+                                <div class="p-grid p-ml-6">
+
+                                    <p:outputPanel id="text" >
+                                        <p:autoUpdate></p:autoUpdate>
+                                        <div >
+                                            <p:repeat id="h" value="#{cestaController.cestaUsuarioActivo}" var="itemCesta">
+
+                                                <p:card class="p-my-2 p-mr-2" style="max-width: 40em">
+                                                    <div class="p-d-flex" >
+                                                        <div >
+                                                            <img alt="imagenProducto" src="#{itemCesta.UPC.mainImageUrl}" width="60%" />
+
+                                                        </div>
+                                                        <div class="p-col-6" style=" ">
+                                                            <h2 class="p-my-0">
+                                                                <span>  #{itemCesta.UPC.name}</span><span style="float:right;">#{itemCesta.UPC.priceNumeral} #{itemCesta.UPC.pricesuffix}</span>
+
+                                                            </h2><br></br>
+                                                            <p class="p-my-0">
+                                                                #{itemCesta.UPC.mainImageAlt}
+                                                            </p><br></br><br></br>
+
+                                                            <h:form>
+
+
+
+                                                                <div style="float: right; display: inline" >
+                                                                    <p:spinner style="width: 7em;" id="ajaxSpinner" value="#{itemCesta.cantidad}"   buttons="horizontal-after" upButtonStyleClass="rounded-button ui-button-flat" downButtonStyleClass="rounded-button  ui-button-flat" >
+                                                                        <p:ajax listener="#{cestaController.calcularSubtotal()}" update="@none" process="@this, ajaxSpinner" />
+                                                                    </p:spinner>
+                                                                </div>
+
+                                                            </h:form>
+
+                                                        </div>
+                                                        <p:commandButton class="p-ml-3"  icon="pi pi-times" action="#{cestaController.eliminarDeCesta(itemCesta)}" styleClass="rounded-button ui-button-danger ui-button-flat" />
+
+                                                    </div>
+                                                </p:card>
+                                            </p:repeat>
+
+
+                                        </div>                   
+                                    </p:outputPanel>
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="p-col-6" style="">
+                                <div  style="">
+
+                                    <p:card class="p-mx-1 p-as-center p-my-2" style="width: 30rem;">
+                                        <p:outputPanel>  <p:autoUpdate/>
+                                            <h2><span>Subtotal</span>  <span style="float: right">                                       
+                                                    #{cestaController.subtotal} €
+                                                </span> </h2></p:outputPanel>
+                                    </p:card>
+
+                                    <p:sidebar widgetVar="sidebarRightDirecciones" position="right" style="width:30rem">
+                                        <div class="p-grid p-jc-center p-mt-6">
+                                            <div class="p-col-10" style="">
+                                                <h3 class="p-mt-0">
+                                                    Crear una nueva dirección
+                                                </h3>
+                                                <div class="p-ml-6">
+                                                    <h:form>
+
+
+                                                        <p:outputLabel for="nombre" styleClass="p-d-block">Nombre</p:outputLabel>
+                                                        <p:inputText id="nombre" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.nombre}" class="p-mb-2"/>
+
+                                                        <p:outputLabel for="apellidos" styleClass="p-d-block">Apellidos</p:outputLabel>
+                                                        <p:inputText id="apellidos" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.apellidos}"  class="p-mb-2"/>
+
+                                                        <p:outputLabel for="telefono" styleClass="p-d-block">Teléfono</p:outputLabel>
+                                                        <p:inputText id="telefono" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.num_telefono}" class="p-mb-2"/>
+
+                                                        <p:outputLabel for="pais" styleClass="p-d-block">Pais</p:outputLabel>
+                                                        <p:inputText id="pais" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.pais}" class="p-mb-2"/>
+
+                                                        <p:outputLabel for="ciudad" styleClass="p-d-block">Ciudad</p:outputLabel>
+                                                        <p:inputText id="ciudad" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.ciudad}" class="p-mb-2"/>
+
+                                                        <p:outputLabel for="cp" styleClass="p-d-block">Código postal</p:outputLabel>
+                                                        <p:inputText id="cp" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.CP}" class="p-mb-2"/>
+
+                                                        <p:outputLabel for="direccion" styleClass="p-d-block">Dirección</p:outputLabel>
+                                                        <p:inputText id="direccion" styleClass="p-d-block" value="#{cestaController.nuevaDireccion.direccion}" class="p-mb-2"/>
+
+                                                        <p:commandButton id="crearNuevaDireccion" value="Agregar dirección" ajax="false" action="#{cestaController.guardarDireccion()}" style="width: 70%"/>
+                                                    </h:form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </p:sidebar>
+
+                                    <p:fieldset legend="Direcciones" toggleable="true" toggleSpeed="500" style="width: 30rem" collapsed="true" class="p-mx-1 p-as-center p-my-2">
+                                        <div class="p-grid p-ml-6">
+                                            <p:outputPanel id="teext" >
+                                                <p:autoUpdate></p:autoUpdate>
+
+                                                <p:repeat id="hd" value="#{cestaController.direccionesUsuario}" var="direccion">
+
+
+                                                    <div class="p-my-2" style="width: 100%; border: 1px solid lightgray; border-radius: 5px">
+                                                        <div class="p-grid " style=" ">
+                                                            <div class="p-col-5 p-my-0" style=" ">
+                                                                <h4 class="p-my-1 p-ml-1">
+                                                                    #{direccion.direccion} 
+                                                                </h4>
+                                                            </div>
+                                                            <div class="p-col-5 p-my-0" style=" ">
+                                                                <h4 class="p-my-1">
+                                                                    #{direccion.CP}, #{direccion.ciudad}, #{direccion.pais}
+                                                                </h4>
+
+                                                            </div>
+                                                            <div class="p-col-2" style=" ">
+                                                                <p:commandButton class="p-ml-3 p-my-1"  icon="pi pi-check" action="#{cestaController.seleccionDireccion(direccion)}" styleClass="rounded-button ui-button-primary ui-button-outlined" />
+
+                                                                <p:commandButton class="p-ml-3 p-my-1"  icon="pi pi-times" action="#{cestaController.eliminarDireccion(direccion)}" styleClass="rounded-button ui-button-outlined ui-button-danger" />
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </p:repeat>
+                                            </p:outputPanel>
+
+                                            <br></br>
+                                            <p:commandButton disabled="#{!cestaController.esCliente()}" value="Crear nueva dirección" id="agregarDireccion" type="button" onclick="PF('sidebarRightDirecciones').show()" styleClass="p-mr-2 ui-button-outlined" />
+
+                                        </div>
+                                    </p:fieldset>
+
+
+
+
+
+
+
+
+
+                                    <h:form>
+
+                                        <p:card class="p-mx-1 p-as-center p-mt-0" style="width: 30rem">
+                                            <h2 class="p-mt-0">
+                                                Configure Su Envío
+                                            </h2>
+
+
+
+
+                                            <div class="p-grid p-flex-column">
+                                                <div class="p-col" style="height: 4rem">
+                                                    <div class="p-grid p-ai-center vertical-container">
+                                                        <div class="p-col" style="width: 80px">
+                                                            <div class="box">
+                                                                <p:outputLabel value="¿Desea Montaje?" for="montaje"/></div>
+                                                        </div>
+                                                        <div class="p-col">
+                                                            <div class="box">
+
+                                                                <p:selectOneButton id="montaje"  class="p-ml-1"  value="#{cestaController.montaje}">
+                                                                    <f:selectItem itemLabel="Sí" itemValue="Si"></f:selectItem>
+                                                                    <f:selectItem itemLabel="No" itemValue="No"></f:selectItem>
+
+                                                                </p:selectOneButton>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="card">
+
+                                                    <p:dataTable var="envio" value="#{cestaController.enviosDisponibles}">
+                                                        <p:column headerText="Metodo Envío" width="150">
+                                                            <h:outputText value="#{envio.metodoEnvio}" />
+                                                        </p:column>
+
+                                                        <p:column headerText="Entrega">
+                                                            <h:outputText value="#{envio.fechaDestino}" />
+                                                        </p:column>
+
+                                                        <p:column headerText="Coste">
+                                                            <h:outputText value="#{envio.gastos}" />
+                                                        </p:column>
+
+                                                        <p:column headerText="Empresa">
+                                                            <h:outputText value="#{envio.empresa}" /> 
+                                                        </p:column>
+                                                    </p:dataTable> <br></br>
+                                                </div>
+
+                                                <div class="p-field p-col-12 p-md-4">
+                                                    <p:outputLabel for="@next" value="Método de envío"/>
+                                                    <p:selectOneMenu id="option" value="#{cestaController.envioSeleccionado}">
+                                                        <f:selectItem itemLabel="ikeaBasicDelivery" itemValue="ikeaBasicDelivery"/>
+                                                        <f:selectItem itemLabel="ikeaPayAndCollect" itemValue="ikeaPayAndCollect"/>
+                                                        <f:selectItem itemLabel="ikeaPremiumDelivery" itemValue="ikeaPremiumDelivery"/>
+                                                        <f:selectItem itemLabel="ikeaStandardDelivery" itemValue="ikeaStandardDelivery"/>
+
+                                                    </p:selectOneMenu>
+                                                </div>
+
+
+
+
+                                                <p:divider></p:divider>
+                                                <h2>
+                                                    Método de pago
+                                                </h2>
+                                                <div class="p-col">
+                                                    <div class="p-grid p-ai-center vertical-container">
+                                                        <div class="p-col-5" style="width: 80px">
+                                                            <div class="box">
+                                                                <p:outputLabel value="Número de Tarjeta" for="txtTarjeta"/></div>
+                                                        </div>
+                                                        <div class="p-col">
+                                                            <div class="box">
+                                                                <p:inputText class="p-ml-5" value="#{cestaController.pedido.numeroTarjeta}" required="true" requiredMessage="Tarjeta es un campo obligatorio" id="txtTarjeta"></p:inputText>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="p-col">
+                                                    <div class="p-grid p-ai-center vertical-container">
+                                                        <div class="p-col-fixed" style="width: 80px">
+                                                            <div class="box">
+                                                                <p:outputLabel value="CVV" for="txtCCV"/></div>
+                                                        </div>
+                                                        <div class="p-col">
+                                                            <div class="box">
+                                                                <p:inputText class="p-ml-5" value="#{cestaController.pedido.CVV}" required="true" requiredMessage="CCV es un campo obligatorio" id="txtCCV"></p:inputText>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="p-col">
+                                                    <div class="p-grid p-ai-center vertical-container">
+                                                        <div class="p-col-fixed" style="width: 80px">
+                                                            <div class="box">
+                                                                <p:outputLabel value="Titular" for="txtCCV"/></div>
+                                                        </div>
+                                                        <div class="p-col">
+                                                            <div class="box">
+                                                                <p:inputText class="p-ml-5" value="#{cestaController.pedido.titularTarjeta}" required="true" requiredMessage="Titular es un campo obligatorio" id="txtTitular"></p:inputText>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="p-col">
+                                                    <div class="p-grid p-ai-center vertical-container">
+                                                        <div class="p-col-fixed" style="width: 80px">
+                                                            <div class="box">
+                                                                <p:outputLabel value="Caducidad" for="txtCCV"/></div>
+                                                        </div>
+                                                        <div class="p-col">
+                                                            <div class="box">
+                                                                <p:inputMask class="p-ml-5" value="#{cestaController.pedido.caducidad}" required="true" requiredMessage="Caducidad es un campo obligatorio" id="txtCaducidad" ></p:inputMask>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <p:commandButton disabled="#{!cestaController.esCliente()}" id="registrarButton" value="Tramitar Pedido" ajax="false"
+                                                                 action="#{cestaController.tramitarPedido()}"  styleClass="p-mr-2 ui-button-outlined"/>
+
+                                            </div>
+
+                                        </p:card>
+                                    </h:form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

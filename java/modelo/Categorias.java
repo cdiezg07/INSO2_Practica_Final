@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
- 
+
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -13,17 +13,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
- 
- 
+
 @Entity
-@Table (name="categorias")
-public class Categorias implements Serializable{
- 
+@Table(name = "categorias")
+public class Categorias implements Serializable {
+
     @Id
-    @Column(name="nombre")
+    @Column(name = "nombre")
     private String nombre;
- 
-    @Column(name="imageUrl")
+
+    @Column(name = "imageUrl")
     private String imageUrl;
 
     public String getNombre() {
@@ -41,5 +40,5 @@ public class Categorias implements Serializable{
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    
+
 }

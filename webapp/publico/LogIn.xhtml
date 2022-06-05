@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+
+
+        <ui:composition template="./../WEB-INF/template/plantillaIkea.xhtml">
+
+            <ui:define name="top">
+                <p:button value="Volver" styleClass="ui-button-flat" icon="pi pi-arrow-left" outcome="/publico/Principal.xhtml"/>
+            </ui:define>
+
+            <ui:define name="content">
+                
+                <div class="p-grid p-jc-start p-ai-center" style="height: 95vh;">
+                    <div class="p-col-5 p-d-flex" style="background-color:lightskyblue;height: 100%;">
+                        <div class="p-mx-6 p-as-center">
+                            <h2>
+                                Hola de nuevo! 
+                            </h2>
+                            <h3>
+                                Accede a tu cuenta IKEA2 con tu dirección de correo electrónico y tu contraseña.
+                            </h3>
+                            <br></br>
+
+                            <h4>
+                                ¿Aún no tienes una cuenta? <br></br> Crear una ahora: 
+                            </h4>
+                            <p:button value="Crear cuenta" styleClass="ui-button-outlined" outcome="/publico/Registro.xhtml"  />
+
+                        </div>
+
+                    </div>
+                    <div class="p-col-6 p-d-flex">
+
+
+                        <p:card class="p-mx-6 p-as-center" style="width: 30rem">
+                            <h2 class="p-mt-0">
+                                Login
+                            </h2>
+
+                            <h:form>
+
+
+                                <div class="p-grid p-flex-column">
+                                    <div class="p-col">
+                                        <div class="p-grid p-ai-center vertical-container">
+                                            <div class="p-col-fixed" style="width: 80px">
+                                                <div class="box">
+                                                    <h:outputLabel for="username" value="Email" /></div>
+                                            </div>
+                                            <div class="p-col">
+                                                <div class="box">
+                                                    <p:inputText class="p-ml-3" value="#{indexController.usuarioABuscar.email}" id="username" required="true" label="username" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="p-col">
+
+                                        <div class="p-grid p-ai-center vertical-container">
+                                            <div class="p-col-fixed" style="width: 80px">
+                                                <div class="box">
+                                                    <h:outputLabel for="password" value="Contraseña" /></div>
+                                            </div>
+                                            <div class="p-col">
+                                                <div class="box">
+                                                    <p:password class="p-ml-3" value="#{indexController.usuarioABuscar.password}" id="password" required="true" 
+                                                                label="password" toggleMask="true" redisplay="true"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                                                        <p:growl id="mensajes" showDetail="true"/>
+
+                                    <div class="p-col">
+                                        <div class="box">
+                                            <p:commandButton id="loginButton" value="Login" ajax="false"
+                                                             action="#{indexController.verificarUsuario()}" update=":mensajes" style="width: 100%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </p:card>
+
+
+                    </div>
+                </div>
+
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

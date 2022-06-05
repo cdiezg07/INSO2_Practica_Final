@@ -15,8 +15,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import modelo.Usuarios;
 
-
-
 /**
  *
  * @author Mario
@@ -36,19 +34,20 @@ public class UsuariosController implements Serializable {
     public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
     }
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         usuario = new Usuarios();
     }
-    public void Guardar(){
-        try{
+
+    public void Guardar() {
+        try {
             usuariosEJB.create(usuario);
-            
+
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "El usuario se guardó correctamente en base de datos"));
-            
-            
-        }catch(Exception e){}
+
+        } catch (Exception e) {
+        }
     }
-  
+
 }

@@ -16,20 +16,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
- 
- 
+
 @Entity
-@Table (name="subcategorias")
-public class Subcategorias implements Serializable{
- 
+@Table(name = "subcategorias")
+public class Subcategorias implements Serializable {
+
     @Id
-    @Column(name="nombreSubcategoria")
+    @Column(name = "nombreSubcategoria")
     private String nombreSubcategoria;
- 
-    @Column(name="imageUrl")
+
+    @Column(name = "imageUrl")
     private String imageUrl;
 
-    @JoinColumn(name="nombre")
+    @JoinColumn(name = "nombreCategoria")
     @ManyToOne
     private Categorias categoria;
 
@@ -56,7 +55,5 @@ public class Subcategorias implements Serializable{
     public void setCategoria(Categorias categoria) {
         this.categoria = categoria;
     }
-    
-    
-    
+
 }

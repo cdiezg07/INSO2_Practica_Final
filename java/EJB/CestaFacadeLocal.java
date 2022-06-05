@@ -8,6 +8,8 @@ package EJB;
 import java.util.List;
 import javax.ejb.Local;
 import modelo.Cesta;
+import modelo.Clientes;
+import modelo.Products;
 
 /**
  *
@@ -30,4 +32,10 @@ public interface CestaFacadeLocal {
 
     int count();
     
+    boolean yaExisteProducto(Products UPC, Clientes emailCliente);
+    
+    List<Cesta> getProductos(Clientes emailCliente);
+
+    public void eliminarCesta(Clientes infoEspCliente);
+
 }

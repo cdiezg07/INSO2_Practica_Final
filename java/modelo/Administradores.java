@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,11 +20,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "administradores")
-public class Administradores implements Serializable{
+public class Administradores implements Serializable {
 
     @Id
-    @JoinColumn(name="emailAdministradores")
-    @OneToOne
+    @JoinColumn(name = "emailAdministradores")
+    @OneToOne (cascade = CascadeType.ALL)
     private Usuarios emailAdministradores;
 
     @Column(name = "DNI")
@@ -44,6 +45,5 @@ public class Administradores implements Serializable{
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }
-    
 
 }

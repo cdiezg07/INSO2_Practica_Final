@@ -8,6 +8,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,11 +24,11 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @Table(name = "clientes")
-public class Clientes implements Serializable{
+public class Clientes implements Serializable {
 
     @Id
-    @JoinColumn(name="emailCliente")
-    @OneToOne
+    @JoinColumn(name = "emailCliente")
+    @OneToOne (cascade = CascadeType.ALL)
     private Usuarios emailCliente;
 
     @Column(name = "numero_telefono")
@@ -93,6 +94,10 @@ public class Clientes implements Serializable{
     public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
+    
+    public Clientes find(String email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-   
+ 
 }

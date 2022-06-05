@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <f:event type="preRenderView" listener="#{plantillaController.verificarYMostrarAdmin()}"></f:event>
+
+        <ui:composition template="../../WEB-INF/template/plantillaIkea.xhtml">
+
+            <ui:define name="content">
+
+                        <f:event type="preRenderView" listener="#{plantillaController.verificarYMostrarAdmin()}"></f:event>
+
+
+                <div class="p-grid p-jc-center p-mt-6">
+                    <div class="p-col-10" style="">
+                            <p:card>
+                                <h:form>
+                                    <div class="ui-fluid p-formgrid p-grid">
+                                        <div class="p-field p-mr-2">
+                                            <p:outputLabel for="email" styleClass="p-d-block">Email</p:outputLabel>
+                                            <p:inputText id="email" value="#{adminEditarTrabajadorController.trabTraido.emailTrabajador.email}" styleClass="p-d-block"/>
+                                        </div>
+                                        <div class="p-field p-mr-2">
+                                            <p:outputLabel for="nombre" styleClass="p-d-block">Nombre</p:outputLabel>
+                                            <p:inputText id="nombre" value="#{adminEditarTrabajadorController.trabTraido.emailTrabajador.nombre}" styleClass="p-d-block"/>
+                                        </div>
+                                        <div class="p-field p-mr-2">
+                                            <p:outputLabel for="apellido" styleClass="p-d-block">Apellidos</p:outputLabel>
+                                            <p:inputText id="apellido" value="#{adminEditarTrabajadorController.trabTraido.emailTrabajador.apellidos}" styleClass="p-d-block"/>
+                                        </div>
+                                        <div class="p-field p-mr-2">
+                                            <p:outputLabel for="contrasenya" styleClass="p-d-block">Contraseña</p:outputLabel>
+                                            <p:password value="#{adminEditarTrabajadorController.trabTraido.emailTrabajador.password}" id="contrasenya" required="true" label="password" toggleMask="true" redisplay="true" requiredMessage="Contraseña es un campo obligatorio" feedback="true" promptLabel="Ingresa tu contraseña" weakLabel="Débil" goodLabel="Buena" strongLabel="Fuerte" />
+                                        </div>
+                                        <div class="p-field p-mr-2">
+                                            <p:outputLabel for="dni" styleClass="p-d-block">DNI</p:outputLabel>
+                                            <p:inputText id="dni" value="#{adminEditarTrabajadorController.trabTraido.DNI}" styleClass="p-d-block"/>
+                                        </div>
+                                        <div class="p-field p-mr-2">
+                                            <p:outputLabel for="telefono" value="Teléfono"/>
+                                            <p:inputMask id="telefono" value="#{adminEditarTrabajadorController.trabTraido.num_telefono}" mask="999999999"/>
+                                        </div>
+                                        <div class="p-field p-mr-2">
+                                            <p:outputLabel for="fechaNacimiento" value="Fecha de nacimiento"/>
+                                            <p:calendar id="fechaNacimiento" value="#{adminEditarTrabajadorController.trabTraido.fecha_nacimiento}" showOn="button"/>
+                                        </div>
+                                        <div class="p-field p-ml-6 p-mt-4">
+                                            <p:commandButton id="registrarButton" value="Guardar cambios" ajax="false" action="#{adminEditarTrabajadorController.guardarTrabajadorModificado()}" style="width: 100%"/>
+                                        </div>                                       
+                                    </div>
+                                </h:form>
+
+
+                            </p:card>
+                            
+                    </div>
+                </div>
+
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,11 +23,11 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @Table(name = "trabajadores")
-public class Trabajadores implements Serializable{
+public class Trabajadores implements Serializable {
 
     @Id
-    @JoinColumn(name="emailTrabajador")
-    @OneToOne
+    @JoinColumn(name = "emailTrabajador")
+    @OneToOne(cascade = CascadeType.ALL)//con persist funciona solo el create 
     private Usuarios emailTrabajador;
 
     @Column(name = "dni")
@@ -70,6 +71,5 @@ public class Trabajadores implements Serializable{
     public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
-    
-    
+
 }

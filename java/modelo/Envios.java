@@ -21,20 +21,20 @@ import javax.persistence.TemporalType;
  * @author carlos
  */
 @Entity
-@Table (name="envios")
-public class Envios implements Serializable{
-    
+@Table(name = "envios")
+public class Envios implements Serializable {
+
     @Id
-    @Column(name="metodoEnvio")
+    @Column(name = "metodoEnvio")
     private String metodoEnvio;
- 
-    @Column(name="gastos")
+
+    @Column(name = "gastos")
     private float gastos;
 
-    @Column(name="fechaDestino")
+    @Column(name = "fechaDestino")
     private String fechaDestino;
-    
-    @Column(name="empresa")
+
+    @Column(name = "empresa")
     private String empresa;
 
     public String getMetodoEnvio() {
@@ -69,6 +69,4 @@ public class Envios implements Serializable{
         this.empresa = empresa;
     }
 
-    
-    
 }
