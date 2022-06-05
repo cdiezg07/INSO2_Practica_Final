@@ -30,7 +30,7 @@ import modelo.Subcategorias;
  * @author carlos
  */
 @Named
-@SessionScoped
+@RequestScoped
 public class SubcategoriasController implements Serializable {
 
     private Subcategorias subcat;
