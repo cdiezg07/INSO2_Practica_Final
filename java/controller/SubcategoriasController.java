@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,7 +25,7 @@ import modelo.Cesta;
 import modelo.Clientes;
 import modelo.Products;
 import modelo.Subcategorias;
-    
+
 /**
  *
  * @author carlos
@@ -36,7 +37,7 @@ public class SubcategoriasController implements Serializable {
     private Subcategorias subcat;
     private List<Subcategorias> listaSubcat;
     private Clientes cliente;
-    
+
     @Inject
     private PrincipalController vistaAnteriorCongelada;
 
@@ -55,7 +56,7 @@ public class SubcategoriasController implements Serializable {
     private List<Products> listaProductos;
     private Cesta cesta;
     private Products actualProductos;
-    
+
     @PostConstruct
     public void init() {
         subcat = new Subcategorias();
@@ -64,8 +65,8 @@ public class SubcategoriasController implements Serializable {
         cliente = new Clientes();
         actualProductos = new Products();
         categoriaAnterior = this.vistaAnteriorCongelada.getActualCategoria();
-        System.out.println("vista anterior congelada: "+this.vistaAnteriorCongelada);
-        System.out.println("categoriaAnterior: "+this.categoriaAnterior.getNombre());
+        System.out.println("vista anterior congelada: " + this.vistaAnteriorCongelada);
+        System.out.println("categoriaAnterior: " + this.categoriaAnterior.getNombre());
         List<String> listaCategoria = getSubcategorias(this.categoriaAnterior.getNombre());
         listaProductosSubcategoria = getAllProductsFromSubcat(listaCategoria);
     }
@@ -117,7 +118,7 @@ public class SubcategoriasController implements Serializable {
         }
         return null;
     }
-    
+
     public List<Products> getProducts(String nombreSubCategoria) {
 
         try {
@@ -133,13 +134,13 @@ public class SubcategoriasController implements Serializable {
             this.listaProductosSubcategoria = listaFinal;
             //this.init();
             return listaFinal;
-            
+
         } catch (Exception e) {
             System.out.println("Error al obtener los productos " + e.getMessage());
         }
         return null;
     }
-    
+
     public List<Products> getAllProductsFromSubcat(List<String> subcat) {
 
         try {
@@ -152,13 +153,13 @@ public class SubcategoriasController implements Serializable {
                 }
             }
             return listaFinal;
-            
+
         } catch (Exception e) {
             System.out.println("Error al obtener los productos de las subcategorias" + e.getMessage());
         }
         return null;
     }
-    
+
     public Products getProduct(String UPC) {
 
         try {
@@ -191,17 +192,18 @@ public class SubcategoriasController implements Serializable {
             System.out.println("Error al insertar los productos en la cesta " + e.getMessage());
         }
     }
-    
-    public void getOpiniones(){
-        
+
+    public void getOpiniones() {
+
     }
 
-    public String seleccionProducto(Products producto){
-        this.actualProductos = producto;
+    public String seleccionProducto(Products producto) {
+        //this.actualProductos = producto;
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produtoSeleccionado", producto.getUpc());
         System.out.println(actualProductos.getName());
         return "/publico/Producto.xhtml?faces-redirect=true";
     }
-    
+
 //    public Categorias getCat() {
 //        return cat;
 //    }
@@ -209,7 +211,6 @@ public class SubcategoriasController implements Serializable {
 //    public void setCat(Categorias cat) {
 //        this.cat = cat;
 //    }   
-
     public PrincipalController getVistaAnteriorCongelada() {
         return vistaAnteriorCongelada;
     }
@@ -249,5 +250,5 @@ public class SubcategoriasController implements Serializable {
     public void setActualProductos(Products actualProductos) {
         this.actualProductos = actualProductos;
     }
-    
+
 }

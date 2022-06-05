@@ -11,81 +11,87 @@
         <ui:composition template="./../WEB-INF/template/plantillaIkea.xhtml">
 
             <ui:define name="content">
-                <div class="p-grid p-jc-center">
-                    <div class="p-col-4" style="">
-                        <div class="">
-                            <img src="#{productosController.productoSeleccionado.contextualImageUrl}" height="100%" width="100%" class="img">
+                                                        <p:growl id="mensajes" showDetail="true"/>
 
-                            </img>
-                        </div>
-                    </div>
-                    <div class="p-col-4" style="">
-                        <div class="">
+                <h:form>
+                    <div class="p-grid p-jc-center">
+                        <div class="p-col-4" style="">
                             <div class="">
-                                <p:card class="" style="width: 75%">
+                                <img src="#{productosController.productoSeleccionado.contextualImageUrl}" height="100%" width="100%" class="img">
 
-                                    <f:facet name="title">
-                                        #{productosController.productoSeleccionado.name}
-                                    </f:facet>
-                                    <f:facet name="subtitle">
-                                        <span>
-                                            #{productosController.productoSeleccionado.typeName}
-                                        </span>
-                                        <br></br>
-                                        <span>
-                                            Color: #{productosController.productoSeleccionado.colors}
-                                        </span>
-                                    </f:facet>
-
-                                    <h3 class="p-mt-0">
-                                        #{productosController.productoSeleccionado.priceNumeral} #{productosController.productoSeleccionado.pricesuffix}
-                                    </h3>
-                                    <p:rating value="4" rendered="true" class="p-mb-2"/>
-                                    <p:rating value="4" rendered="true" readonly="true" class="p-mb-2"/>
-                                    <p:commandButton  value="Añadir al carrito" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" rendered="true" action="#{productosController.addCarrito(productosController.productoSeleccionado)}"/>
-                                    <p:commandButton  value="En el carrito" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" disabled="true"  rendered="true"/>
-
-                                </p:card>
+                                </img>
                             </div>
                         </div>
+                        <div class="p-col-4" style="">
+                            <div class="">
+                                <div class="">
+                                    <p:card class="" style="width: 75%">
+
+                                        <f:facet name="title">
+                                            #{productosController.productoSeleccionado.name}
+                                        </f:facet>
+                                        <f:facet name="subtitle">
+                                            <span>
+                                                #{productosController.productoSeleccionado.typeName}
+                                            </span>
+                                            <br></br>
+                                            <span>
+                                                Color: #{productosController.productoSeleccionado.colors}
+                                            </span>
+                                        </f:facet>
+
+                                        <h3 class="p-mt-0">
+                                            #{productosController.productoSeleccionado.priceNumeral} #{productosController.productoSeleccionado.pricesuffix}
+                                        </h3>
+                                        <p:rating value="4" rendered="true" class="p-mb-2"/>
+                                        <p:rating value="4" rendered="true" readonly="true" class="p-mb-2"/>
+
+
+                                        <p:commandButton rendered="#{productosController.enElCarrito == false}"  value="Añadir al carrito" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" action="#{productosController.addCarrito(productosController.productoSeleccionado)}" update=":mensajes"/>
+                                        <p:commandButton  value="En el carrito" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" disabled="true"  rendered="#{productosController.enElCarrito==true}"/>
+
+                                    </p:card>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>     <div class="p-grid p-jc-center p-mt-6">
+                        <div class="p-col-8" style="">
+                            <p:autoUpdate></p:autoUpdate>
+                            <h2 class="p-my-3">
+                                Reseñas
+                            </h2>
+                            <p:fieldset legend="Nueva reseña" toggleable="true" toggleSpeed="500" class="p-mx-1 p-as-center p-my-2" collapsed="true">
+                                <p:inputTextarea rows="5" cols="30" counter="count" maxlength="800" counterTemplate="{0} Caracteres restantes." autoResize="false" style="width: 100%">
+
+                                </p:inputTextarea>
+                                <h:outputText id="count" class="p-d-block"></h:outputText>
+                                <p:commandButton class="p-d-block" value="Agregar reseña" styleClass="ui-button-outlined ui-button-primary" update="@none" process="@this" action="#{subcategoriasController.getProducts(subcategoria.nombreSubcategoria)}"/>
+                            </p:fieldset>
+                            <p:repeat value="#{productosController.getOpiniones(productosController.productoSeleccionado)}" var="opinion">
+                                <p:card>
+                                    <h3 class="p-my-0">
+                                        #{opinion.emailCliente}
+                                    </h3>
+                                    <h4 class="p-my-0">
+                                        #{opinion.fecha}
+                                    </h4>
+                                    <p:rating value="#{opinion.puntuacion}" readonly="true" class="p-mt-1"/>
+                                    <span class="p-my-0">
+                                        <p class="p-my-0">
+                                            #{opinion.comentario}
+                                        </p>
+
+                                    </span>
+                                </p:card>
+
+
+                            </p:repeat>
+                        </div>
+
+
                     </div>
-
-                </div>     <div class="p-grid p-jc-center p-mt-6">
-                    <div class="p-col-8" style="">
-                        <p:autoUpdate></p:autoUpdate>
-                        <h2 class="p-my-3">
-                            Reseñas
-                        </h2>
-                        <p:fieldset legend="Nueva reseña" toggleable="true" toggleSpeed="500" class="p-mx-1 p-as-center p-my-2" collapsed="true">
-                            <p:inputTextarea rows="5" cols="30" counter="count" maxlength="800" counterTemplate="{0} Caracteres restantes." autoResize="false" style="width: 100%">
-
-                            </p:inputTextarea>
-                            <h:outputText id="count" class="p-d-block"></h:outputText>
-                            <p:commandButton class="p-d-block" value="Agregar reseña" styleClass="ui-button-outlined ui-button-primary" update="@none" process="@this" action="#{subcategoriasController.getProducts(subcategoria.nombreSubcategoria)}"/>
-                        </p:fieldset>
-                        <p:repeat value="#{productosController.getOpiniones(productosController.productoSeleccionado)}" var="opinion">
-                            <p:card>
-                                <h3 class="p-my-0">
-                                    #{opinion.emailCliente}
-                                </h3>
-                                <h4 class="p-my-0">
-                                    #{opinion.fecha}
-                                </h4>
-                                <p:rating value="#{opinion.puntuacion}" readonly="true" class="p-mt-1"/>
-                                <span class="p-my-0">
-                                    <p class="p-my-0">
-                                        #{opinion.comentario}
-                                    </p>
-
-                                </span>
-                            </p:card>
-
-
-                        </p:repeat>
-                    </div>
-
-
-                </div>
+                </h:form>
             </ui:define>
 
         </ui:composition>

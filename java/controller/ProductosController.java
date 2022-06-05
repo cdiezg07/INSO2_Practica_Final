@@ -5,6 +5,7 @@
  */
 package controller;
 
+import EJB.CestaFacadeLocal;
 import EJB.ClientesFacadeLocal;
 import EJB.OpinionesFacadeLocal;
 import EJB.ProductsFacadeLocal;
@@ -16,6 +17,8 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -34,7 +37,7 @@ import modelo.Valoracion;
  * @author carlos
  */
 @Named
-@ViewScoped
+@RequestScoped
 public class ProductosController implements Serializable{
     
     private Products producto;
@@ -48,6 +51,8 @@ public class ProductosController implements Serializable{
     
     @EJB
     private OpinionesFacadeLocal opinionesEJB;
+     @EJB
+    private CestaFacadeLocal cestaEJB;
     @EJB
     private ClientesFacadeLocal clienteEJB;
     @EJB
@@ -57,14 +62,21 @@ public class ProductosController implements Serializable{
     private Clientes cliente;
     private Usuarios usu;
     private Products productoSeleccionado;
+    private boolean enElCarrito;
     
     @PostConstruct
     public void init(){
+        
         producto = new Products();
         usu = (Usuarios)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado");
-        this.productoSeleccionado = vistaAnterior.getActualProductos();
+        //this.productoSeleccionado = vistaAnterior.getActualProductos();
+                
+        this.productoSeleccionado = this.productsEJB.find(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("produtoSeleccionado"));
         System.out.println("vista anterior congelada: "+this.vistaAnterior);
         System.out.println("categoriaAnterior: "+this.productoSeleccionado.getName());
+        
+        this.enElCarrito = this.cestaEJB.yaExisteProducto(this.productoSeleccionado, clienteEJB.find(usu.getEmail()));
+        
     }
         
     public void insertarSubcategoria(){
@@ -138,9 +150,23 @@ public class ProductosController implements Serializable{
     
     public void addCarrito(Products producto){
         if(usu == null){
-            System.out.println("No tienes iniciada sesion");
+                        addMessageError("Error", "Debe iniciar sesión para poder añadir productos a su carrito");            
+
         }else{
             System.out.println("Usuario: "+usu);
+            
+            Cesta itemCesta = new Cesta();
+            itemCesta.setUPC(this.productoSeleccionado);
+            itemCesta.setCantidad(1);
+            Clientes cli = clienteEJB.find(usu.getEmail());
+
+            itemCesta.setEmailUsuario(cli);
+            try{
+            this.cestaEJB.create(itemCesta);
+            this.enElCarrito = true;
+            }catch(Exception e){
+                System.out.println("ERROR al insertar el producto en la cesta");
+            }            
         }
               
     }
@@ -164,6 +190,20 @@ public class ProductosController implements Serializable{
 
     public void setProductoSeleccionado(Products productoSeleccionado) {
         this.productoSeleccionado = productoSeleccionado;
+    }
+
+    public boolean isEnElCarrito() {
+        return enElCarrito;
+    }
+
+    public void setEnElCarrito(boolean enElCarrito) {
+        this.enElCarrito = enElCarrito;
+    }
+    
+    
+     public void addMessageError(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
 }

@@ -35,7 +35,7 @@ public class ProductsFacade extends AbstractFacade<Products> implements Products
 
     @Override
     public List<Opiniones> getOpiniones(Products producto) {
-        String consulta = "FROM opiniones o WHERE o.UPC=:param1";
+        String consulta = "FROM Opiniones o WHERE o.UPC=:param1";
         
         Query query = em.createQuery(consulta);
         query.setParameter("param1", producto);
