@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="../../WEB-INF/template/plantillaIkea.xhtml">
+
+            <ui:define name="content">
+
+
+
+                <div class="p-grid p-jc-center p-mt-6">
+                    <div class="p-col-10" style="">
+
+                        <p:fieldset legend="Administrar Pedidos">
+
+
+                            <p:repeat value="#{trabEditarPedidoController.todosLosPedidos}" var="pedido">
+
+
+
+
+                                <p:card class="p-my-2">
+                                    <h:form>
+                                        <div class="ui-fluid p-formgrid p-grid">
+                                            <div class="p-field p-mr-2">
+                                                <p:outputLabel for="idPedido" styleClass="p-d-block">Nº Orden</p:outputLabel>
+                                                <p:inputText id="idPedido" styleClass="p-d-block" value="#{pedido.upc}" disabled="true"/>
+                                            </div>
+                                            <div class="p-field p-mr-2">
+                                                <p:outputLabel for="fecha" styleClass="p-d-block">Fecha</p:outputLabel>
+                                                <p:inputText id="fecha" styleClass="p-d-block" value="#{pedido.fecha}" disabled="true"/>
+                                            </div>
+                                            <div class="p-field p-mr-2">
+                                                <p:outputLabel for="nombre" styleClass="p-d-block">Nombre Cliente</p:outputLabel>
+                                                <p:inputText id="nombre" styleClass="p-d-block" value="#{pedido.cliente.emailCliente.nombre}" disabled="true"/>
+                                            </div>
+                                            <div class="p-field p-mr-2">
+                                                <p:outputLabel for="dni" styleClass="p-d-block">Apellidos Cliente</p:outputLabel>
+                                                <p:inputText id="dni" styleClass="p-d-block" value="#{pedido.cliente.emailCliente.apellidos}" disabled="true"/>
+                                            </div>
+
+                                            <div class="p-field p-mr-2 p-ml-3">
+                                                <p:outputLabel for="estado" >Estado</p:outputLabel><br></br>
+                                                <p:inplace editor="true" >
+                                                    <p:selectOneMenu class="p-ml-1 p-mt-4" id="estado"  value="#{pedido.estado}">
+                                                        <f:selectItem itemLabel="Procesandose" itemValue="Procesandose"></f:selectItem>
+                                                        <f:selectItem itemLabel="Preparado" itemValue="Preparado"></f:selectItem>
+                                                        <f:selectItem itemLabel="En Camino" itemValue="En Camino"></f:selectItem>
+                                                        <f:selectItem itemLabel="Entregado" itemValue="Entregado"></f:selectItem>
+                                                    </p:selectOneMenu> 
+                                                </p:inplace>
+                                            </div>
+                                            <div class="p-field p-mr-2 p-ml-3">
+                                                <p:outputLabel for="im" styleClass="p-d-block">Incluye Montaje</p:outputLabel>
+
+                                                <p:inplace editor="true" >
+                                                    <p:inputText id="im" class="p-ml-1 p-mt-4" styleClass="p-d-block" value="#{pedido.incluyeMontaje}" />
+                                                </p:inplace>
+                                            </div>
+                                            <div class="p-field p-mr-2 p-ml-3">
+                                                <p:outputLabel for="dinero" styleClass="p-d-block">Cuantía</p:outputLabel>
+
+                                                <p:inplace editor="true" >
+
+                                                    <p:inputText id="dinero" styleClass="p-d-block" value="#{pedido.subtotal}" class="p-ml-1 p-mt-4"/>
+                                                </p:inplace>
+
+                                            </div>
+
+
+                                            <div class="p-field p-ml-6 p-mt-4">
+                                                <p:commandButton id="sinM4as" icon="pi pi-save" ajax="false"  action="#{trabEditarPedidoController.guardarPedidoModificado(pedido)}" styleClass="p-mr-2 ui-button-outlined ui-button-success"/>
+                                                <p:commandButton id="sinMas" icon="pi pi-trash" ajax="false"  action="#{trabEditarPedidoController.eliminarPedidoSeleccionado(pedido)}" styleClass="p-mr-2 ui-button-outlined ui-button-danger"/>
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </h:form>
+
+                                </p:card>
+                            </p:repeat>
+
+                        </p:fieldset>
+
+                    </div>
+                </div>
+
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

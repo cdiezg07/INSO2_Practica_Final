@@ -50,6 +50,16 @@ public class PlantillaController implements Serializable {
                
         return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado") != null && usu.getTipo().compareTo("admin") == 0;
     }
+    
+    public boolean esTrabajadorLogueado() {
+        
+         
+        Usuarios usu = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado");
+               
+        return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuarioLoggeado") != null && usu.getTipo().compareTo("trabajador") == 0;
+    }
+    
+    
     public boolean hayUsuarioLogueado() {
         
          

@@ -29,7 +29,8 @@
                                 <p:button value="Perfil" rendered="#{plantillaController.hayUsuarioLogueado()}" styleClass="ui-button-flat ui-button-plain" style="width: 100%" outcome="/privado/cliente/Perfil.xhtml"/>
                                 <p:button value="Cesta" rendered="#{plantillaController.hayUsuarioLogueado()}" styleClass="ui-button-flat ui-button-plain" style="width: 100%" outcome="/privado/cliente/Cesta.xhtml"/>
                                 <p:button value="Administración" rendered="#{plantillaController.esAdminLogueado()}" styleClass="ui-button-flat ui-button-plain" style="width: 100%" outcome="/privado/adminsitrador/Administracion.xhtml"/>
-                                
+                                <p:button value="Administración" rendered="#{plantillaController.esTrabajadorLogueado()}" styleClass="ui-button-flat ui-button-plain" style="width: 100%" outcome="/privado/trabajador/Administracion.xhtml"/>
+
                             </div>
 
                         </p:sidebar>
