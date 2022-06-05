@@ -156,7 +156,7 @@
                                             </p:outputPanel>
 
                                             <br></br>
-                                            <p:commandButton value="Crear nueva dirección" id="agregarDireccion" type="button" onclick="PF('sidebarRightDirecciones').show()" styleClass="p-mr-2 ui-button-outlined" />
+                                            <p:commandButton disabled="#{!cestaController.esCliente()}" value="Crear nueva dirección" id="agregarDireccion" type="button" onclick="PF('sidebarRightDirecciones').show()" styleClass="p-mr-2 ui-button-outlined" />
 
                                         </div>
                                     </p:fieldset>
@@ -305,7 +305,7 @@
                                                     </div>
                                                 </div>
 
-                                                <p:commandButton id="registrarButton" value="Tramitar Pedido" ajax="false"
+                                                <p:commandButton disabled="#{!cestaController.esCliente()}" id="registrarButton" value="Tramitar Pedido" ajax="false"
                                                                  action="#{cestaController.tramitarPedido()}"  styleClass="p-mr-2 ui-button-outlined"/>
 
                                             </div>

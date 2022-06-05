@@ -12,6 +12,8 @@ import EJB.ProductsFacadeLocal;
 import EJB.SubcategoriasFacadeLocal;
 import EJB.ValoracionFacadeLocal;
 import java.io.Serializable;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -113,27 +115,7 @@ public class ProductosController implements Serializable {
         return null;
     }
 
-    public void crearOpinion() {
-        Products producto;
-        if (usu.getEmail() == null) {
-            System.out.println("No hay usuario logueado");
-        } else {
-            cliente = clienteEJB.find(usu.getEmail());
-            opinion.setComentario("Es la leche este producto");
-            opinion.setEmailCliente(cliente);
-            opinion.setFecha(new Date("07/07/2000"));
-            opinion.setPuntuacion(0);
-//            opinion.setUPC(producto);
-            try {
-                opinionesEJB.create(opinion);
-            } catch (Exception e) {
-                System.out.println("Error al insertar el producto " + e.getMessage());
-            }
-
-        }
-
-    }
-
+   
     public void crearValoracion() {
         Products producto;
         if (usu.getEmail() == null) {
@@ -155,7 +137,7 @@ public class ProductosController implements Serializable {
 
     public void addCarrito(Products producto) {
         if (usu == null) {
-            addMessageError("Error", "Debe iniciar sesión para poder añadir productos a su carrito");
+            addMessageError(FacesMessage.SEVERITY_ERROR, "Error", "Debe iniciar sesión para poder añadir productos a su carrito");
 
         } else {
             System.out.println("Usuario: " + usu);
@@ -188,13 +170,13 @@ public class ProductosController implements Serializable {
         Opiniones nuevaOpinion = new Opiniones();
         if (usu == null) {
             System.out.println("No hay usuario logueado");
-            addMessageError("Error", "Debe iniciar sesión para poder comentar");
+            addMessageError(FacesMessage.SEVERITY_ERROR, "Error", "Debe iniciar sesión para poder comentar");
 
         } else {
             nuevaOpinion.setUPC(this.productoSeleccionado);
             nuevaOpinion.setEmailCliente(clienteEJB.find(usu.getEmail()));
             Date today = new Date();
-            today.setHours(0);
+            today.setHours(2);
             nuevaOpinion.setFecha(today);
             nuevaOpinion.setComentario(this.nuevaResenya);
             nuevaOpinion.setPuntuacion(this.rating);
@@ -204,19 +186,21 @@ public class ProductosController implements Serializable {
                 opinionesEJB.create(nuevaOpinion);
                 this.nuevaResenya = "";
             } catch (Exception e) {
+                addMessageError(FacesMessage.SEVERITY_INFO, "Info Message", "Ya has creado una reseña. Vuelve a crearla en las próximas 24 horas");
                 System.out.println("Error al insertar el producto " + e.getMessage());
             }
         }
 
     }
 
-//    public Categorias getCat() {
-//        return cat;
-//    }
-//
-//    public void setCat(Categorias cat) {
-//        this.cat = cat;
-//    }   
+    public Usuarios getUsu() {
+        return usu;
+    }
+
+    public void setUsu(Usuarios usu) {
+        this.usu = usu;
+    }
+
     public Products getProductoSeleccionado() {
         return productoSeleccionado;
     }
@@ -248,10 +232,42 @@ public class ProductosController implements Serializable {
     public void setRating(int rating) {
         this.rating = rating;
     }
+    
+    public boolean esCliente(){
+        if(usu == null){
+            return false;
+        }else if(usu.getTipo().equals("cliente")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean esTrabajador(){
+        if(usu == null){
+            return false;
+        }else if(usu.getTipo().equals("trabajador")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void descuento(){
+        System.out.println("Descuento");
+        try {
+
+            productsEJB.edit(productoSeleccionado);
+
+        } catch (Exception e) {
+            System.out.println("Error al modificar el producto " + e.getMessage());
+        }
+        
+    }
 
   
-    public void addMessageError(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
+    public void addMessageError(FacesMessage.Severity severity, String summary, String detail) {
+        FacesMessage message = new FacesMessage(severity, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 

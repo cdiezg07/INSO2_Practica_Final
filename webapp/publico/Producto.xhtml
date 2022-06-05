@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3c.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -30,7 +30,7 @@
                                         <f:facet name="title">
                                             #{productosController.productoSeleccionado.name}
                                         </f:facet>
-                                        <f:facet name="subtitle">
+                                        <f:facet name="subtitle" >
                                             <span>
                                                 #{productosController.productoSeleccionado.typeName}
                                             </span>
@@ -39,11 +39,11 @@
                                                 Color: #{productosController.productoSeleccionado.colors}
                                             </span>
                                         </f:facet>
-
-                                        <h3 class="p-mt-0">
-                                            #{productosController.productoSeleccionado.priceNumeral} #{productosController.productoSeleccionado.pricesuffix}
-                                        </h3>
-                                        <p:rating value="#{productosController.rating}" rendered="true" class="p-mb-2"/>
+                                        <p:inplace editor="#{productosController.esTrabajador()}">
+                                            <p:inputText value="#{productosController.productoSeleccionado.priceNumeral}" required="true" label="text" disabled="productosController.esTrabajador()" onchange="#{productosController.descuento()}"/>
+                                        </p:inplace>
+                                        #{productosController.productoSeleccionado.pricesuffix}
+                                        <p:rating value="#{productosController.rating}" rendered="true" class="p-my-2"/>
 
 
                                         <p:commandButton rendered="#{productosController.enElCarrito == false}"  value="Añadir al carrito" styleClass="ui-button-outlined ui-button-primary" style="width: 100%" action="#{productosController.addCarrito(productosController.productoSeleccionado)}" update=":mensajes"/>
@@ -66,7 +66,7 @@
                                 </p:inputTextarea>
                                 
                                 <h:outputText id="count" class="p-d-block"></h:outputText>
-                                <p:commandButton class="p-d-block" value="Agregar reseña" styleClass="ui-button-outlined ui-button-primary" update=":mensajes"  action="#{productosController.nuevaResenya()}"/>
+                                <p:commandButton rendered="#{productosController.esCliente() == true}" class="p-d-block" value="Agregar reseña" styleClass="ui-button-outlined ui-button-primary" update=":mensajes"  action="#{productosController.nuevaResenya()}"/>
                             </p:fieldset>
                             <p:repeat value="#{productosController.getOpiniones(productosController.productoSeleccionado)}" var="opinion">
                                 <p:card class="p-my-2 p-mr-2">

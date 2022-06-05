@@ -218,7 +218,7 @@ public class CestaController implements Serializable {
 
         this.pedido.setUpc(this.usuarioActivo.getNombre() + numAleatorio);
         Date today = new Date();
-        today.setHours(0);
+        today.setHours(2);
         this.pedido.setFecha(today);
         
         
@@ -267,6 +267,16 @@ public class CestaController implements Serializable {
         }
 
 
+    }
+    
+    public boolean esCliente(){
+        if(usuarioActivo == null){
+            return false;
+        }else if(usuarioActivo.getTipo().equals("cliente")){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
